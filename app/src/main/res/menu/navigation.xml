@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_favorite"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="@string/title_favorite" />
+
+    <item
+        android:id="@+id/navigation_stop"
+        android:icon="@drawable/ic_directions_black_24dp"
+        android:title="@string/title_stop" />
+
+    <item
+        android:id="@+id/navigation_route"
+        android:icon="@drawable/ic_directions_bus_black_24dp"
+        android:title="@string/title_route" />
+
+    <item
+        android:id="@+id/navigation_near"
+        android:icon="@drawable/ic_near_me_black_24dp"
+        android:title="@string/title_near" />
+</menu>

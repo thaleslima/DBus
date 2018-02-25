@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Dublin Bus</string>
+    <string name="title_real_time">Real Time Information</string>
+
+
+    <string name="title_stop">Stops</string>
+    <string name="title_route">Routes</string>
+    <string name="title_near">Near</string>
+    <string name="title_favorite">Favorites</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="permission_title">Permission Required</string>
+    <string name="permission_message">To continue, enable the location permission.\n\nSettings > Permissions</string>
+
+    <string name="permission_after">After</string>
+    <string name="permission_settings">Settings</string>
+
+    <string name="location_warning">Location</string>
+    <string name="location_continue">To continue, enable the location on your device.</string>
+
+
+    <string name="title_no_connection">No connection</string>
+    <string name="title_retry">Retry</string>
+    <string name="error_message">An error has occurred. Please try again by clicking REFRESH</string>
+
+    <string name="error_message_real_time">Sorry, Real Time Information is currently unavailable for this bus stop</string>
+
+</resources>
