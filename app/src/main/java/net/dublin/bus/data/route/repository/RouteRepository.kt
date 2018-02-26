@@ -1,9 +1,9 @@
-package net.dublin.bus.data.stop.repository
+package net.dublin.bus.data.route.repository
 
+import io.reactivex.Observable
 import net.dublin.bus.model.Route
-import net.dublin.bus.data.stop.remote.RouteDataSource
+import net.dublin.bus.data.route.remote.RouteDataSource
 import net.dublin.bus.model.Stop
-import rx.Observable
 
 class RouteRepository {
     fun getData(): Observable<List<Route>> {

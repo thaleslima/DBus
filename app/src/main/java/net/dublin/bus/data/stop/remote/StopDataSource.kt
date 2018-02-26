@@ -1,5 +1,6 @@
 package net.dublin.bus.data.stop.remote
 
+import io.reactivex.Observable
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Constants
 import org.ksoap2.SoapEnvelope
@@ -7,7 +8,6 @@ import org.ksoap2.serialization.PropertyInfo
 import org.ksoap2.serialization.SoapObject
 import org.ksoap2.serialization.SoapSerializationEnvelope
 import org.ksoap2.transport.HttpTransportSE
-import rx.Observable
 import java.io.IOException
 import java.util.*
 
@@ -46,7 +46,7 @@ class StopDataSource {
                 }
 
                 subscriber.onNext(list)
-                subscriber.onCompleted()
+                subscriber.onComplete()
             } catch (e: IOException) {
                 subscriber.onError(e)
             }

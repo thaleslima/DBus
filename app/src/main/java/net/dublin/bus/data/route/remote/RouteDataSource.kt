@@ -1,6 +1,7 @@
-package net.dublin.bus.data.stop.remote
+package net.dublin.bus.data.route.remote
 
-import net.dublin.bus.data.realtime.mapper.RouteDetailMapper
+import io.reactivex.Observable
+import net.dublin.bus.data.route.mapper.RouteDetailMapper
 import net.dublin.bus.data.route.RouteComparator
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
@@ -14,7 +15,6 @@ import org.ksoap2.serialization.PropertyInfo
 import org.ksoap2.serialization.SoapObject
 import org.ksoap2.serialization.SoapSerializationEnvelope
 import org.ksoap2.transport.HttpTransportSE
-import rx.Observable
 import java.io.IOException
 import java.util.*
 
@@ -51,7 +51,7 @@ class RouteDataSource {
 
                 Collections.sort(list, RouteComparator())
                 subscriber.onNext(list)
-                subscriber.onCompleted()
+                subscriber.onComplete()
             } catch (e: IOException) {
                 subscriber.onError(e)
             }
@@ -77,7 +77,7 @@ class RouteDataSource {
                 val response = client.newCall(request).execute()
                 if (response.isSuccessful) {
                     subscriber.onNext(RouteDetailMapper.mapFrom(response.body()!!.string()))
-                    subscriber.onCompleted()
+                    subscriber.onComplete()
                 } else {
                     subscriber.onError(IOException())
                 }

@@ -1,10 +1,9 @@
-package net.dublin.bus.data.realtime.mapper
+package net.dublin.bus.data.route.mapper
 
 import android.util.Log
 import net.dublin.bus.model.Stop
 import org.w3c.dom.Element
 import org.xml.sax.InputSource
-import org.xml.sax.SAXException
 import java.io.IOException
 import java.io.StringReader
 import java.util.*

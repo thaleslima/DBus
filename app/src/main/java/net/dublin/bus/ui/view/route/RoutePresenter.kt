@@ -1,17 +1,15 @@
 package net.dublin.bus.ui.view.route
 
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Route
-import net.dublin.bus.data.stop.repository.RouteRepository
-import rx.Subscriber
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
-import rx.subscriptions.CompositeSubscription
-
 
 class RoutePresenter(private val view: RouteContract.View,
                      private val repository: RouteRepository) : RouteContract.Presenter {
 
-    private val subscriptions: CompositeSubscription = CompositeSubscription()
+    private val subscriptions: CompositeDisposable = CompositeDisposable()
 
     override fun unsubscribe() {
         this.subscriptions.clear()
@@ -23,18 +21,11 @@ class RoutePresenter(private val view: RouteContract.View,
         val subscription = repository.getData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Subscriber<List<Route>>() {
-                    override fun onCompleted() {
-                        view.hideProgress()
-                    }
-
-                    override fun onError(e: Throwable) {
-                        onError()
-                    }
-
-                    override fun onNext(data: List<Route>) {
-                        onNextData(data)
-                    }
+                .subscribe({ data ->
+                    view.hideProgress()
+                    onNextData(data)
+                }, {
+                    onError()
                 })
 
         subscriptions.add(subscription)

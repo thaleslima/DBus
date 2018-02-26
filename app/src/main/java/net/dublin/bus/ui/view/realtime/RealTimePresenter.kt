@@ -1,17 +1,16 @@
 package net.dublin.bus.ui.view.realtime
 
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
 import net.dublin.bus.model.StopData
-import rx.Subscriber
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
-import rx.subscriptions.CompositeSubscription
 
 class RealTimePresenter(private val view: RealTimeContract.View,
                         private val repository: RealTimeRepository,
                         private val stopNumber: String) : RealTimeContract.Presenter {
 
-    private val subscriptions: CompositeSubscription = CompositeSubscription()
+    private val subscriptions: CompositeDisposable = CompositeDisposable()
 
     override fun unsubscribe() {
         this.subscriptions.clear()
@@ -30,19 +29,12 @@ class RealTimePresenter(private val view: RealTimeContract.View,
         val subscription = repository.getData(stopNumber)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Subscriber<List<StopData>>() {
-                    override fun onCompleted() {
-                        view.hideProgress()
-                        view.hideProgressSwipe()
-                    }
-
-                    override fun onError(e: Throwable) {
-                        onError()
-                    }
-
-                    override fun onNext(data: List<StopData>) {
-                        onNextData(data)
-                    }
+                .subscribe({ data ->
+                    view.hideProgress()
+                    view.hideProgressSwipe()
+                    onNextData(data)
+                }, {
+                    onError()
                 })
 
         subscriptions.add(subscription)

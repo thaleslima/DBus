@@ -1,17 +1,15 @@
 package net.dublin.bus.ui.view.stop
 
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
-import rx.Subscriber
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
-import rx.subscriptions.CompositeSubscription
-
 
 class StopPresenter(private val view: StopContract.View,
                     private val repository: StopRepository) : StopContract.Presenter {
 
-    private val subscriptions: CompositeSubscription = CompositeSubscription()
+    private val subscriptions: CompositeDisposable = CompositeDisposable()
 
     override fun unsubscribe() {
         this.subscriptions.clear()
@@ -23,18 +21,11 @@ class StopPresenter(private val view: StopContract.View,
         val subscription = repository.getData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Subscriber<List<Stop>>() {
-                    override fun onCompleted() {
-                        view.hideProgress()
-                    }
-
-                    override fun onError(e: Throwable) {
-                        onError()
-                    }
-
-                    override fun onNext(data: List<Stop>) {
-                        onNextData(data)
-                    }
+                .subscribe({ data ->
+                    view.hideProgress()
+                    onNextData(data)
+                }, {
+                    onError()
                 })
 
         subscriptions.add(subscription)

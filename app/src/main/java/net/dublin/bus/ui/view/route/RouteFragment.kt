@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_route.*
 import net.dublin.bus.R
 import net.dublin.bus.model.Route
 import net.dublin.bus.ui.view.route.detail.RouteDetailActivity
-import net.dublin.bus.data.stop.repository.RouteRepository
+import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.ui.utilities.Utility
 
 class RouteFragment : Fragment(), RouteAdapter.ItemClickListener, RouteContract.View {

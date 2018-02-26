@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_real_time.*
 import kotlinx.android.synthetic.main.fragment_route_detail.*
 import net.dublin.bus.R
-import net.dublin.bus.data.stop.repository.RouteRepository
+import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Utility
 

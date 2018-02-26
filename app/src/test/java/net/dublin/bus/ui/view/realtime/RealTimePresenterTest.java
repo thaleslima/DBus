@@ -12,12 +12,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observable;
-import rx.Scheduler;
-import rx.android.plugins.RxAndroidPlugins;
-import rx.android.plugins.RxAndroidSchedulersHook;
-import rx.plugins.RxJavaHooks;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -67,19 +62,58 @@ public class RealTimePresenterTest {
 //        });
 
         // Override RxAndroid schedulers
-        final RxAndroidPlugins rxAndroidPlugins = RxAndroidPlugins.getInstance();
-        rxAndroidPlugins.registerSchedulersHook(new RxAndroidSchedulersHook() {
-            @Override
-            public Scheduler getMainThreadScheduler() {
-                return Schedulers.immediate();
-            }
-        });
+        //final RxAndroidPlugins rxAndroidPlugins = RxAndroidPlugins.getInstance();
+//        rxAndroidPlugins.registerSchedulersHook(new RxAndroidSchedulersHook() {
+//            @Override
+//            public Scheduler getMainThreadScheduler() {
+//                return Schedulers.immediate();
+//            }
+//        });
+
+//
+//        RxJavaPlugins.setInitIoSchedulerHandler(new Function<Callable<Scheduler>, Scheduler>() {
+//            @Override
+//            public Scheduler apply(Callable<Scheduler> schedulerCallable) throws Exception {
+//                return Schedulers.trampoline();
+//            }
+//        });
+//
+//        RxJavaPlugins.setInitComputationSchedulerHandler(new Function<Callable<Scheduler>, Scheduler>() {
+//            @Override
+//            public Scheduler apply(Callable<Scheduler> schedulerCallable) throws Exception {
+//                return Schedulers.trampoline();
+//            }
+//        });
+//
+//
+//        RxJavaPlugins.setInitNewThreadSchedulerHandler(new Function<Callable<Scheduler>, Scheduler>() {
+//            @Override
+//            public Scheduler apply(Callable<Scheduler> schedulerCallable) throws Exception {
+//                return Schedulers.trampoline();
+//            }
+//        });
+//
+//
+//        RxJavaPlugins.setInitSingleSchedulerHandler(new Function<Callable<Scheduler>, Scheduler>() {
+//            @Override
+//            public Scheduler apply(Callable<Scheduler> schedulerCallable) throws Exception {
+//                return Schedulers.trampoline();
+//            }
+//        });
+//
+//
+//        RxAndroidPlugins.setInitMainThreadSchedulerHandler(new Function<Callable<Scheduler>, Scheduler>() {
+//            @Override
+//            public Scheduler apply(Callable<Scheduler> schedulerCallable) throws Exception {
+//                return Schedulers.trampoline();
+//            }
+//        });
     }
 
     @After
     public void tearDown() throws Exception {
-        RxJavaHooks.reset();
-        RxAndroidPlugins.getInstance().reset();
+        //RxJavaHooksooks.reset();
+        //RxAndroidPlugins.getInstance().reset();
         STOP_DATA.clear();
     }
 
