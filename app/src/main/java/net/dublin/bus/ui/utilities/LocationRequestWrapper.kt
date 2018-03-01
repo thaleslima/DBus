@@ -102,11 +102,10 @@ class LocationRequestWrapper(private val activity: Activity, private val onNewLo
     }
 
     companion object {
-
         private val TAG = LocationRequestWrapper::class.java.simpleName
-        private val CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000
-        private val LOCATION_REQUEST_INTERVAL = 10000 // 10 seconds, in milliseconds
-        private val LOCATION_REQUEST_FASTEST_INTERVAL = 1000 // 1 second, in milliseconds
+        private const val CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000
+        private const val LOCATION_REQUEST_INTERVAL = 10000 // 10 seconds, in milliseconds
+        private const val LOCATION_REQUEST_FASTEST_INTERVAL = 1000 // 1 second, in milliseconds
     }
 
 }

@@ -50,13 +50,10 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
 
     private fun setupViewProperties() {
         detail_map_stop_view?.setOnClickListener { v ->
-            Log.d("teste", "teste")
-
             detail_map_stop_view?.let {
                 RealTimeActivity.navigate(context, v.tag as Stop)
             }
         }
-
 
         detail_map_stop_view.viewTreeObserver.addOnGlobalLayoutListener({
             try {
@@ -86,6 +83,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        PermissionsUtils.Location.saveAskedBefore(context)
         if (requestCode == 0 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             connectLocation()
         }

@@ -58,11 +58,11 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener, RouteContract.
     }
 
     override fun showProgress() {
-        route_progress_bar.visibility = View.VISIBLE
+        route_progress_bar?.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        route_progress_bar.visibility = View.GONE
+        route_progress_bar?.visibility = View.GONE
     }
 
     override fun onItemClick(item: Route) {

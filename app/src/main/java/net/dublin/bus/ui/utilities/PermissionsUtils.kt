@@ -6,8 +6,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
-
-import net.dublin.bus.R
+import net.dublin.bus.common.PreferencesUtils
 
 object PermissionsUtils {
     private fun hasPermission(activity: Activity, permission: String): Boolean {
@@ -30,35 +29,66 @@ object PermissionsUtils {
      * ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION
      */
     object Location {
+        private const val LOCATION_ASKED_BEFORE = "location_asked_before"
+
         fun hasPermission(context: Context): Boolean {
             return (PermissionsUtils.hasPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
                     && PermissionsUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION))
         }
 
-        private fun openMessage(context: Context) {
-            DialogUtil.showDialogPermission(context,
-                    context.getString(R.string.permission_title),
-                    context.getString(R.string.permission_message))
-        }
+//        private fun openMessage(context: Context) {
+//            DialogUtil.showDialogPermission(context,
+//                    context.getString(R.string.permission_title),
+//                    context.getString(R.string.permission_message))
+//        }
 
-        internal fun requestPermission(activity: Activity, requestCode: Int) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+//        internal fun requestPermission(activity: Activity, requestCode: Int) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+//                requestPermissions(activity, requestCode, Manifest.permission.ACCESS_COARSE_LOCATION,
+//                        Manifest.permission.ACCESS_FINE_LOCATION)
+////            } else {
+////                openMessage(activity)
+//            }
+//        }
 
-                requestPermissions(activity, requestCode, Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_FINE_LOCATION)
-            } else {
-                openMessage(activity)
-            }
-        }
+//        internal fun requestPermission(activity: Activity, requestCode: Int) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+//                requestPermissions(activity, requestCode, Manifest.permission.ACCESS_COARSE_LOCATION,
+//                        Manifest.permission.ACCESS_FINE_LOCATION)
+////            } else {
+////                openMessage(activity)
+//            }
+//        }
 
-        internal fun requestPermission(fragment: Fragment, requestCode: Int) {
-            if (fragment.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                requestPermissions(fragment, requestCode,
+        fun showRequestPermission(fragment: Fragment, requestCod: Int) {
+            if (shouldShowRequestPermissionRationale(fragment.activity)) {
+                requestPermissions(fragment, requestCod,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION)
-            } else {
-                openMessage(fragment.activity)
+//            } else {
+//                showMessageOKCancel(fragment.context)
             }
         }
+
+        fun saveAskedBefore(context: Context) {
+            PreferencesUtils.saveData(LOCATION_ASKED_BEFORE, 1, context)
+        }
+
+        private fun shouldShowRequestPermissionRationale(activity: Activity): Boolean {
+            val contactsAskedBefore = PreferencesUtils.getIntData(LOCATION_ASKED_BEFORE, activity)
+            val shouldShowRequest = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)
+
+            return contactsAskedBefore == 1 && shouldShowRequest || contactsAskedBefore == 0 && !shouldShowRequest || shouldShowRequest
+        }
+
+//        internal fun requestPermission(fragment: Fragment, requestCode: Int) {
+//            if (!fragment.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+//                requestPermissions(fragment, requestCode,
+//                        Manifest.permission.ACCESS_COARSE_LOCATION,
+//                        Manifest.permission.ACCESS_FINE_LOCATION)
+////            } else {
+////                openMessage(fragment.activity)
+//            }
+//        }
     }
 }

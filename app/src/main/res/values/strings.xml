@@ -11,7 +11,7 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <string name="permission_title">Permission Required</string>
-    <string name="permission_message">To continue, enable the location permission.\n\nSettings > Permissions</string>
+    <string name="permission_message">To continue, enable the location permission. You can change this at any time in Settings.</string>
 
     <string name="permission_after">After</string>
     <string name="permission_settings">Settings</string>
