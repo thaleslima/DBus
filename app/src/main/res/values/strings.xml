@@ -26,4 +26,7 @@
 
     <string name="error_message_real_time">Sorry, Real Time Information is currently unavailable for this bus stop</string>
 
+    <string name="route_size_stops">%s stops</string>
+    <string name="route_title">Route %s</string>
+
 </resources>

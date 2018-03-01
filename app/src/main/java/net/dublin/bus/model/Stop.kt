@@ -1,9 +1,17 @@
 package net.dublin.bus.model
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import android.text.TextUtils
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "stops")
 data class Stop(
+
+        @PrimaryKey
+        @SerializedName("stopnumber")
+        var stopNumber: String = "",
+
         var address: String? = null,
         var description: String? = null,
         var descriptionLower: String? = null,
@@ -18,9 +26,6 @@ data class Stop(
         var longitude: String? = null,
         var route: String? = null,
         var stageNumber: String? = null,
-
-        @SerializedName("stopnumber")
-        var stopNumber: String? = null,
         var type: String? = null) {
 
     fun descriptionOrAddress(): String? {

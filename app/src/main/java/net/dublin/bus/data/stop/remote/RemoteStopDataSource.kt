@@ -2,7 +2,7 @@ package net.dublin.bus.data.stop.remote
 
 import io.reactivex.Observable
 import net.dublin.bus.model.Stop
-import net.dublin.bus.ui.utilities.Constants
+import net.dublin.bus.common.Constants
 import org.ksoap2.SoapEnvelope
 import org.ksoap2.serialization.PropertyInfo
 import org.ksoap2.serialization.SoapObject
@@ -11,7 +11,7 @@ import org.ksoap2.transport.HttpTransportSE
 import java.io.IOException
 import java.util.*
 
-class StopDataSource {
+class RemoteStopDataSource {
     fun getData(): Observable<List<Stop>> {
         val soapObject = SoapObject(Constants.NAMESPACE, Constants.API_URL_STOP_METHOD)
 

@@ -1,4 +1,4 @@
-package net.dublin.bus.ui.utilities
+package net.dublin.bus.common
 
 object Constants {
     const val CONTENT_TYPE = "Content-Type"

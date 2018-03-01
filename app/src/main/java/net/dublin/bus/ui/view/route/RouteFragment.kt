@@ -40,8 +40,13 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener, RouteContract.
     }
 
     private fun initialize() {
-        presenter = RoutePresenter(this, RouteRepository())
+        presenter = RoutePresenter(this, RouteRepository(activity.application))
         presenter?.loadData()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter?.unsubscribe()
     }
 
     override fun isNetworkAvailable(): Boolean {

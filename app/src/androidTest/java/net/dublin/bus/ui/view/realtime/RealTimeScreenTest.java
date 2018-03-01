@@ -1,6 +1,5 @@
 package net.dublin.bus.ui.view.realtime;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
@@ -21,6 +20,7 @@ import com.squareup.okhttp.mockwebserver.MockWebServer;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
 
 import net.dublin.bus.R;
+import net.dublin.bus.ui.view.utilities.StringUtil;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -30,10 +30,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
@@ -192,7 +189,7 @@ public class RealTimeScreenTest {
             if (request.getPath().contains("GetRealTimeStopData_ForceLineNoteVisit")) {
                 return new MockResponse()
                         .setResponseCode(200)
-                        .setBody(getStringFromFile(getInstrumentation().getContext(), FILE_NAME_REAL_TIME_RESPONSE));
+                        .setBody(StringUtil.getStringFromFile(getInstrumentation().getContext(), FILE_NAME_REAL_TIME_RESPONSE));
             }
 
             throw new InterruptedException();
@@ -205,7 +202,7 @@ public class RealTimeScreenTest {
             if (request.getPath().contains("GetRealTimeStopData_ForceLineNoteVisit")) {
                 return new MockResponse()
                         .setResponseCode(200)
-                        .setBody(getStringFromFile(getInstrumentation().getContext(), FILE_NAME_NO_ITEMS_REAL_TIME_RESPONSE));
+                        .setBody(StringUtil.getStringFromFile(getInstrumentation().getContext(), FILE_NAME_NO_ITEMS_REAL_TIME_RESPONSE));
             }
 
             throw new InterruptedException();
@@ -252,30 +249,6 @@ public class RealTimeScreenTest {
                 action.perform(uiController, view);
             }
         };
-    }
-
-    private static String convertStreamToString(InputStream is) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line).append('\n');
-        }
-        reader.close();
-        return sb.toString();
-    }
-
-    private static String getStringFromFile(Context context, String filePath) {
-        try {
-            final InputStream stream = context.getResources().getAssets().open(filePath);
-
-            String ret = convertStreamToString(stream);
-            stream.close();
-            return ret;
-
-        } catch (Exception ex) {
-            return "";
-        }
     }
 
     private void launchActivity() {

@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_near.*
 import net.dublin.bus.*
+import net.dublin.bus.common.Constants
 import net.dublin.bus.model.Stop
 import net.dublin.bus.model.Stops
 import net.dublin.bus.ui.utilities.*

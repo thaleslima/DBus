@@ -3,7 +3,7 @@ package net.dublin.bus.data.realtime.remote
 import io.reactivex.Observable
 import net.dublin.bus.data.realtime.mapper.RealTimeMapper
 import net.dublin.bus.model.StopData
-import net.dublin.bus.ui.utilities.Constants
+import net.dublin.bus.common.Constants
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request

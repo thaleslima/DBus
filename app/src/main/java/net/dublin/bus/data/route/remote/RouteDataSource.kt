@@ -5,7 +5,7 @@ import net.dublin.bus.data.route.mapper.RouteDetailMapper
 import net.dublin.bus.data.route.RouteComparator
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
-import net.dublin.bus.ui.utilities.Constants
+import net.dublin.bus.common.Constants
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -49,7 +49,6 @@ class RouteDataSource {
                     list.add(route)
                 }
 
-                Collections.sort(list, RouteComparator())
                 subscriber.onNext(list)
                 subscriber.onComplete()
             } catch (e: IOException) {
@@ -76,12 +75,12 @@ class RouteDataSource {
             try {
                 val response = client.newCall(request).execute()
                 if (response.isSuccessful) {
-                    subscriber.onNext(RouteDetailMapper.mapFrom(response.body()!!.string()))
+                    subscriber.onNext(RouteDetailMapper.mapFrom( response.body()!!.string()))
                     subscriber.onComplete()
                 } else {
                     subscriber.onError(IOException())
                 }
-            } catch (e: IOException) {
+            } catch (e: Exception) {
                 subscriber.onError(e)
             }
         }

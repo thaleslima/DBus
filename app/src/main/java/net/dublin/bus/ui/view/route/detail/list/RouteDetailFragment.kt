@@ -11,12 +11,11 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_real_time.*
 import kotlinx.android.synthetic.main.fragment_route_detail.*
 import net.dublin.bus.R
-import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Utility
 
 class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, RouteDetailContract.View {
-    private var presenter: RouteDetailContract.Presenter? = null
+    private lateinit var presenter: RouteDetailContract.Presenter
     private var mAdapter: RouteDetailAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -38,9 +37,14 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
         initialize()
     }
 
+    override fun onPause() {
+        super.onPause()
+        presenter.unsubscribe()
+    }
+
     private fun initialize() {
-        presenter = RouteDetailPresenter(this, RouteRepository(), "7b", "I")
-        presenter?.loadData()
+        presenter = RouteDetailPresenter(this)
+        presenter.loadData()
     }
 
     override fun isNetworkAvailable(): Boolean {
@@ -52,11 +56,11 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
     }
 
     override fun showProgress() {
-        route_detail_progress_bar.visibility = View.VISIBLE
+        route_detail_progress_bar?.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        route_detail_progress_bar.visibility = View.GONE
+        route_detail_progress_bar?.visibility = View.GONE
     }
 
     override fun showSnackBarNoConnection() {

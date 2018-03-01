@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetRealTimeStopData_ForceLineNoteVisitResponse xmlns="http://dublinbus.ie/">
+            <GetRealTimeStopData_ForceLineNoteVisitResult>
+                <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+                    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="StopData" msdata:UseCurrentLocale="true">
+                        <xs:complexType>
+                            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                <xs:element name="StopData">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="ServiceDelivery_ResponseTimestamp" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="ServiceDelivery_ProducerRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="ServiceDelivery_Status" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="ServiceDelivery_MoreData" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="StopMonitoringDelivery_Version" type="xs:string" minOccurs="0" />
+                                            <xs:element name="StopMonitoringDelivery_ResponseTimestamp" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="StopMonitoringDelivery_RequestMessageRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredStopVisit_RecordedAtTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="MonitoredStopVisit_MonitoringRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_LineRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_DirectionRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="FramedVehicleJourneyRef_DataFrameRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="FramedVehicleJourneyRef_DatedVehicleJourneyRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_PublishedLineName" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_OperatorRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_DestinationRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_DestinationName" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_Monitored" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_InCongestion" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_BlockRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_VehicleRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_VisitNumber" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_VehicleAtStop" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_AimedArrivalTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_ExpectedArrivalTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_AimedDepartureTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_ExpectedDepartureTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="Timestamp" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="LineNote" type="xs:string" minOccurs="0" />
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:choice>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:schema>
+                <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+                    <DocumentElement xmlns="">
+                        <StopData diffgr:id="StopData1" msdata:rowOrder="0">
+                            <ServiceDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>2018-02-28T10:26:55.53+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>00010</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef>1</MonitoredVehicleJourney_LineRef>
+                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
+                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-28</FramedVehicleJourneyRef_DataFrameRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>4868</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <MonitoredVehicleJourney_PublishedLineName>1</MonitoredVehicleJourney_PublishedLineName>
+                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
+                            <MonitoredVehicleJourney_DestinationRef>00226</MonitoredVehicleJourney_DestinationRef>
+                            <MonitoredVehicleJourney_DestinationName>Shanard Road via O'Connell Street</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef>1008</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>44360</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredCall_VisitNumber>23</MonitoredCall_VisitNumber>
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>2018-02-28T10:29:24+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-28T10:29:24+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-28T10:29:24+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-28T10:29:24+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-28T10:26:56.63+00:00</Timestamp>
+                            <LineNote>Red Weather Alert - Dublin Bus services are experiencing significant delays due to weather conditions. See dublinbus.ie for updates.
+
+                                Foláireamh Aimsire Dearg - Tá moilleanna fada ar sheirbhísí Bhus Átha Cliath mar gheall ar an drochaimsir. Féach www.dublinbus.ie chun teacht ar nuashonruithe.
+
+                                Routes 44/b operating to/from Kilternan.</LineNote>
+                        </StopData>
+                        <StopData diffgr:id="StopData2" msdata:rowOrder="1">
+                            <ServiceDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>2018-02-28T10:26:55.53+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>00010</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef>11</MonitoredVehicleJourney_LineRef>
+                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
+                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-28</FramedVehicleJourneyRef_DataFrameRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>2476</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <MonitoredVehicleJourney_PublishedLineName>11</MonitoredVehicleJourney_PublishedLineName>
+                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
+                            <MonitoredVehicleJourney_DestinationRef>06122</MonitoredVehicleJourney_DestinationRef>
+                            <MonitoredVehicleJourney_DestinationName>St Pappin's Rd via Drumcondra</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef>11008</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>38026</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredCall_VisitNumber>45</MonitoredCall_VisitNumber>
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>2018-02-28T10:54:32+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-28T10:43:12+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-28T10:54:32+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-28T10:43:12+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-28T10:26:56.677+00:00</Timestamp>
+                            <LineNote>Red Weather Alert - Dublin Bus services are experiencing significant delays due to weather conditions. See dublinbus.ie for updates.
+
+                                Foláireamh Aimsire Dearg - Tá moilleanna fada ar sheirbhísí Bhus Átha Cliath mar gheall ar an drochaimsir. Féach www.dublinbus.ie chun teacht ar nuashonruithe.
+
+                                Routes 44/b operating to/from Kilternan.</LineNote>
+                        </StopData>
+                        <StopData diffgr:id="StopData3" msdata:rowOrder="2">
+                            <ServiceDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>2018-02-28T10:26:55.53+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>00010</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef>44</MonitoredVehicleJourney_LineRef>
+                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
+                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-28</FramedVehicleJourneyRef_DataFrameRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>6554</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <MonitoredVehicleJourney_PublishedLineName>44</MonitoredVehicleJourney_PublishedLineName>
+                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
+                            <MonitoredVehicleJourney_DestinationRef>07571</MonitoredVehicleJourney_DestinationRef>
+                            <MonitoredVehicleJourney_DestinationName>DCU via O'Connell Street</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef>44004</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>44227</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredCall_VisitNumber>62</MonitoredCall_VisitNumber>
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>2018-02-28T10:42:03+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-28T10:44:24+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-28T10:42:03+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-28T10:44:24+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-28T10:26:56.693+00:00</Timestamp>
+                            <LineNote>Red Weather Alert - Dublin Bus services are experiencing significant delays due to weather conditions. See dublinbus.ie for updates.
+
+                                Foláireamh Aimsire Dearg - Tá moilleanna fada ar sheirbhísí Bhus Átha Cliath mar gheall ar an drochaimsir. Féach www.dublinbus.ie chun teacht ar nuashonruithe.
+
+                                Routes 44/b operating to/from Kilternan.</LineNote>
+                        </StopData>
+                        <StopData diffgr:id="StopData4" msdata:rowOrder="3">
+                            <ServiceDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>2018-02-28T10:26:55.53+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>00010</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef>1</MonitoredVehicleJourney_LineRef>
+                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
+                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-28</FramedVehicleJourneyRef_DataFrameRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>4862</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <MonitoredVehicleJourney_PublishedLineName>1</MonitoredVehicleJourney_PublishedLineName>
+                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
+                            <MonitoredVehicleJourney_DestinationRef>00226</MonitoredVehicleJourney_DestinationRef>
+                            <MonitoredVehicleJourney_DestinationName>Shanard Road via O'Connell Street</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef>1007</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>43109</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredCall_VisitNumber>23</MonitoredCall_VisitNumber>
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>2018-02-28T10:49:24+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-28T10:47:01+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-28T10:49:24+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-28T10:47:01+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-28T10:26:56.693+00:00</Timestamp>
+                            <LineNote>Red Weather Alert - Dublin Bus services are experiencing significant delays due to weather conditions. See dublinbus.ie for updates.
+
+                                Foláireamh Aimsire Dearg - Tá moilleanna fada ar sheirbhísí Bhus Átha Cliath mar gheall ar an drochaimsir. Féach www.dublinbus.ie chun teacht ar nuashonruithe.
+
+                                Routes 44/b operating to/from Kilternan.</LineNote>
+                        </StopData>
+                        <StopData diffgr:id="StopData5" msdata:rowOrder="4">
+                            <ServiceDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>2018-02-28T10:26:55.53+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>00010</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef>11</MonitoredVehicleJourney_LineRef>
+                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
+                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-28</FramedVehicleJourneyRef_DataFrameRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>2451</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <MonitoredVehicleJourney_PublishedLineName>11</MonitoredVehicleJourney_PublishedLineName>
+                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
+                            <MonitoredVehicleJourney_DestinationRef>06122</MonitoredVehicleJourney_DestinationRef>
+                            <MonitoredVehicleJourney_DestinationName>St Pappin's Rd via Drumcondra</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef>11004</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>44224</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredCall_VisitNumber>45</MonitoredCall_VisitNumber>
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>2018-02-28T11:02:08+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-28T11:02:08+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-28T11:02:08+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-28T11:02:08+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-28T10:26:56.707+00:00</Timestamp>
+                            <LineNote>Red Weather Alert - Dublin Bus services are experiencing significant delays due to weather conditions. See dublinbus.ie for updates.
+
+                                Foláireamh Aimsire Dearg - Tá moilleanna fada ar sheirbhísí Bhus Átha Cliath mar gheall ar an drochaimsir. Féach www.dublinbus.ie chun teacht ar nuashonruithe.
+
+                                Routes 44/b operating to/from Kilternan.</LineNote>
+                        </StopData>
+                        <StopData diffgr:id="StopData6" msdata:rowOrder="5">
+                            <ServiceDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>2018-02-28T10:26:55.53+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>00010</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef>1</MonitoredVehicleJourney_LineRef>
+                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
+                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-28</FramedVehicleJourneyRef_DataFrameRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>4885</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <MonitoredVehicleJourney_PublishedLineName>1</MonitoredVehicleJourney_PublishedLineName>
+                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
+                            <MonitoredVehicleJourney_DestinationRef>00226</MonitoredVehicleJourney_DestinationRef>
+                            <MonitoredVehicleJourney_DestinationName>Shanard Road via O'Connell Street</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef>1001</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>44210</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredCall_VisitNumber>23</MonitoredCall_VisitNumber>
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>2018-02-28T11:09:24+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-28T11:09:24+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-28T11:09:24+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-28T11:09:24+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-28T10:26:56.707+00:00</Timestamp>
+                            <LineNote>Red Weather Alert - Dublin Bus services are experiencing significant delays due to weather conditions. See dublinbus.ie for updates.
+
+                                Foláireamh Aimsire Dearg - Tá moilleanna fada ar sheirbhísí Bhus Átha Cliath mar gheall ar an drochaimsir. Féach www.dublinbus.ie chun teacht ar nuashonruithe.
+
+                                Routes 44/b operating to/from Kilternan.</LineNote>
+                        </StopData>
+                        <StopData diffgr:id="StopData7" msdata:rowOrder="6">
+                            <ServiceDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-28T10:26:55.53+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>2018-02-28T10:26:55.53+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>00010</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef>11</MonitoredVehicleJourney_LineRef>
+                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
+                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-28</FramedVehicleJourneyRef_DataFrameRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>2494</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <MonitoredVehicleJourney_PublishedLineName>11</MonitoredVehicleJourney_PublishedLineName>
+                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
+                            <MonitoredVehicleJourney_DestinationRef>06122</MonitoredVehicleJourney_DestinationRef>
+                            <MonitoredVehicleJourney_DestinationName>St Pappin's Rd via Drumcondra</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef>11011</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>38023</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredCall_VisitNumber>45</MonitoredCall_VisitNumber>
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>2018-02-28T11:22:08+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-28T11:22:08+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-28T11:22:08+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-28T11:22:08+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-28T10:26:56.707+00:00</Timestamp>
+                            <LineNote>Red Weather Alert - Dublin Bus services are experiencing significant delays due to weather conditions. See dublinbus.ie for updates.
+
+                                Foláireamh Aimsire Dearg - Tá moilleanna fada ar sheirbhísí Bhus Átha Cliath mar gheall ar an drochaimsir. Féach www.dublinbus.ie chun teacht ar nuashonruithe.
+
+                                Routes 44/b operating to/from Kilternan.</LineNote>
+                        </StopData>
+                    </DocumentElement>
+                </diffgr:diffgram>
+            </GetRealTimeStopData_ForceLineNoteVisitResult>
+        </GetRealTimeStopData_ForceLineNoteVisitResponse>
+    </soap:Body>
+</soap:Envelope>

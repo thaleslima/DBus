@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/route_detail_container"
     android:layout_height="match_parent"
     android:background="@color/blue_grey_500">
 
@@ -72,6 +73,7 @@
         </android.support.constraint.ConstraintLayout>
 
         <TextView
+            android:id="@+id/route_count_view"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,8 +83,8 @@
             android:paddingRight="16dp"
             android:paddingStart="16dp"
             android:paddingTop="8dp"
-            android:text="90 stops"
-            android:textColor="@color/primary_text" />
+            android:textColor="@color/primary_text"
+            tools:text="90 stops" />
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout

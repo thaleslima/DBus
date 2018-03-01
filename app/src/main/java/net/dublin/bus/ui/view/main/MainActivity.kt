@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         main_search_view.setOnClickListener {
             SearchActivity.navigate(this)
         }
+
+
     }
 
     private fun switchContent(fragment: Fragment?) {

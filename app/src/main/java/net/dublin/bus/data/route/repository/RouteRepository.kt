@@ -1,13 +1,22 @@
 package net.dublin.bus.data.route.repository
 
+import android.content.Context
 import io.reactivex.Observable
-import net.dublin.bus.model.Route
+import net.dublin.bus.data.route.RouteComparator
 import net.dublin.bus.data.route.remote.RouteDataSource
+import net.dublin.bus.data.stop.local.LocalRouteDataSource
+import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
+import java.util.*
 
-class RouteRepository {
+class RouteRepository(context: Context){
+    private var localSource: LocalRouteDataSource = LocalRouteDataSource(context)
+
     fun getData(): Observable<List<Route>> {
-        return RouteDataSource().getData()
+        return localSource.getAll().map {
+            Collections.sort(it, RouteComparator())
+            it
+        }
     }
 
     fun getDataDetail(route: String, direction: String): Observable<List<Stop>> {

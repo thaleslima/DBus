@@ -40,7 +40,7 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener, StopContract.Vie
     }
 
     private fun initialize() {
-        presenter = StopPresenter(this, StopRepository())
+        presenter = StopPresenter(this, StopRepository(activity.application))
         presenter?.loadData()
     }
 
