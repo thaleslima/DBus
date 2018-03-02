@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetRealTimeStopData_ForceLineNoteVisitResponse xmlns="http://dublinbus.ie/">
+            <GetRealTimeStopData_ForceLineNoteVisitResult>
+                <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+                    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="StopData" msdata:UseCurrentLocale="true">
+                        <xs:complexType>
+                            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                <xs:element name="StopData">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="ServiceDelivery_ResponseTimestamp" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="ServiceDelivery_ProducerRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="ServiceDelivery_Status" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="ServiceDelivery_MoreData" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="StopMonitoringDelivery_Version" type="xs:string" minOccurs="0" />
+                                            <xs:element name="StopMonitoringDelivery_ResponseTimestamp" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="StopMonitoringDelivery_RequestMessageRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredStopVisit_RecordedAtTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="MonitoredStopVisit_MonitoringRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_LineRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_DirectionRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="FramedVehicleJourneyRef_DataFrameRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="FramedVehicleJourneyRef_DatedVehicleJourneyRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_PublishedLineName" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_OperatorRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_DestinationRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_DestinationName" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_Monitored" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_InCongestion" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_BlockRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredVehicleJourney_VehicleRef" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_VisitNumber" type="xs:string" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_VehicleAtStop" type="xs:boolean" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_AimedArrivalTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_ExpectedArrivalTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_AimedDepartureTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="MonitoredCall_ExpectedDepartureTime" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="Timestamp" type="xs:dateTime" minOccurs="0" />
+                                            <xs:element name="LineNote" type="xs:string" minOccurs="0" />
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:choice>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:schema>
+                <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+                    <DocumentElement xmlns="">
+                        <StopData diffgr:id="StopData1" msdata:rowOrder="0">
+                            <ServiceDelivery_ResponseTimestamp>2018-03-02T01:13:45.91+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version />
+                            <StopMonitoringDelivery_ResponseTimestamp>1900-01-01T00:00:00+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>1900-01-01T00:00:00+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>10</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef />
+                            <MonitoredVehicleJourney_DirectionRef />
+                            <FramedVehicleJourneyRef_DataFrameRef />
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef />
+                            <MonitoredVehicleJourney_PublishedLineName />
+                            <MonitoredVehicleJourney_OperatorRef />
+                            <MonitoredVehicleJourney_DestinationRef />
+                            <MonitoredVehicleJourney_DestinationName />
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef />
+                            <MonitoredVehicleJourney_VehicleRef />
+                            <MonitoredCall_VisitNumber />
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>1900-01-01T00:00:00+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-03-02T13:15:45.94+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>1900-01-01T00:00:00+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>1900-01-01T00:00:00+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-03-02T13:13:45.94+00:00</Timestamp>
+                            <LineNote>Due to weather conditions, there will be no Dublin Bus services Thurs. 1st or Fri. 2nd March. See dublinbus.ie for updates.</LineNote>
+                        </StopData>
+                    </DocumentElement>
+                </diffgr:diffgram>
+            </GetRealTimeStopData_ForceLineNoteVisitResult>
+        </GetRealTimeStopData_ForceLineNoteVisitResponse>
+    </soap:Body>
+</soap:Envelope>

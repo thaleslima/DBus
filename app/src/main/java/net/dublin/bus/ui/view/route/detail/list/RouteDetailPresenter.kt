@@ -22,10 +22,7 @@ class RouteDetailPresenter(private val view: RouteDetailContract.View) : RouteDe
         model = ViewModelProviders.of(view.getActivity(), factory).get(RouteDetailViewModel::class.java)
         model.getStops().observe(view.getActivity(), Observer<List<Stop>> {
             view.hideProgress()
-
-            if (it != null) {
-                view.showData(it)
-            }
+            it?.let { it1 -> view.showData(it1) }
         })
     }
 

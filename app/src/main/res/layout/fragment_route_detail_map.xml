@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/detail_map_description_view"
-            style="@style/TextAppearance.AppCompat.Subhead"
+            style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -71,7 +71,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/detail_map_description_aux_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_map_description_aux_view"
-            tools:text="Serving Routes: 4, 7, 7a, 7d, 40b, 40d, 120" />
+            android:text="Serving Routes: 4, 7, 7a, 7d, 40b, 40d, 120" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
