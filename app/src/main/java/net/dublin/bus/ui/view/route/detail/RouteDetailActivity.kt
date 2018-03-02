@@ -11,9 +11,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.PopupMenu
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_real_time.*
 import kotlinx.android.synthetic.main.activity_route.*
 import net.dublin.bus.R
+import net.dublin.bus.common.PreferencesUtils
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Utility
@@ -29,7 +29,6 @@ class RouteDetailActivity : AppCompatActivity() {
     private var outbound: String? = null
     private var inbound: String? = null
     private var map: Boolean = false
-
 
     private val menu = TreeMap<Int, String>()
     private var directionCurrent: String = "I"
@@ -57,6 +56,7 @@ class RouteDetailActivity : AppCompatActivity() {
         initExtra(savedInstanceState)
         setupToolbar()
         setupView()
+        initContainer(savedInstanceState)
         setupLoadData()
         loadData()
     }
@@ -67,7 +67,6 @@ class RouteDetailActivity : AppCompatActivity() {
         outState?.putString(BUNDLE_DIRECTION, directionCurrent)
         outState?.putString(BUNDLE_TOWARDS, routeNameTowards)
     }
-
 
     private fun setupLoadData() {
         val factory = RouteDetailViewModelFactory(RouteRepository(this))
@@ -115,21 +114,43 @@ class RouteDetailActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        switchContent(RouteDetailFragment.newInstance())
         route_name_towards_view.text = routeNameTowards
+        map = PreferencesUtils.getShowMapAtRouteDeail(this)
 
         route_change_map_list_view.setOnClickListener({
-            if (map) {
-                route_change_map_list_view.setImageResource(R.drawable.ic_map_white_24dp)
-                switchContent(RouteDetailFragment.newInstance())
-            } else {
-                route_change_map_list_view.setImageResource(R.drawable.ic_view_list_white_24dp)
-                switchContent(RouteDetailMapFragment.newInstance())
-            }
             map = !map
+            changeMapOrList()
+            changeIcoMapOrList()
+            PreferencesUtils.saveShowMapAtRouteDeail(it.context, map)
         })
 
         route_change_direction_view.setOnClickListener { v -> showFilterPopup(v) }
+    }
+
+    private fun initContainer(savedInstanceState: Bundle?) {
+        val fragment = supportFragmentManager.findFragmentByTag("fragmentBase")
+
+        if (savedInstanceState == null || fragment == null) {
+            changeMapOrList()
+        }
+
+        changeIcoMapOrList()
+    }
+
+    private fun changeMapOrList() {
+        if (map) {
+            switchContent(RouteDetailMapFragment.newInstance())
+        } else {
+            switchContent(RouteDetailFragment.newInstance())
+        }
+    }
+
+    private fun changeIcoMapOrList() {
+        if (map) {
+            route_change_map_list_view.setImageResource(R.drawable.ic_view_list_white_24dp)
+        } else {
+            route_change_map_list_view.setImageResource(R.drawable.ic_map_white_24dp)
+        }
     }
 
     private fun showFilterPopup(v: View) {

@@ -17,4 +17,11 @@ object ViewUtil {
         view.startAnimation(animation)
         view.visibility = View.VISIBLE
     }
+
+    fun hideViewLayout(context: Context, view: View) {
+        val animation = AnimationUtils.loadAnimation(context, R.anim.abc_slide_out_bottom)
+        animation.duration = 200
+        view.startAnimation(animation)
+        view.visibility = View.GONE
+    }
 }

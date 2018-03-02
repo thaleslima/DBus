@@ -2,7 +2,6 @@ package net.dublin.bus.data.route.remote
 
 import io.reactivex.Observable
 import net.dublin.bus.data.route.mapper.RouteDetailMapper
-import net.dublin.bus.data.route.RouteComparator
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
 import net.dublin.bus.common.Constants
@@ -81,6 +80,41 @@ class RouteDataSource {
                     subscriber.onError(IOException())
                 }
             } catch (e: Exception) {
+                subscriber.onError(e)
+            }
+        }
+    }
+
+    fun getRoutesByStopNumber(stopNumber: String): Observable<List<Route>> {
+        val soapObject = SoapObject(Constants.NAMESPACE, Constants.API_URL_ROUTE_BY_STOP_METHOD)
+
+        val intA = PropertyInfo()
+        intA.setName("stopId")
+        intA.value = stopNumber
+        soapObject.addProperty(intA)
+
+        val envelope = SoapSerializationEnvelope(SoapEnvelope.VER11)
+        envelope.dotNet = true
+        envelope.setOutputSoapObject(soapObject)
+        val httpTransportSE = HttpTransportSE(Constants.API_URL_BASE_SERVICE + Constants.API_URL_ROUTE_BY_STOP_METHOD)
+
+        return Observable.create { subscriber ->
+            try {
+                httpTransportSE.call(Constants.NAMESPACE + Constants.API_URL_ROUTE_BY_STOP_METHOD, envelope)
+                val soapPrimitive = envelope.response as SoapObject
+                val list = ArrayList<Route>()
+                val i = soapPrimitive.propertyCount
+
+                for (j in 0 until i) {
+                    val o = soapPrimitive.getProperty(j) as SoapObject
+                    val route = Route()
+                    route.number = o.getProperty("Number").toString()
+                    list.add(route)
+                }
+
+                subscriber.onNext(list)
+                subscriber.onComplete()
+            } catch (e: IOException) {
                 subscriber.onError(e)
             }
         }

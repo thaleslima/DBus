@@ -1,8 +1,8 @@
 package net.dublin.bus.data.stop.remote
 
 import io.reactivex.Observable
-import net.dublin.bus.model.Stop
 import net.dublin.bus.common.Constants
+import net.dublin.bus.model.Stop
 import org.ksoap2.SoapEnvelope
 import org.ksoap2.serialization.PropertyInfo
 import org.ksoap2.serialization.SoapObject
