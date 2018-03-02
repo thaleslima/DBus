@@ -28,6 +28,11 @@ interface RealTimeContract {
         fun hideNoData()
 
         fun hideSnackBar()
+
+        fun showLineNote(lineNote: String)
+
+        fun hideLineNote()
+
     }
 
     interface Presenter : BasePresenter {

@@ -19,6 +19,19 @@
             android:paddingRight="16dp"
             tools:context="net.dublin.bus.ui.view.realtime.RealTimeActivity">
 
+            <net.dublin.bus.ui.widget.ExpandableTextView
+                android:id="@+id/real_line_note_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/frame_medium"
+                android:padding="16dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:maxCollapsedLines="3"
+                tools:text="1234" />
+
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -11,11 +11,10 @@ import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_real_time.*
 import net.dublin.bus.R
-import net.dublin.bus.model.Stop
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
+import net.dublin.bus.model.Stop
 import net.dublin.bus.model.StopData
 import net.dublin.bus.ui.utilities.Utility
-
 
 class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener, RealTimeContract.View, SwipeRefreshLayout.OnRefreshListener {
     private var mAdapter: RealTimeAdapter? = null
@@ -65,6 +64,15 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     public override fun onPause() {
         super.onPause()
         presenter?.unsubscribe()
+    }
+
+    override fun showLineNote(lineNote: String) {
+        real_line_note_view.visibility = View.VISIBLE
+        real_line_note_view.text = lineNote
+    }
+
+    override fun hideLineNote() {
+        real_line_note_view.visibility = View.GONE
     }
 
     override fun getSizeData(): Int {

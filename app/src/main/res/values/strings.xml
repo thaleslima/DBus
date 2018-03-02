@@ -19,7 +19,6 @@
     <string name="location_warning">Location</string>
     <string name="location_continue">To continue, enable the location on your device.</string>
 
-
     <string name="title_no_connection">No connection</string>
     <string name="title_retry">Retry</string>
     <string name="error_message">An error has occurred. Please try again by clicking REFRESH</string>
@@ -29,4 +28,6 @@
     <string name="route_size_stops">%s stops</string>
     <string name="route_title">Route %s</string>
 
+    <string name="expand_string">more</string>
+    <string name="collapsed_string">less</string>
 </resources>

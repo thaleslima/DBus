@@ -87,6 +87,7 @@ public class RealTimeScreenTest {
         onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
         onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
         onView(withId(R.id.real_message)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_line_note_view)).check(matches(not(isDisplayed())));
 
         onView(withId(R.id.recyclerView))
                 .check(matches(atPosition(0, hasDescendant(withText("38")))));
@@ -133,6 +134,83 @@ public class RealTimeScreenTest {
     }
 
     @Test
+    public void loadData_warning_no_item_update_swipe_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
+        server.setDispatcher(new DispatcherResponseWarningNoItems200());
+        launchActivity();
+
+        SystemClock.sleep(500);
+        server.setDispatcher(new DispatcherResponse500());
+
+        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_message)).check(matches(isDisplayed()));
+        onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
+
+        server.setDispatcher(new DispatcherResponse200());
+        onView(withId(R.id.real_swipe_refresh_layout)).perform(withCustomConstraints(swipeDown(), isDisplayingAtLeast(85)));
+        loadData_LoadIntoView(false);
+    }
+
+
+    @Test
+    public void loadData_warning_with_items_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
+        server.setDispatcher(new DispatcherResponseWarning200());
+        launchActivity();
+
+        SystemClock.sleep(500);
+        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
+        onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
+        onView(withId(R.id.real_message)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.recyclerView))
+                .check(matches(atPosition(0, hasDescendant(withText("1")))));
+        onView(withId(R.id.recyclerView))
+                .check(matches(atPosition(0, hasDescendant(withText("Shanard Road via O'Connell Street")))));
+        onView(withId(R.id.recyclerView))
+                .check(matches(atPosition(0, hasDescendant(withText("2 min")))));
+
+        onView(withId(R.id.recyclerView))
+                .check(matches(atPosition(1, hasDescendant(withText("11")))));
+        onView(withId(R.id.recyclerView))
+                .check(matches(atPosition(1, hasDescendant(withText("St Pappin's Rd via Drumcondra")))));
+        onView(withId(R.id.recyclerView))
+                .check(matches(atPosition(1, hasDescendant(withText("16 min")))));
+
+        SystemClock.sleep(500);
+    }
+
+    @Test
+    public void loadData_warning_with_items_update_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
+        server.setDispatcher(new DispatcherResponseWarning200());
+        launchActivity();
+
+        SystemClock.sleep(500);
+        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
+        onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
+        onView(withId(R.id.real_message)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
+
+        server.setDispatcher(new DispatcherResponse200());
+        onView(withId(R.id.real_swipe_refresh_layout)).perform(withCustomConstraints(swipeDown(), isDisplayingAtLeast(85)));
+        loadData_LoadIntoView(false);
+    }
+
+    @Test
+    public void loadData_warning_no_item_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
+        server.setDispatcher(new DispatcherResponseWarningNoItems200());
+        launchActivity();
+
+        SystemClock.sleep(500);
+        server.setDispatcher(new DispatcherResponse500());
+
+        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_message)).check(matches(isDisplayed()));
+        onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
+    }
+
+    @Test
     public void loadData_NoItems_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
         server.setDispatcher(new DispatcherResponseNoItems200());
         launchActivity();
@@ -159,7 +237,7 @@ public class RealTimeScreenTest {
     }
 
     @Test
-    public void loadData_ErrorConnection_ShowsErrorUi_Refresh_LoadIntoView() throws InterruptedException, UnsupportedEncodingException{
+    public void loadData_ErrorConnection_ShowsErrorUi_Refresh_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
         server.setDispatcher(new DispatcherResponse500());
         launchActivity();
 
@@ -173,6 +251,8 @@ public class RealTimeScreenTest {
 
     private static final String FILE_NAME_REAL_TIME_RESPONSE = "real_time_response.xml";
     private static final String FILE_NAME_NO_ITEMS_REAL_TIME_RESPONSE = "real_time_no_items_response.xml";
+    private static final String FILE_NAME_WARNING_NO_ITEMS_REAL_TIME_RESPONSE = "real_time_warning_response.xml";
+    private static final String FILE_NAME_WARNING_REAL_TIME_RESPONSE = "real_time_line_note_response.xml";
 
     private class DispatcherResponse500 extends Dispatcher {
         @Override
@@ -203,6 +283,32 @@ public class RealTimeScreenTest {
                 return new MockResponse()
                         .setResponseCode(200)
                         .setBody(StringUtil.getStringFromFile(getInstrumentation().getContext(), FILE_NAME_NO_ITEMS_REAL_TIME_RESPONSE));
+            }
+
+            throw new InterruptedException();
+        }
+    }
+
+    private class DispatcherResponseWarningNoItems200 extends Dispatcher {
+        @Override
+        public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
+            if (request.getPath().contains("GetRealTimeStopData_ForceLineNoteVisit")) {
+                return new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(StringUtil.getStringFromFile(getInstrumentation().getContext(), FILE_NAME_WARNING_NO_ITEMS_REAL_TIME_RESPONSE));
+            }
+
+            throw new InterruptedException();
+        }
+    }
+
+    private class DispatcherResponseWarning200 extends Dispatcher {
+        @Override
+        public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
+            if (request.getPath().contains("GetRealTimeStopData_ForceLineNoteVisit")) {
+                return new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(StringUtil.getStringFromFile(getInstrumentation().getContext(), FILE_NAME_WARNING_REAL_TIME_RESPONSE));
             }
 
             throw new InterruptedException();
