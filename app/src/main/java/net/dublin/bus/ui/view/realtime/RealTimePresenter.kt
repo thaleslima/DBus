@@ -64,7 +64,7 @@ class RealTimePresenter(private val view: RealTimeContract.View,
     }
 
     override fun addOrRemoveFavourite() {
-        val favourite = Favourite(stopNumber, description)
+        val favourite = Favourite(stopNumber, description = description)
 
         val observable = if (!isFavorite) {
             stopRepository.saveFavourite(favourite)

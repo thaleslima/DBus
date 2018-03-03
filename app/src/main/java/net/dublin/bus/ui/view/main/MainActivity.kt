@@ -8,7 +8,7 @@ import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import net.dublin.bus.*
 import net.dublin.bus.ui.utilities.BottomNavigationViewHelper
-import net.dublin.bus.ui.view.favorite.FavoriteFragment
+import net.dublin.bus.ui.view.favourite.FavouriteFragment
 import net.dublin.bus.ui.view.near.NearActivity
 import net.dublin.bus.ui.view.route.RouteFragment
 import net.dublin.bus.ui.view.search.SearchActivity
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener false
             }
             R.id.navigation_favorite -> {
-                switchContent(FavoriteFragment.newInstance())
+                switchContent(FavouriteFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
-        switchContent(FavoriteFragment.newInstance())
+        switchContent(FavouriteFragment.newInstance())
 
         main_search_view.setOnClickListener {
             SearchActivity.navigate(this)

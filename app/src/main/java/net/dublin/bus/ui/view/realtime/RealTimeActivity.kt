@@ -174,9 +174,7 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
         menuInflater.inflate(R.menu.real_time, menu)
         menuFavourite = menu.findItem(R.id.menu_favorite)
         menuFavourite?.isVisible = false
-
         presenter.loadFavouriteStatus()
-
         return true
     }
 
@@ -197,7 +195,7 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
         fun navigate(context: Context, item: Stop) {
             val intent = Intent(context, RealTimeActivity::class.java)
             intent.putExtra(EXTRA_STOP_NUMBER, item.stopNumber)
-            intent.putExtra(EXTRA_DESCRIPTION, item.description)
+            intent.putExtra(EXTRA_DESCRIPTION, item.descriptionOrAddress())
             context.startActivity(intent)
         }
     }

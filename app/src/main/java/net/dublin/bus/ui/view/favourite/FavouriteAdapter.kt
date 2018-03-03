@@ -1,22 +1,25 @@
-package net.dublin.bus.ui.view.favorite
+package net.dublin.bus.ui.view.favourite
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import kotlinx.android.synthetic.main.item_list_favorite.view.*
 import net.dublin.bus.R
+import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.inflate
 import java.util.ArrayList
 
-internal class FavoriteAdapter(private val mListener: ItemClickListener) : RecyclerView.Adapter<FavoriteAdapter.LocalViewHolder>() {
-    private val mDataSet: MutableList<String> = ArrayList()
-    private val ITEM_TOP = 1
-    private val ITEM_MIDDLE = 2
-    private val ITEM_BOTTOM = 3
+internal class FavouriteAdapter(private val mListener: ItemClickListener) : RecyclerView.Adapter<FavouriteAdapter.LocalViewHolder>() {
+    private val mDataSet: MutableList<Favourite> = ArrayList()
+
+    companion object {
+        private const val ITEM_TOP = 1
+        private const val ITEM_MIDDLE = 2
+        private const val ITEM_BOTTOM = 3
+    }
 
     internal interface ItemClickListener {
-        fun onItemClick(item: String, view: ImageView)
+        fun onItemClick(item: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocalViewHolder {
@@ -31,33 +34,24 @@ internal class FavoriteAdapter(private val mListener: ItemClickListener) : Recyc
         return mDataSet.size
     }
 
-    fun replaceData(dataSet: List<String>) {
+    fun replaceData(dataSet: List<Favourite>) {
         setList(dataSet)
         notifyDataSetChanged()
     }
 
-    private fun setList(dataSet: List<String>) {
+    private fun setList(dataSet: List<Favourite>) {
         mDataSet.clear()
         mDataSet.addAll(dataSet)
     }
 
     internal inner class LocalViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_list_favorite)) {
-        private var mItem: String? = null
+        private var mItem: Favourite? = null
 
-        fun bind(item: String) = with(itemView) {
+        fun bind(item: Favourite) = with(itemView) {
             mItem = item
-            favorite_description_view.text = item
-            favorite_description_aux_view.text = "111"
-
-            // itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1, local_picture) } }
-        }
-    }
-
-    fun inflate(parent: ViewGroup, viewType: Int): View {
-        return when (viewType) {
-            ITEM_TOP -> parent.inflate(R.layout.item_list_favorite_top)
-            ITEM_BOTTOM -> parent.inflate(R.layout.item_list_favorite_bottom)
-            else -> parent.inflate(R.layout.item_list_favorite)
+            favorite_description_view.text = item.description
+            favorite_description_aux_view.text = item.stopNumber
+            itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1.stopNumber) } }
         }
     }
 

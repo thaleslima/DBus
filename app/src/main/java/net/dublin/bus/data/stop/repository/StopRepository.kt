@@ -30,4 +30,8 @@ class StopRepository(application: Application) {
     fun removeFavourite(stopNumber: String): Observable<Boolean> {
         return localFavouriteSource.removeFavourite(stopNumber)
     }
+
+    fun getFavourites(): Observable<List<Favourite>>  {
+        return localFavouriteSource.getAll()
+    }
 }

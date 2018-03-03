@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingEnd="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp">
+    android:paddingEnd="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingStart="8dp">
 
     <TextView
         android:id="@+id/real_route_view"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/frame_top_divider_light"
         android:drawableLeft="@drawable/ic_bus_black_18dp"
         android:drawablePadding="4dp"
@@ -72,13 +72,12 @@
         app:layout_constraintEnd_toStartOf="@+id/real_route_time_view"
         app:layout_constraintTop_toTopOf="@+id/real_route_time_view" />
 
-    <!--<View-->
-        <!--android:id="@+id/real_route_divider_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_marginTop="4dp"-->
-        <!--android:background="@color/divider"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/real_route_view" />-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/real_route_view" />
 </android.support.constraint.ConstraintLayout>
