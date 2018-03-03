@@ -51,7 +51,9 @@ class RouteDataSource {
                 subscriber.onNext(list)
                 subscriber.onComplete()
             } catch (e: IOException) {
-                subscriber.onError(e)
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
             }
         }
     }
@@ -80,7 +82,9 @@ class RouteDataSource {
                     subscriber.onError(IOException())
                 }
             } catch (e: Exception) {
-                subscriber.onError(e)
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
             }
         }
     }
@@ -115,7 +119,10 @@ class RouteDataSource {
                 subscriber.onNext(list)
                 subscriber.onComplete()
             } catch (e: IOException) {
-                subscriber.onError(e)
+                e.localizedMessage
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
             }
         }
     }

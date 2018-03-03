@@ -6,7 +6,7 @@
     <string name="title_stop">Stops</string>
     <string name="title_route">Routes</string>
     <string name="title_near">Near</string>
-    <string name="title_favorite">Favorites</string>
+    <string name="title_favorite">Favourites</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -29,6 +29,8 @@
     <string name="route_title">Route %s</string>
     <string name="route_detail_error">No route info available.</string>
 
+    <string name="title_remove_favourite">Removed from Favourites</string>
+    <string name="title_add_favourite">Saved in Favourites</string>
 
     <string name="expand_string">more</string>
     <string name="collapsed_string">less</string>

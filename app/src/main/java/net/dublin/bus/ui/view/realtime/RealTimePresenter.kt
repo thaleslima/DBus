@@ -5,13 +5,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
+import net.dublin.bus.data.stop.repository.StopRepository
+import net.dublin.bus.model.Favourite
 import net.dublin.bus.model.StopData
+
+//import java.util.*
 
 class RealTimePresenter(private val view: RealTimeContract.View,
                         private val repository: RealTimeRepository,
-                        private val stopNumber: String) : RealTimeContract.Presenter {
+                        private val stopRepository: StopRepository,
+                        private val stopNumber: String,
+                        private val description: String) : RealTimeContract.Presenter {
 
     private val subscriptions: CompositeDisposable = CompositeDisposable()
+    private var isFavorite: Boolean = false
 
     override fun unsubscribe() {
         this.subscriptions.clear()
@@ -40,6 +47,44 @@ class RealTimePresenter(private val view: RealTimeContract.View,
                 })
 
         subscriptions.add(subscription)
+    }
+
+    override fun loadFavouriteStatus() {
+        stopRepository.isFavourite(stopNumber)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ data ->
+                    isFavorite = data
+                    if (data) {
+                        view.showFavouriteYes()
+                    } else {
+                        view.showFavouriteNo()
+                    }
+                })
+    }
+
+    override fun addOrRemoveFavourite() {
+        val favourite = Favourite(stopNumber, description)
+
+        val observable = if (!isFavorite) {
+            stopRepository.saveFavourite(favourite)
+        } else {
+            stopRepository.removeFavourite(stopNumber)
+        }
+
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    isFavorite = if (!isFavorite) {
+                        view.showFavouriteYes()
+                        view.showSnackbarSaveFavourite()
+                        true
+                    } else {
+                        view.showFavouriteNo()
+                        view.showSnackbarRemoveFavourite()
+                        false
+                    }
+                })
     }
 
     private fun onError() {

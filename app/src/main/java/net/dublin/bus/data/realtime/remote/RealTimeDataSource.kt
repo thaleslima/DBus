@@ -1,6 +1,7 @@
 package net.dublin.bus.data.realtime.remote
 
 import io.reactivex.Observable
+import io.reactivex.annotations.NonNull
 import net.dublin.bus.data.realtime.mapper.RealTimeMapper
 import net.dublin.bus.model.StopData
 import net.dublin.bus.common.Constants
@@ -35,7 +36,10 @@ class RealTimeDataSource {
                     subscriber.onError(IOException())
                 }
             } catch (e: IOException) {
-                subscriber.onError(e)
+                e.localizedMessage
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
             }
         }
     }

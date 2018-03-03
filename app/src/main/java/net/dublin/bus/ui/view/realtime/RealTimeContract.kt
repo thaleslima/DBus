@@ -33,9 +33,20 @@ interface RealTimeContract {
 
         fun hideLineNote()
 
+        fun showFavouriteYes()
+
+        fun showFavouriteNo()
+
+        fun showSnackbarRemoveFavourite()
+
+        fun showSnackbarSaveFavourite()
     }
 
     interface Presenter : BasePresenter {
         fun loadData()
+
+        fun loadFavouriteStatus()
+
+        fun addOrRemoveFavourite()
     }
 }

@@ -48,7 +48,10 @@ class RemoteStopDataSource {
                 subscriber.onNext(list)
                 subscriber.onComplete()
             } catch (e: IOException) {
-                subscriber.onError(e)
+                e.localizedMessage
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
             }
         }
     }

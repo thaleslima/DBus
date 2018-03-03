@@ -7,22 +7,26 @@ import android.support.design.widget.Snackbar
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_real_time.*
 import net.dublin.bus.R
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
+import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
 import net.dublin.bus.model.StopData
 import net.dublin.bus.ui.utilities.Utility
 
 class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener, RealTimeContract.View, SwipeRefreshLayout.OnRefreshListener {
+    private lateinit var presenter: RealTimeContract.Presenter
     private var mAdapter: RealTimeAdapter? = null
     private var stopNumber: String = ""
-    private var description: String? = null
-    private var presenter: RealTimeContract.Presenter? = null
+    private var description: String = ""
     private var snackBarNoConnection: Snackbar? = null
     private var snackBarError: Snackbar? = null
+    private var menuFavourite: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,17 +57,20 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     private fun initialize() {
-        presenter = RealTimePresenter(this, RealTimeRepository(), stopNumber)
+        presenter = RealTimePresenter(this,
+                RealTimeRepository(),
+                StopRepository(application),
+                stopNumber, description)
     }
 
     override fun onResume() {
         super.onResume()
-        presenter?.loadData()
+        presenter.loadData()
     }
 
     public override fun onPause() {
         super.onPause()
-        presenter?.unsubscribe()
+        presenter.unsubscribe()
     }
 
     override fun showLineNote(lineNote: String) {
@@ -80,7 +87,7 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun onRefresh() {
-        presenter?.loadData()
+        presenter.loadData()
     }
 
     override fun showProgress() {
@@ -103,7 +110,7 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
         snackBarNoConnection = Snackbar.make(
                 real_swipe_refresh_layout,
                 R.string.title_no_connection,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter?.loadData() }
+                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter.loadData() }
 
         snackBarNoConnection?.show()
     }
@@ -112,7 +119,7 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
         snackBarError = Snackbar.make(
                 real_swipe_refresh_layout,
                 R.string.error_message,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter?.loadData() }
+                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter.loadData() }
 
         snackBarError?.show()
     }
@@ -139,6 +146,48 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun onItemClick(item: String, view: ImageView) {
+    }
+
+    override fun showFavouriteYes() {
+        menuFavourite?.let {
+            it.isVisible = true
+            it.setIcon(R.drawable.ic_favorite_white_24dp)
+        }
+    }
+
+    override fun showFavouriteNo() {
+        menuFavourite?.let {
+            it.isVisible = true
+            it.setIcon(R.drawable.ic_favorite_border_white_24dp)
+        }
+    }
+
+    override fun showSnackbarRemoveFavourite() {
+        Snackbar.make(real_swipe_refresh_layout, R.string.title_remove_favourite, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun showSnackbarSaveFavourite() {
+        Snackbar.make(real_swipe_refresh_layout, R.string.title_add_favourite, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.real_time, menu)
+        menuFavourite = menu.findItem(R.id.menu_favorite)
+        menuFavourite?.isVisible = false
+
+        presenter.loadFavouriteStatus()
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_favorite -> {
+                presenter.addOrRemoveFavourite()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     companion object {

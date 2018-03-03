@@ -7,7 +7,6 @@ import android.arch.persistence.room.PrimaryKey
 data class Route(
         @PrimaryKey
         var number: String = "",
-
         var description: String? = null,
         var direction: String? = null,
         var from: String? = null,

@@ -7,15 +7,15 @@ import android.text.TextUtils
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "stops")
-data class Stop(
-
+@Entity(tableName = "favourites")
+data class Favourite(
         @PrimaryKey
         @SerializedName("stopnumber")
         var stopNumber: String = "",
 
         @Ignore
         var address: String? = null,
+
 
         var description: String? = null,
 

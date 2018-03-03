@@ -8,7 +8,7 @@ import net.dublin.bus.model.Stop
 
 @Dao
 interface StopDao {
-    @Query("SELECT * FROM stops")
+    @Query("SELECT stopnumber, description FROM stops")
     fun getStops(): List<Stop>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
