@@ -23,7 +23,17 @@ internal class RouteDetailViewModel(val repository: RouteRepository) : ViewModel
         return routes
     }
 
+    fun cleanRoutes() {
+        routes.value = null
+    }
+
     fun loadStops(route: String, direction: String) {
+        if (stops.value == null) {
+            reloadStops(route, direction)
+        }
+    }
+
+    fun reloadStops(route: String, direction: String) {
         repository.getDataDetail(route, direction)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -35,13 +45,15 @@ internal class RouteDetailViewModel(val repository: RouteRepository) : ViewModel
     }
 
     fun loadRoutesByStopNumber(context: Context, stopNumber: String) {
-        repository.getRoutesByStopNumber(stopNumber)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ data ->
-                    routes.value = data
-                }, {
-                    routes.value = context.getString(R.string.route_detail_error)
-                })
+        if (routes.value == null) {
+            repository.getRoutesByStopNumber(stopNumber)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ data ->
+                        routes.value = data
+                    }, {
+                        routes.value = context.getString(R.string.route_detail_error)
+                    })
+        }
     }
 }

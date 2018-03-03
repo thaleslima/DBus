@@ -203,11 +203,10 @@ public class RealTimeScreenTest {
         launchActivity();
 
         SystemClock.sleep(500);
-        server.setDispatcher(new DispatcherResponse500());
-
         onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
         onView(withId(R.id.real_message)).check(matches(isDisplayed()));
         onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
+        SystemClock.sleep(500);
     }
 
     @Test

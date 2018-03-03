@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetRoutesServicedByStopNumberResponse xmlns="http://dublinbus.ie/">
+            <GetRoutesServicedByStopNumberResult>
+                <Route>
+                    <Number>40</Number>
+                    <SeqNumber>0</SeqNumber>
+                    <Towards>Charlestown Shopping Centre</Towards>
+                    <From>Liffey Valley Shopping Centre</From>
+                    <IsStaged>false</IsStaged>
+                    <IsXpresso>false</IsXpresso>
+                    <IsNitelink>false</IsNitelink>
+                    <IsMinimumFare>false</IsMinimumFare>
+                </Route>
+                <Route>
+                    <Number>40B</Number>
+                    <SeqNumber>0</SeqNumber>
+                    <Towards>Toberburr</Towards>
+                    <From>Parnell St.</From>
+                    <IsStaged>false</IsStaged>
+                    <IsXpresso>false</IsXpresso>
+                    <IsNitelink>false</IsNitelink>
+                    <IsMinimumFare>false</IsMinimumFare>
+                </Route>
+                <Route>
+                    <Number>40D</Number>
+                    <SeqNumber>0</SeqNumber>
+                    <Towards>Tyrrelstown</Towards>
+                    <From>Parnell St.</From>
+                    <IsStaged>false</IsStaged>
+                    <IsXpresso>false</IsXpresso>
+                    <IsNitelink>false</IsNitelink>
+                    <IsMinimumFare>false</IsMinimumFare>
+                </Route>
+            </GetRoutesServicedByStopNumberResult>
+        </GetRoutesServicedByStopNumberResponse>
+    </soap:Body>
+</soap:Envelope>

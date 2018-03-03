@@ -93,6 +93,10 @@ class RouteDetailActivity : AppCompatActivity() {
         model.loadStops(number, directionCurrent)
     }
 
+    fun reloadData() {
+        model.reloadStops(number, directionCurrent)
+    }
+
     fun showSnackBarNoConnection() {
         Snackbar.make(container, R.string.title_no_connection,
                 Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { loadData() }.show()
@@ -179,13 +183,13 @@ class RouteDetailActivity : AppCompatActivity() {
     private fun changeInbound() {
         routeNameTowards = inbound ?: ""
         directionCurrent = "I"
-        loadData()
+        reloadData()
     }
 
     private fun changeToOutbound() {
         routeNameTowards = outbound ?: ""
         directionCurrent = "O"
-        loadData()
+        reloadData()
     }
 
     private fun initExtra(savedInstanceState: Bundle?) {

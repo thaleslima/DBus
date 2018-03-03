@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.location.Location
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,7 +73,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
 
         model.getRoutes().observe(activity, Observer<String> {
             it?.let { it1 ->
-                route_detail_serving_aux_view.text = it1
+                route_detail_serving_aux_view?.text = it1
             }
         })
     }
@@ -113,6 +114,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
         }
 
         map.setOnMarkerClickListener { marker ->
+            model.cleanRoutes()
             chanceIcoMarker(marker)
             true
         }
@@ -142,7 +144,10 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
 
         for (stop in stops) {
             stop.latLng()?.let {
-                val markerOptions = MarkerOptions().position(it).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bus_yellow_map))
+                val markerOptions = MarkerOptions()
+                        .position(it)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bus_yellow_map))
+                        .title("stopNumber" + stop.stopNumber)
 
                 marker = mMap?.addMarker(markerOptions)
                 marker?.let {
