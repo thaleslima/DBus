@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_real_time.*
 import net.dublin.bus.R
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
 import net.dublin.bus.data.stop.repository.StopRepository
+import net.dublin.bus.model.Favourite
 import net.dublin.bus.model.Stop
 import net.dublin.bus.model.StopData
 import net.dublin.bus.ui.utilities.Utility
@@ -193,6 +194,13 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
         const val EXTRA_DESCRIPTION = "stop_description"
 
         fun navigate(context: Context, item: Stop) {
+            val intent = Intent(context, RealTimeActivity::class.java)
+            intent.putExtra(EXTRA_STOP_NUMBER, item.stopNumber)
+            intent.putExtra(EXTRA_DESCRIPTION, item.descriptionOrAddress())
+            context.startActivity(intent)
+        }
+
+        fun navigate(context: Context, item: Favourite) {
             val intent = Intent(context, RealTimeActivity::class.java)
             intent.putExtra(EXTRA_STOP_NUMBER, item.stopNumber)
             intent.putExtra(EXTRA_DESCRIPTION, item.descriptionOrAddress())

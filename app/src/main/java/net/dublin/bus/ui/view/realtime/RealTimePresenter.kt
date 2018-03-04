@@ -9,8 +9,6 @@ import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
 import net.dublin.bus.model.StopData
 
-//import java.util.*
-
 class RealTimePresenter(private val view: RealTimeContract.View,
                         private val repository: RealTimeRepository,
                         private val stopRepository: StopRepository,

@@ -11,7 +11,6 @@ import net.dublin.bus.model.StopData
 import net.dublin.bus.ui.utilities.inflate
 import java.util.*
 
-
 internal class RealTimeAdapter(private val mListener: ItemClickListener) : RecyclerView.Adapter<RealTimeAdapter.LocalViewHolder>() {
     private val mDataSet: MutableList<StopData> = ArrayList()
 

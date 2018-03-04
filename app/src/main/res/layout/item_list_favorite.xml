@@ -36,9 +36,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="9dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/app_name"
             android:textColor="@color/primary_text"
-            android:fontFamily="sans-serif-medium"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,18 +61,54 @@
             android:background="@color/divider"
             app:layout_constraintTop_toBottomOf="@+id/favorite_description_view" />
 
+        <FrameLayout
+            android:id="@+id/real_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/frame_bottom"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/route_detail_divider_view">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/real_message"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_bottom"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/error_message_real_time"
+            android:textColor="@color/secondary_text"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/route_detail_divider_view" />
+
         <LinearLayout
+            android:id="@+id/favorite_real_time_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/route_detail_divider_view">
 
-            <include layout="@layout/real_time_include" />
+            <include
+                android:id="@+id/favorite_real_time_1_view"
+                layout="@layout/real_time_include" />
 
-            <include layout="@layout/real_time_include" />
+            <include
+                android:id="@+id/favorite_real_time_2_view"
+                layout="@layout/real_time_include" />
 
-            <include layout="@layout/real_time_include" />
+            <include
+                android:id="@+id/favorite_real_time_3_view"
+                layout="@layout/real_time_include" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

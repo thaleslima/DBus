@@ -11,6 +11,7 @@ import net.dublin.bus.R
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.Utility
+import net.dublin.bus.ui.view.realtime.RealTimeActivity
 
 class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, FavouriteContract.View {
     private var mAdapter: FavouriteAdapter? = null
@@ -20,12 +21,9 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, Favour
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_favorite, container, false)
         setupRecyclerView(view)
-        return view
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         initialize()
+
+        return view
     }
 
     private fun setupRecyclerView(view: View) {
@@ -37,6 +35,10 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, Favour
 
     private fun initialize() {
         presenter = FavouritePresenter(this, StopRepository(activity.application))
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter.loadData()
     }
 
@@ -57,8 +59,8 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, Favour
     override fun showSnackBarError() {
     }
 
-    override fun onItemClick(item: String) {
-
+    override fun onItemClick(item: Favourite) {
+        RealTimeActivity.navigate(activity, item)
     }
 
     companion object {

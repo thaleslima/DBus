@@ -1,6 +1,5 @@
 package net.dublin.bus.model
 
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,9 +13,7 @@ data class StopData(
         var responseTimestamp: String? = null) {
 
     fun timeRemainingFormatted(): String {
-
         var time = ""
-
         try {
             val localDate1 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(responseTimestamp?.substring(0, 19)?.replace("T", " "))
             val localDate2 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(expectedDepartureTime?.substring(0, 19)?.replace("T", " "))
@@ -30,10 +27,9 @@ data class StopData(
                 }
             }
 
-        } catch (localParseException: ParseException) {
-            localParseException.printStackTrace()
+        } catch (exception: Throwable) {
+            exception.printStackTrace()
         }
-
         return time
     }
 }
