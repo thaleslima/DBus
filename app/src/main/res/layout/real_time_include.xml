@@ -22,11 +22,11 @@
         android:drawablePadding="4dp"
         android:gravity="center_vertical"
         android:padding="2dp"
-        android:text="27"
         android:textColor="@color/primary_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="27" />
 
     <TextView
         android:id="@+id/real_route_description_view"
@@ -43,13 +43,13 @@
         android:ellipsize="end"
         android:fontFamily="sans-serif-light"
         android:maxLines="1"
-        android:text="Terminal"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/secondary_text"
         app:layout_constraintBottom_toBottomOf="@+id/real_route_view"
         app:layout_constraintEnd_toStartOf="@+id/live_blip"
         app:layout_constraintStart_toEndOf="@+id/real_route_view"
-        app:layout_constraintTop_toTopOf="@+id/real_route_view" />
+        app:layout_constraintTop_toTopOf="@+id/real_route_view"
+        tools:text="Terminal" />
 
     <TextView
         android:id="@+id/real_route_time_view"
@@ -60,12 +60,12 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:fontFamily="sans-serif"
-        android:text="6 min"
         android:textColor="@color/primary_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/real_route_description_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/real_route_description_view" />
+        app:layout_constraintTop_toTopOf="@+id/real_route_description_view"
+        tools:text="6 min" />
 
     <ImageView
         android:id="@+id/live_blip"

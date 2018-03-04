@@ -10,6 +10,7 @@ import android.widget.TextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_list_favorite.view.*
+import kotlinx.android.synthetic.main.item_list_real_time.view.*
 import net.dublin.bus.R
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
 import net.dublin.bus.model.Favourite
@@ -104,6 +105,9 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
             for ((i, d) in data.withIndex()) {
                 realTimes[i].container.visibility = View.VISIBLE
                 realTimes[i].description.text = d.destinationName
+                realTimes[i].route.text = d.publishedLineName
+                realTimes[i].time.text = d.timeRemainingFormatted()
+
                 realTimes[i].liveBlip.setBackgroundResource(R.drawable.live)
                 val progressAnimation = realTimes[i].liveBlip.background as AnimationDrawable?
                 progressAnimation?.start()

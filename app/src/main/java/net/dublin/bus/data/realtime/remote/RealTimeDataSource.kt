@@ -22,7 +22,7 @@ class RealTimeDataSource {
         val request = Request.Builder()
                 .addHeader(Constants.SOAP_ACTION, Constants.NAMESPACE + Constants.API_URL_REAL_TIME_SOAP_METHOD)
                 .addHeader(Constants.CONTENT_TYPE, Constants.CONTENT_TYPE_XML)
-                .url(Constants.API_URL_BASE_SERVICE +  Constants.API_URL_REAL_TIME_SOAP_METHOD)
+                .url(Constants.API_URL_BASE_SERVICE + Constants.API_URL_REAL_TIME_SOAP_METHOD + "&n=$stopNumber")
                 .post(body)
                 .build()
 
