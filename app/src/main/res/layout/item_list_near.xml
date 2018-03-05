@@ -35,9 +35,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
         android:maxLines="1"
         android:textColor="@color/primary_text"
-        android:fontFamily="sans-serif-medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/detail_map_description_aux_view"
         app:layout_constraintTop_toTopOf="parent"
@@ -75,26 +75,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/detail_map_description_aux_view"
         app:layout_constraintTop_toBottomOf="@+id/route_detail_time_aux_view" />
-
-    <View
-        android:id="@+id/route_detail_divider_view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/divider"
-        app:layout_constraintTop_toBottomOf="@+id/route_detail_serving_aux_view" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/route_detail_divider_view">
-
-        <include layout="@layout/real_time_include" />
-
-        <include layout="@layout/real_time_include" />
-    </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>

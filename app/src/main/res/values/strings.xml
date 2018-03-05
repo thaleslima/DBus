@@ -8,8 +8,6 @@
     <string name="title_near">Near</string>
     <string name="title_favorite">Favourites</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-
     <string name="permission_title">Permission Required</string>
     <string name="permission_message">To continue, enable the location permission. You can change this at any time in Settings.</string>
 
@@ -31,6 +29,9 @@
 
     <string name="title_remove_favourite">Removed from Favourites</string>
     <string name="title_add_favourite">Saved in Favourites</string>
+
+    <string name="title_near_search">Search this area</string>
+    <string name="title_near_me">Near me</string>
 
     <string name="expand_string">more</string>
     <string name="collapsed_string">less</string>

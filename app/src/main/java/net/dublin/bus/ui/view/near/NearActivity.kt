@@ -6,56 +6,85 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
+import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.gson.Gson
+import com.google.android.gms.maps.model.*
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_near.*
-import net.dublin.bus.*
+import net.dublin.bus.R
 import net.dublin.bus.common.Constants
+import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
-import net.dublin.bus.model.Stops
-import net.dublin.bus.ui.utilities.*
+import net.dublin.bus.ui.utilities.LocationRequestWrapper
+import net.dublin.bus.ui.utilities.LocationUtil
+import net.dublin.bus.ui.utilities.PermissionsUtils
+import net.dublin.bus.ui.utilities.Sizes
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
-import okhttp3.*
-import java.io.IOException
 import java.util.*
 
-
 class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWrapper.OnNewLocationListener, NearAdapter.ItemClickListener {
-    override fun onItemClick(item: Stop) {
-        RealTimeActivity.navigate(this, item)
-    }
+    private val mapStateManager: MapStateManager = MapStateManager()
 
     private var mSupportMapFragment: SupportMapFragment? = null
     private var mMap: GoogleMap? = null
-    private var mMarkersId: HashMap<String, Stop>? = HashMap()
+    private var mMarkersId: HashMap<String, Stop> = HashMap()
+    private var mMarkers: HashMap<Int, Marker> = HashMap()
     private var markerAux: Marker? = null
+    private val nearAdapter = NearAdapter(this)
+    private var moveCamera = false
+    private var smoothScroll = false
+    private var latitudeSearch = 0.0
+    private var longitudeSearch = 0.0
+    private var stopNumber: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_near)
+        mapStateManager.restoreInstanceState(savedInstanceState)
+
         setUpMapIfNeeded()
-        initRecyclerVideos()
+        initRecyclerView()
+        setupViewProperties()
     }
 
-    private val nearAdapter = NearAdapter(this)
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
 
-    private fun initRecyclerVideos() {
+        mapStateManager.saveLocationCurrent(outState, mMap)
+        mapStateManager.saveLocationSearch(outState, latitudeSearch, longitudeSearch)
+        mapStateManager.saveStopNumberSelected(outState, stopNumber)
+    }
+
+    private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         near_recycler_view.layoutManager = layoutManager
         near_recycler_view.isNestedScrollingEnabled = false
         near_recycler_view.adapter = nearAdapter
-
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(near_recycler_view)
+
+        near_recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!smoothScroll) {
+                    val centerView = snapHelper.findSnapView(layoutManager)
+                    val pos = layoutManager.getPosition(centerView)
+
+                    mMarkers[pos]?.let {
+                        chanceIcoMarker(it)
+                    }
+                }
+            }
+        })
 
         near_recycler_view.viewTreeObserver.addOnGlobalLayoutListener({
             try {
@@ -65,54 +94,36 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
                 e.fillInStackTrace()
             }
         })
-
-//        detail_map_search_view.setOnClickListener({
-//
-//        })
     }
 
-
-    fun run() {
-        val body = FormBody.Builder().build()
-        val client = OkHttpClient()
-        val request = Request.Builder()
-                .url(Constants.API_URL_STOP_NEAR)
-                .post(body)
-                .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onResponse(call: Call?, response: Response?) {
-                val objectList = Gson().fromJson(response?.body()?.string(), Stops::class.java)
-
-                this@NearActivity.runOnUiThread(java.lang.Runnable {
-                    //showLocals(objectList.points.subList(1, 200))
-                })
-            }
-
-            override fun onFailure(call: Call?, e: IOException?) {
-            }
-        })
+    private fun setupViewProperties() {
+        near_search_view.setOnClickListener { search() }
+        near_search_view.visibility = View.GONE
     }
 
-
-    fun showLocals(locals: List<Stop>) {
-        var latLng: LatLng
-        var marker: Marker?
-        mMarkersId?.clear()
-
-        for (local in locals) {
-//            latLng = LatLng(local.latitude.toDouble(), local.longitude.toDouble())
-//
-//
-//
-//            val markerOptions = MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bus_yellow_map))
-//            marker = mMap?.addMarker(markerOptions)
-//            marker?.let { m -> mMarkersId?.put(m.id, local) }
+    private fun search() {
+        mMap?.cameraPosition?.target?.let {
+            getStopsByLatLng(it.latitude, it.longitude)
         }
-
-        nearAdapter.replaceData(locals)
     }
 
+    private fun chanceIcoMarker(marker: Marker) {
+        markerAux?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bus_yellow_map))
+        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bus_yellow_map_selected))
+        markerAux = marker
+        stopNumber = mMarkersId[marker.id]?.stopNumber
+    }
+
+    private fun cleanMap() {
+        mMarkersId.clear()
+        mMarkers.clear()
+        mMap?.clear()
+        markerAux = null
+        moveCamera = false
+
+        near_search_view.visibility = View.GONE
+        near_recycler_view.scrollToPosition(0)
+    }
 
     private fun setUpMapIfNeeded() {
         if (mSupportMapFragment == null) {
@@ -120,7 +131,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
             mSupportMapFragment = fm.findFragmentById(R.id.map) as SupportMapFragment
             mSupportMapFragment?.getMapAsync(this)
 
-            if (LocationUtil.requestLocationOrShowMessage(this, 0)) {
+            if (!mapStateManager.restored && LocationUtil.requestLocationOrShowMessage(this, 0)) {
                 connectLocation()
             }
         }
@@ -136,13 +147,100 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
         }
 
         map.setOnMarkerClickListener { marker ->
-            markerAux?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bus_yellow_map))
-            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bus_yellow_map_selected))
-            markerAux = marker
-            false
+            chanceIcoMarker(marker)
+            scrollToPosition(marker.tag as Int)
+            true
         }
 
-        run()
+        map.setOnCameraMoveListener {
+            moveCamera = true
+        }
+        map.setOnCameraIdleListener {
+            if (moveCamera) near_search_view.visibility = View.VISIBLE
+        }
+
+        if (!mapStateManager.restored) {
+            moveCamera(Constants.getLatLngDefault())
+            getStopsByLatLng(Constants.LATITUDE, Constants.LONGITUDE)
+        } else {
+            moveCamera(mapStateManager.locationCurrent!!)
+            getStopsByLatLng(mapStateManager.locationSearch!!.latitude, mapStateManager.locationSearch!!.longitude)
+        }
+    }
+
+    private fun scrollToPosition(position: Int) {
+        smoothScroll = true
+        near_recycler_view.scrollToPosition(position)
+        near_recycler_view.smoothScrollToPosition(position)
+        Handler().postDelayed({ smoothScroll = false }, 1000)
+    }
+
+    private fun smoothScrollToPosition(position: Int) {
+        near_recycler_view.scrollToPosition(position)
+    }
+
+    private fun moveCamera(latLng: LatLng) {
+        mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+    }
+
+    private fun getStopsByLatLng(latitude: Double, longitude: Double) {
+        latitudeSearch = latitude
+        longitudeSearch = longitude
+
+        StopRepository(application).getStopsByLatLng(latitude, longitude)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ data ->
+                    showStops(data)
+                }, {
+
+                })
+    }
+
+    private fun showStops(stops: List<Stop>) {
+        var position = 0
+        cleanMap()
+
+        for ((index, stop) in stops.withIndex()) {
+            createMarker(stop)?.let {
+                mMarkersId[it.id] = stop
+                mMarkers[index] = it
+                it.tag = index
+                if (index == 0) {
+                    chanceIcoMarker(it)
+                }
+
+                if (stop.stopNumber == mapStateManager.stopNumberSelected) {
+                    position = index
+                }
+            }
+        }
+        nearAdapter.replaceData(stops)
+        restoredPosition(position)
+    }
+
+    private fun createMarker(stop: Stop): Marker? {
+        return stop.latLng()?.let {
+            val markerOptions = MarkerOptions().position(it)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bus_yellow_map))
+                    .title("stopNumber" + stop.stopNumber)
+
+            mMap?.addMarker(markerOptions)
+        }
+    }
+
+    private fun restoredPosition(position: Int) {
+        if (mapStateManager.restored) {
+            mMarkers[position]?.let {
+                chanceIcoMarker(it)
+                smoothScrollToPosition(position)
+            }
+            mapStateManager.restored = false
+        }
+    }
+
+    override fun onItemClick(item: Stop) {
+        RealTimeActivity.navigate(this, item)
     }
 
     private fun connectLocation() {
@@ -157,9 +255,10 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
     }
 
     override fun onNewLocation(location: Location) {
-        //        map.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 12f))
-
-        mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(location.latitude.let { LatLng(it, location.longitude) }, 12f))
+        location.let {
+            moveCamera(LatLng(it.latitude, it.longitude))
+            getStopsByLatLng(it.latitude, it.longitude)
+        }
     }
 
     companion object {

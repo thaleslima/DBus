@@ -33,8 +33,8 @@ object RouteDetailMapper {
                     var stopNumber = ""
                     var address = ""
                     var location = ""
-                    var longitude = ""
-                    var latitude = ""
+                    var longitude: String? = null
+                    var latitude: String? = null
                     var isStagePoint = false
                     var stageNumber = ""
                     val localNode = localNodeList1.item(j)
@@ -83,11 +83,13 @@ object RouteDetailMapper {
                         }
                     }
 
+                    val lat = latitude?.toDoubleOrNull()
+                    val lon = longitude?.toDoubleOrNull()
 
                     list.add(Stop(
                             stopNumber = stopNumber,
-                            latitude = latitude,
-                            longitude = longitude,
+                            latitude = lat ?: 0.0,
+                            longitude = lon ?: 0.0,
                             route = route,
                             direction = direction,
                             address = address,
@@ -98,7 +100,6 @@ object RouteDetailMapper {
                 } while (j < i)
             }
         }
-
 
         return list
     }

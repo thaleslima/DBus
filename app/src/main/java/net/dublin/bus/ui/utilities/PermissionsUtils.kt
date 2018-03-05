@@ -36,37 +36,19 @@ object PermissionsUtils {
                     && PermissionsUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION))
         }
 
-//        private fun openMessage(context: Context) {
-//            DialogUtil.showDialogPermission(context,
-//                    context.getString(R.string.permission_title),
-//                    context.getString(R.string.permission_message))
-//        }
-
-//        internal fun requestPermission(activity: Activity, requestCode: Int) {
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
-//                requestPermissions(activity, requestCode, Manifest.permission.ACCESS_COARSE_LOCATION,
-//                        Manifest.permission.ACCESS_FINE_LOCATION)
-////            } else {
-////                openMessage(activity)
-//            }
-//        }
-
-//        internal fun requestPermission(activity: Activity, requestCode: Int) {
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
-//                requestPermissions(activity, requestCode, Manifest.permission.ACCESS_COARSE_LOCATION,
-//                        Manifest.permission.ACCESS_FINE_LOCATION)
-////            } else {
-////                openMessage(activity)
-//            }
-//        }
-
         fun showRequestPermission(fragment: Fragment, requestCod: Int) {
             if (shouldShowRequestPermissionRationale(fragment.activity)) {
                 requestPermissions(fragment, requestCod,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION)
-//            } else {
-//                showMessageOKCancel(fragment.context)
+            }
+        }
+
+        fun showRequestPermission(activity: Activity, requestCod: Int) {
+            if (shouldShowRequestPermissionRationale(activity)) {
+                requestPermissions(activity, requestCod,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
             }
         }
 
@@ -80,15 +62,5 @@ object PermissionsUtils {
 
             return contactsAskedBefore == 1 && shouldShowRequest || contactsAskedBefore == 0 && !shouldShowRequest || shouldShowRequest
         }
-
-//        internal fun requestPermission(fragment: Fragment, requestCode: Int) {
-//            if (!fragment.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-//                requestPermissions(fragment, requestCode,
-//                        Manifest.permission.ACCESS_COARSE_LOCATION,
-//                        Manifest.permission.ACCESS_FINE_LOCATION)
-////            } else {
-////                openMessage(fragment.activity)
-//            }
-//        }
     }
 }

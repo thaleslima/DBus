@@ -20,14 +20,14 @@ object LocationUtil {
     }
 
     fun requestLocationOrShowMessage(activity: Activity, requestCode: Int): Boolean {
-//        if (!PermissionsUtils.Location.hasPermission(activity)) {
-//            PermissionsUtils.Location.requestPermission(activity, requestCode)
-//            return false
-//        }
-//        if (!locationIsActivated(activity)) {
-//            DialogUtil.showAlertLocationDialog(activity)
-//            return false
-//        }
+        if (!PermissionsUtils.Location.hasPermission(activity)) {
+            PermissionsUtils.Location.showRequestPermission(activity, requestCode)
+            return false
+        }
+        if (!locationIsActivated(activity)) {
+            DialogUtil.showAlertLocationDialog(activity)
+            return false
+        }
         return true
     }
 

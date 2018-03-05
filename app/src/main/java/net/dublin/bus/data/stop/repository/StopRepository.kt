@@ -2,6 +2,7 @@ package net.dublin.bus.data.stop.repository
 
 import android.app.Application
 import io.reactivex.Observable
+import io.reactivex.Single
 import net.dublin.bus.data.stop.local.LocalStopDataSource
 import net.dublin.bus.data.stop.local.LocalStopFavouriteDataSource
 import net.dublin.bus.data.stop.remote.RemoteStopDataSource
@@ -15,8 +16,17 @@ class StopRepository(application: Application) {
 
     fun getData(): Observable<List<Stop>> {
         return localSource.getAll()
+    }
 
-        //return RemoteStopDataSource().getData().doOnNext { localSource.saveAll(it) }
+    fun getStopsByLatLng(latitude: Double, longitude: Double): Single<MutableList<Stop>> {
+        return localSource
+                .getStopsByLatLng(latitude, longitude)
+                .flatMapIterable({ it })
+                .map({ it1 ->
+                    it1.calculateDistance(latitude, longitude)
+                    it1
+                })
+                .toSortedList { first, second -> first.distance.compareTo(second.distance) }
     }
 
     fun isFavourite(stopNumber: String): Observable<Boolean> {
@@ -31,7 +41,7 @@ class StopRepository(application: Application) {
         return localFavouriteSource.removeFavourite(stopNumber)
     }
 
-    fun getFavourites(): Observable<List<Favourite>>  {
+    fun getFavourites(): Observable<List<Favourite>> {
         return localFavouriteSource.getAll()
     }
 }

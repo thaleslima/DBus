@@ -155,7 +155,6 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
 
                     if (stop.stopNumber == mStopNumberRestore) {
                         chanceIcoMarker(it)
-                        //mStopNumberRestore = null
                     }
                 }
             }

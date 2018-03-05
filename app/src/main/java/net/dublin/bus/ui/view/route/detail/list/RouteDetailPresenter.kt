@@ -25,5 +25,4 @@ class RouteDetailPresenter(private val view: RouteDetailContract.View) : RouteDe
             it?.let { it1 -> view.showData(it1) }
         })
     }
-
 }

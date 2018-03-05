@@ -38,8 +38,8 @@ class RemoteStopDataSource {
                     val stop = Stop()
                     stop.stopNumber = o.getProperty("StopNumber").toString()
                     stop.type = o.getProperty("Type").toString()
-                    stop.latitude = o.getProperty("Longitude").toString()
-                    stop.longitude = o.getProperty("Latitude").toString()
+                    stop.latitude = o.getProperty("Longitude").toString().toDoubleOrNull() ?: 0.0
+                    stop.longitude = o.getProperty("Latitude").toString().toDoubleOrNull() ?: 0.0
                     stop.description = o.getProperty("Description").toString()
                     stop.descriptionLower = o.getProperty("Description").toString().toLowerCase()
                     list.add(stop)

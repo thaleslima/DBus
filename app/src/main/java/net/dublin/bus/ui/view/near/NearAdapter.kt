@@ -43,9 +43,9 @@ internal class NearAdapter(private val mListener: ItemClickListener) : RecyclerV
         fun bind(item: Stop) = with(itemView) {
             mItem = item
             detail_map_description_aux_view.text = item.stopNumber
-            detail_map_description_view.text = item.address
-
-             itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
+            detail_map_description_view.text = item.description
+            route_detail_time_aux_view.text = item.distance.toString()
+            itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }
 }

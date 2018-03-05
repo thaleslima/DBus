@@ -25,8 +25,8 @@ object Constants {
 
     const val API_URL_STOP_NEAR = "${NAMESPACE}Templates/Public/RoutePlannerService/RTPIMapHandler.ashx?ne=53.650000,-6.000000&sw=53.050000,-6.700000&zoom=13&czoom=16&rjson=true"
 
-    const val LATITUDE = 53.650000
-    const val LONGITUDE = -6.000000
+    const val LATITUDE = 53.3957345
+    const val LONGITUDE = -6.1999094
 
     fun getLatLngDefault(): LatLng {
         return LatLng(LATITUDE, LONGITUDE)
