@@ -3,6 +3,7 @@ package net.dublin.bus.ui.view.search
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.item_list_search_route.view.*
 import net.dublin.bus.R
 import net.dublin.bus.model.Route
 import net.dublin.bus.ui.utilities.inflate
@@ -10,8 +11,11 @@ import java.util.*
 
 internal class SearchRouteAdapter(private val mListener: ItemClickListener) : RecyclerView.Adapter<SearchRouteAdapter.LocalViewHolder>() {
     private val mDataSet: MutableList<Route> = ArrayList()
-    private val ITEM_TOP = 1
-    private val ITEM_MIDDLE = 2
+
+    companion object {
+        private const val ITEM_TOP = 1
+        private const val ITEM_MIDDLE = 2
+    }
 
     internal interface ItemClickListener {
         fun onItemClick(item: Route)
@@ -29,13 +33,8 @@ internal class SearchRouteAdapter(private val mListener: ItemClickListener) : Re
         return mDataSet.size
     }
 
-//    fun replaceData(dataSet: List<Route>) {
-//        setList(dataSet)
-//        notifyDataSetChanged()
-//    }
-
     fun replaceData(dataSet: List<Route>) {
-        var dataSetAux = ArrayList<Route>()
+        val dataSetAux = ArrayList<Route>()
         dataSetAux.add(Route())
         dataSetAux.addAll(dataSet)
         setList(dataSetAux)
@@ -47,14 +46,18 @@ internal class SearchRouteAdapter(private val mListener: ItemClickListener) : Re
         mDataSet.addAll(dataSet)
     }
 
+    fun clean() {
+        mDataSet.clear()
+        notifyDataSetChanged()
+    }
+
     internal inner class LocalViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(inflate(parent, viewType)) {
         private var mItem: Route? = null
 
         fun bind(item: Route) = with(itemView) {
-            mItem = item
-            //route_description_view.text = item.number
-
-            itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
+            mItem = if (item.number.isEmpty()) null else item
+            route_search_description_aux_view?.text = item.number
+            itemView?.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }
 

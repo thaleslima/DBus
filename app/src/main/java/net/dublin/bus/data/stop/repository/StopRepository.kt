@@ -44,4 +44,8 @@ class StopRepository(application: Application) {
     fun getFavourites(): Observable<List<Favourite>> {
         return localFavouriteSource.getAll()
     }
+
+    fun getStopsByText(search: String): Observable<List<Stop>> {
+        return localSource.getStopsByText(search)
+    }
 }

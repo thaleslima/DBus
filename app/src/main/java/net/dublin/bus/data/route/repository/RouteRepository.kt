@@ -36,4 +36,11 @@ class RouteRepository(context: Context){
                     set.joinToString(separator = ", ")
                 }
     }
+
+    fun getStopsByText(search: String): Observable<List<Route>> {
+        return localSource.getStopsByText(search).map {
+            Collections.sort(it, RouteComparator())
+            it
+        }
+    }
 }

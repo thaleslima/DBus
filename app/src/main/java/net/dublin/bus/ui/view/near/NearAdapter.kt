@@ -32,6 +32,11 @@ internal class NearAdapter(private val mListener: ItemClickListener) : RecyclerV
         notifyDataSetChanged()
     }
 
+    fun clear() {
+        mDataSet.clear()
+        notifyDataSetChanged()
+    }
+
     private fun setList(dataSet: List<Stop>) {
         mDataSet.clear()
         mDataSet.addAll(dataSet)

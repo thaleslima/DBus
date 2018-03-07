@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_route.*
 import net.dublin.bus.R
 import net.dublin.bus.common.PreferencesUtils
 import net.dublin.bus.data.route.repository.RouteRepository
+import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.view.main.MainActivity
@@ -46,6 +47,14 @@ class RouteDetailActivity : AppCompatActivity() {
             intent.putExtra(EXTRA_ROUTE_NUMBER, number)
             intent.putExtra(EXTRA_ROUTE_OUT_TOWARDS, outbound)
             intent.putExtra(EXTRA_ROUTE_IN_TOWARDS, inbound)
+            context.startActivity(intent)
+        }
+
+        fun navigate(context: Context, item: Route) {
+            val intent = Intent(context, RouteDetailActivity::class.java)
+            intent.putExtra(EXTRA_ROUTE_NUMBER, item.number)
+            intent.putExtra(EXTRA_ROUTE_OUT_TOWARDS, item.outboundTowards)
+            intent.putExtra(EXTRA_ROUTE_IN_TOWARDS, item.inboundTowards)
             context.startActivity(intent)
         }
     }

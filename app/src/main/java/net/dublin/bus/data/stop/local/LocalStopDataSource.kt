@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import net.dublin.bus.data.BusDatabase
 import net.dublin.bus.data.stop.db.StopDao
 import net.dublin.bus.model.Stop
+import java.io.IOException
 
 class LocalStopDataSource(context: Context) {
     private var dao: StopDao
@@ -24,5 +25,19 @@ class LocalStopDataSource(context: Context) {
 
     fun saveAll(stops: List<Stop>) {
         dao.saveAllStops(stops)
+    }
+
+    fun getStopsByText(search: String): Observable<List<Stop>> {
+        return Observable.create { subscriber ->
+            try {
+                subscriber.onNext(dao.getStopsByText(search))
+                subscriber.onComplete()
+            } catch (e: IOException) {
+                e.localizedMessage
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
+            }
+        }
     }
 }

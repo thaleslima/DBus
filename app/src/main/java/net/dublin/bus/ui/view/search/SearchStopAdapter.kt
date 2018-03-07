@@ -3,6 +3,7 @@ package net.dublin.bus.ui.view.search
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.item_list_search.view.*
 import net.dublin.bus.R
 import net.dublin.bus.ui.utilities.inflate
 import net.dublin.bus.model.Stop
@@ -10,8 +11,11 @@ import kotlin.collections.ArrayList
 
 internal class SearchStopAdapter(private val mListener: ItemClickListener) : RecyclerView.Adapter<SearchStopAdapter.LocalViewHolder>() {
     private val mDataSet: MutableList<Stop> = ArrayList()
-    private val ITEM_TOP = 1
-    private val ITEM_MIDDLE = 2
+
+    companion object {
+        private const val ITEM_TOP = 1
+        private const val ITEM_MIDDLE = 2
+    }
 
     internal interface ItemClickListener {
         fun onItemClick(item: Stop)
@@ -30,7 +34,7 @@ internal class SearchStopAdapter(private val mListener: ItemClickListener) : Rec
     }
 
     fun replaceData(dataSet: List<Stop>) {
-        var dataSetAux = ArrayList<Stop>()
+        val dataSetAux = ArrayList<Stop>()
         dataSetAux.add(Stop())
         dataSetAux.addAll(dataSet)
         setList(dataSetAux)
@@ -42,15 +46,20 @@ internal class SearchStopAdapter(private val mListener: ItemClickListener) : Rec
         mDataSet.addAll(dataSet)
     }
 
+    fun clean() {
+        mDataSet.clear()
+        notifyDataSetChanged()
+    }
+
     internal inner class LocalViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(inflate(parent, viewType)) {
         private var mItem: Stop? = null
 
         fun bind(item: Stop) = with(itemView) {
-            mItem = item
-            //stop_description_view.text = item.description
-            //stop_description_aux_view.text = item.stopNumber
+            mItem = if (item.stopNumber.isEmpty()) null else item
+            stop_search_description_view?.text = item.description
+            stop_search_description_aux_view?.text = item.stopNumber
 
-            itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
+            itemView?.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }
 

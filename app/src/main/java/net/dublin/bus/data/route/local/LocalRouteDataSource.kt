@@ -21,4 +21,8 @@ class LocalRouteDataSource(context: Context) {
     fun saveAll(routes: List<Route>) {
         dao.saveAllRoutes(routes)
     }
+
+    fun getStopsByText(search: String): Observable<List<Route>> {
+        return Observable.fromCallable { dao.getStopsByText(search) }
+    }
 }

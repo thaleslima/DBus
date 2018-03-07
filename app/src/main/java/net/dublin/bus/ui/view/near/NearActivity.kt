@@ -99,6 +99,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
     private fun setupViewProperties() {
         near_search_view.setOnClickListener { search() }
         near_search_view.visibility = View.GONE
+        near_back_view.setOnClickListener { onSupportNavigateUp() }
     }
 
     private fun search() {
@@ -122,7 +123,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
         moveCamera = false
 
         near_search_view.visibility = View.GONE
-        near_recycler_view.scrollToPosition(0)
+        nearAdapter.clear()
     }
 
     private fun setUpMapIfNeeded() {

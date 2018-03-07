@@ -100,7 +100,6 @@ public class FavouriteScreenTest {
         onView(withId(R.id.menu_favorite)).perform(click());
         mDevice.pressBack();
         SystemClock.sleep(500);
-
     }
 
     @Test

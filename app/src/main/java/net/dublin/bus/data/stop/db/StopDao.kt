@@ -11,6 +11,9 @@ interface StopDao {
     @Query("SELECT stopnumber, description FROM stops")
     fun getStops(): List<Stop>
 
+    @Query("SELECT stopnumber, description FROM stops WHERE stopnumber LIKE :arg0 || '%'")
+    fun getStopsByText(search: String): List<Stop>
+
     @Query("SELECT stopnumber, description, latitude, longitude FROM stops ORDER BY abs(latitude - (:arg0)) + abs(longitude - (:arg1)) LIMIT 30")
     fun getStopsByLatLng(latitude: Double, longitude: Double): List<Stop>
 
