@@ -202,6 +202,8 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
         var position = 0
         cleanMap()
 
+        nearAdapter.replaceData(stops)
+
         for ((index, stop) in stops.withIndex()) {
             createMarker(stop)?.let {
                 mMarkersId[it.id] = stop
@@ -216,7 +218,6 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
                 }
             }
         }
-        nearAdapter.replaceData(stops)
         restoredPosition(position)
     }
 
