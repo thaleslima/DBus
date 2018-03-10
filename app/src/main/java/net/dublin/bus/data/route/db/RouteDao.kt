@@ -12,10 +12,10 @@ interface RouteDao {
     @Query("SELECT * FROM routes")
     fun getRoutes(): List<Route>
 
-    @Query("SELECT * FROM routes WHERE number LIKE :arg0 || '%'")
+    @Query("SELECT * FROM routes WHERE number LIKE :search || '%'")
     fun getStopsByText(search: String): List<Route>
 
-    @Query("SELECT * FROM routes WHERE number = :arg0")
+    @Query("SELECT * FROM routes WHERE number = :number")
     fun getRouteByNumber(number: String): Route?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -11,10 +11,10 @@ interface StopDao {
     @Query("SELECT stopnumber, description FROM stops")
     fun getStops(): List<Stop>
 
-    @Query("SELECT stopnumber, description FROM stops WHERE stopnumber LIKE :arg0 || '%'")
+    @Query("SELECT stopnumber, description FROM stops WHERE stopnumber LIKE :search || '%' OR description LIKE '%' || :search || '%'")
     fun getStopsByText(search: String): List<Stop>
 
-    @Query("SELECT stopnumber, description, latitude, longitude FROM stops ORDER BY abs(latitude - (:arg0)) + abs(longitude - (:arg1)) LIMIT 30")
+    @Query("SELECT stopnumber, description, latitude, longitude FROM stops ORDER BY abs(latitude - (:latitude)) + abs(longitude - (:longitude)) LIMIT 30")
     fun getStopsByLatLng(latitude: Double, longitude: Double): List<Stop>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -23,6 +23,6 @@ interface StopDao {
     @Query("DELETE FROM stops")
     fun clear()
 
-    @Query("SELECT stopnumber, description FROM stops WHERE stopnumber = :arg0")
+    @Query("SELECT stopnumber, description FROM stops WHERE stopnumber = :stopNumber")
     fun getStopsByNumber(stopNumber: String): Stop
 }

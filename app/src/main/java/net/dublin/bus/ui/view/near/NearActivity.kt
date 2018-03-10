@@ -173,6 +173,9 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
         smoothScroll = true
         near_recycler_view.scrollToPosition(position)
         near_recycler_view.smoothScrollToPosition(position)
+
+
+
         Handler().postDelayed({ smoothScroll = false }, 1000)
     }
 
@@ -218,6 +221,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
                 }
             }
         }
+
         restoredPosition(position)
     }
 

@@ -17,9 +17,9 @@ interface StopFavouriteDao {
     @Query("DELETE FROM favourites")
     fun clear()
 
-    @Query("SELECT COUNT(stopNumber) FROM favourites WHERE stopnumber = :arg0")
+    @Query("SELECT COUNT(stopNumber) FROM favourites WHERE stopnumber = :stopNumber")
     fun isFavourite(stopNumber: String): Int
 
-    @Query("DELETE FROM favourites WHERE stopnumber = :arg0")
+    @Query("DELETE FROM favourites WHERE stopnumber = :stopNumber")
     fun removeFavourite(stopNumber: String)
 }
