@@ -41,9 +41,11 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.internal.util.Checks.checkNotNull;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.runners.MethodSorters.*;
 
 @RunWith(AndroidJUnit4.class)
@@ -78,6 +80,9 @@ public class FavouriteScreenTest {
         server.setDispatcher(new DispatcherResponse200());
         launchActivity();
         SystemClock.sleep(1500);
+
+        onView(withId(R.id.favorite_message_empty)).check(matches(isDisplayed()));
+
         onView(withId(R.id.navigation_stop)).perform(click());
 
         addFavorite(0);
@@ -89,6 +94,9 @@ public class FavouriteScreenTest {
         addFavorite(13);
         addFavorite(14);
         addFavorite(20);
+
+        onView(withId(R.id.navigation_favorite)).perform(click());
+        onView(withId(R.id.favorite_message_empty)).check(matches(not(isDisplayed())));
     }
 
     private void addFavorite(int position) {
@@ -164,6 +172,8 @@ public class FavouriteScreenTest {
         removeFavorite();
         removeFavorite();
         removeFavorite();
+
+        onView(withId(R.id.favorite_message_empty)).check(matches(isDisplayed()));
     }
 
     private void removeFavorite() {

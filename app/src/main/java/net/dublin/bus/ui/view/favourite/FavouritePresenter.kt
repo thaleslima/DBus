@@ -16,6 +16,8 @@ class FavouritePresenter(private val view: FavouriteContract.View,
     }
 
     override fun loadData() {
+        view.hideNoData()
+
         val subscription = repository.getFavourites()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -38,5 +40,8 @@ class FavouritePresenter(private val view: FavouriteContract.View,
 
     private fun onNextData(data: List<Favourite>) {
         view.showData(data)
+        if (data.isEmpty()) {
+            view.showNoData()
+        }
     }
 }

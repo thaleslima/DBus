@@ -42,4 +42,8 @@
 
     <string name="expand_string">more</string>
     <string name="collapsed_string">less</string>
+
+
+    <string name="favorite_message_empty_title">Nothing saved yet</string>
+    <string name="favorite_message_empty">When you see something you like, tap on the heart to save.</string>
 </resources>

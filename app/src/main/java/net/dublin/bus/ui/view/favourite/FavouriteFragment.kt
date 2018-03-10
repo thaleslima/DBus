@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_favorite.*
 import net.dublin.bus.R
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
@@ -51,6 +52,11 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, Favour
     }
 
     override fun showNoData() {
+        favorite_message_empty.visibility = View.VISIBLE
+    }
+
+    override fun hideNoData() {
+        favorite_message_empty.visibility = View.GONE
     }
 
     override fun showSnackBarNoConnection() {

@@ -10,6 +10,8 @@ interface FavouriteContract {
 
         fun showData(data: List<Favourite>)
 
+        fun hideNoData()
+
         fun showNoData()
 
         fun showSnackBarNoConnection()
