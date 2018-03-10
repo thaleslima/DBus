@@ -5,8 +5,12 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import net.dublin.bus.*
+import net.dublin.bus.data.stop.repository.StopRepository
+import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.BottomNavigationViewHelper
 import net.dublin.bus.ui.view.favourite.FavouriteFragment
 import net.dublin.bus.ui.view.near.NearActivity
@@ -50,6 +54,30 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (savedInstanceState == null) {
+            checkFavourite()
+        }
+    }
+
+    private fun checkFavourite() {
+        val repository = StopRepository(application)
+        repository.getFavourites()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ data ->
+                    onNextData(data)
+                }, {
+                    onError()
+                })
+    }
+
+    private fun onError() {
+        navigation.selectedItemId = R.id.navigation_stop
+    }
+
+    private fun onNextData(data: List<Favourite>) {
+        if (data.isEmpty()) {
+            navigation.selectedItemId = R.id.navigation_stop
+        } else {
             navigation.selectedItemId = R.id.navigation_favorite
         }
     }
