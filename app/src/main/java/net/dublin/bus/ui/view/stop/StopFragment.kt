@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_real_time.*
 import kotlinx.android.synthetic.main.fragment_stop.*
 import net.dublin.bus.R
 import net.dublin.bus.data.stop.repository.StopRepository
@@ -22,21 +21,19 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener, StopContract.Vie
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_stop, container, false)
-        setupRecyclerView(view)
-        return view
+        return inflater!!.inflate(R.layout.fragment_stop, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
         initialize()
     }
 
-    private fun setupRecyclerView(view: View) {
+    private fun setupRecyclerView() {
         mAdapter = StopAdapter(this)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.list)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = mAdapter
+        stop_recycler_view.layoutManager = LinearLayoutManager(context)
+        stop_recycler_view.adapter = mAdapter
     }
 
     private fun initialize() {
@@ -58,11 +55,11 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener, StopContract.Vie
     }
 
     override fun showProgress() {
-        stop_progress_bar.visibility = View.VISIBLE
+        stop_progress_bar_view?.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        stop_progress_bar.visibility = View.GONE
+        stop_progress_bar_view?.visibility = View.GONE
     }
 
     override fun showSnackBarNoConnection() {
