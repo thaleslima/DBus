@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    card_view:cardCornerRadius="4dp">
+    card_view:cardCornerRadius="@dimen/default_radius">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -85,7 +85,7 @@
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:padding="16dp"
-            android:text="@string/error_message_real_time"
+            android:text="@string/real_time_error_message"
             android:textColor="@color/secondary_text"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/route_detail_divider_view" />

@@ -16,11 +16,10 @@
         android:layout_height="50dp"
         android:background="@drawable/frame_round_border"
         android:drawableTop="@drawable/ic_bus_symbol_black_24dp"
-        android:fontFamily="sans-serif"
         android:gravity="center_horizontal"
         android:paddingTop="7dp"
         android:textColor="@color/primary_text"
-        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toBottomOf="@+id/route_detail_serving_aux_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/detail_map_description_view"
@@ -28,7 +27,7 @@
 
     <TextView
         android:id="@+id/detail_map_description_view"
-        style="@style/TextAppearance.AppCompat.Body1"
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

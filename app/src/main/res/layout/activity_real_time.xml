@@ -104,7 +104,7 @@
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="@string/error_message_real_time"
+                android:text="@string/real_time_error_message"
                 android:textColor="@color/secondary_text"
                 android:visibility="gone" />
 

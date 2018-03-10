@@ -31,7 +31,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -42,7 +41,6 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.internal.util.Checks.checkNotNull;
@@ -147,7 +145,7 @@ public class FavouriteScreenTest {
                 .check(matches(atPosition(0, hasDescendant(withText("3 min")))));
 
 
-        String messageErrorRequired = InstrumentationRegistry.getTargetContext().getString(R.string.error_message_real_time);
+        String messageErrorRequired = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_error_message);
         onView(withId(R.id.list))
                 .check(matches(atPosition(1, hasDescendant(withText(messageErrorRequired)))));
     }

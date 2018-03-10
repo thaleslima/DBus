@@ -4,8 +4,8 @@
         <shape>
             <solid android:color="@color/divider" />
             <corners
-                android:topLeftRadius="5dp"
-                android:topRightRadius="5dp"
+                android:topLeftRadius="@dimen/default_radius"
+                android:topRightRadius="@dimen/default_radius"
                 />
         </shape>
     </item>

@@ -4,10 +4,10 @@
         <shape>
             <solid android:color="@color/white" />
             <corners
-                android:topLeftRadius="5dp"
-                android:topRightRadius="5dp"
-                android:bottomRightRadius="5dp"
-                android:bottomLeftRadius="5dp"
+                android:topLeftRadius="@dimen/default_radius"
+                android:topRightRadius="@dimen/default_radius"
+                android:bottomRightRadius="@dimen/default_radius"
+                android:bottomLeftRadius="@dimen/default_radius"
                 />
         </shape>
     </item>

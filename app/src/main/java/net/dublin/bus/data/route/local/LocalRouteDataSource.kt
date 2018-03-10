@@ -18,6 +18,10 @@ class LocalRouteDataSource(context: Context) {
         return Observable.fromCallable { dao.getRoutes() }
     }
 
+    fun getRouteByNumber(number: String): Observable<Route> {
+        return Observable.fromCallable { dao.getRouteByNumber(number) }
+    }
+
     fun saveAll(routes: List<Route>) {
         dao.saveAllRoutes(routes)
     }

@@ -20,6 +20,10 @@ class RouteRepository(context: Context){
         }
     }
 
+    fun getRouteByNumber(number: String): Observable<Route> {
+        return localSource.getRouteByNumber(number)
+    }
+
     fun getDataDetail(route: String, direction: String): Observable<List<Stop>> {
         return RouteDataSource().getDataDetail(route, direction)
     }

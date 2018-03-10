@@ -2,7 +2,6 @@
     <string name="app_name">Dublin Bus</string>
     <string name="title_real_time">Real Time Information</string>
 
-
     <string name="title_stop">Stops</string>
     <string name="title_route">Routes</string>
     <string name="title_near">Near</string>
@@ -10,10 +9,8 @@
 
     <string name="permission_title">Permission Required</string>
     <string name="permission_message">To continue, enable the location permission. You can change this at any time in Settings.</string>
-
     <string name="permission_after">After</string>
     <string name="permission_settings">Settings</string>
-
     <string name="location_warning">Location</string>
     <string name="location_continue">To continue, enable the location on your device.</string>
 
@@ -21,26 +18,27 @@
     <string name="title_retry">Retry</string>
     <string name="error_message">An error has occurred. Please try again by clicking REFRESH</string>
 
-    <string name="error_message_real_time">Sorry, Real Time Information is currently unavailable for this bus stop</string>
-
-    <string name="route_size_stops">%s stops</string>
-    <string name="route_title">Route %s</string>
+    <string name="route_detail_size_stops">%s stops</string>
+    <string name="route_detail_title">Route %s</string>
     <string name="route_detail_error">No route info available.</string>
 
-    <string name="title_remove_favourite">Removed from Favourites</string>
-    <string name="title_add_favourite">Saved in Favourites</string>
+    <string name="real_time_remove_favourite">Removed from Favourites</string>
+    <string name="real_time_add_favourite">Saved in Favourites</string>
+    <string name="real_time_error_message">Sorry, Real Time Information is currently unavailable for this bus stop</string>
 
-    <string name="title_near_search">Search this area</string>
-    <string name="title_near_me">Near me</string>
+    <string name="main_search_hint">Search here</string>
 
-    <string name="title_search_stops">Stops</string>
-    <string name="title_search_routes">Routes</string>
-    <string name="title_search_recent">Recent</string>
-    <string name="title_search_close">Close</string>
-    <string name="title_search_reset">Reset</string>
-    <string name="title_search_hint">Search here</string>
-    <string name="title_search_route">Route %s</string>
-    <string name="title_search_stop">Stop %s</string>
+    <string name="near_search_button">Search this area</string>
+    <string name="near_me_title">Near me</string>
+
+    <string name="search_stops_title">Stops</string>
+    <string name="search_routes_title">Routes</string>
+    <string name="search_recent_title">Recent</string>
+    <string name="search_close_button">Close</string>
+    <string name="search_reset_button">Reset</string>
+    <string name="search_hint">Search here</string>
+    <string name="search_route_item">Route %s</string>
+    <string name="search_stop_item">Stop %s</string>
 
     <string name="expand_string">more</string>
     <string name="collapsed_string">less</string>

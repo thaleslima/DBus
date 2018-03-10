@@ -81,14 +81,14 @@ public class RealTimeFavouriteScreenTest {
         onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         SystemClock.sleep(500);
         onView(withId(R.id.menu_favorite)).perform(click());
-        String text = InstrumentationRegistry.getTargetContext().getString(R.string.title_add_favourite);
+        String text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_add_favourite);
         onView(withText(text)).check(matches(isDisplayed()));
         mDevice.pressBack();
         SystemClock.sleep(500);
         onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         SystemClock.sleep(500);
         onView(withId(R.id.menu_favorite)).perform(click());
-        text = InstrumentationRegistry.getTargetContext().getString(R.string.title_remove_favourite);
+        text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_remove_favourite);
         onView(withText(text)).check(matches(isDisplayed()));
         SystemClock.sleep(1500);
     }
@@ -125,7 +125,7 @@ public class RealTimeFavouriteScreenTest {
         SystemClock.sleep(500);
         onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.menu_favorite)).perform(click());
-        String text = InstrumentationRegistry.getTargetContext().getString(R.string.title_remove_favourite);
+        String text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_remove_favourite);
         onView(withText(text)).check(matches(isDisplayed()));
         mDevice.pressBack();
         onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));

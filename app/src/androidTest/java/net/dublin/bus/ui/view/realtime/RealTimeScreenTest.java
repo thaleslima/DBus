@@ -220,7 +220,7 @@ public class RealTimeScreenTest {
         onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
         onView(withId(R.id.real_message)).check(matches(isDisplayed()));
 
-        String messageErrorRequired = InstrumentationRegistry.getTargetContext().getString(R.string.error_message_real_time);
+        String messageErrorRequired = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_error_message);
         onView(withText(messageErrorRequired)).check(matches(isDisplayed()));
     }
 

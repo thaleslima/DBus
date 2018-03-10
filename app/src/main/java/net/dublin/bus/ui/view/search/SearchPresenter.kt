@@ -35,7 +35,14 @@ class SearchPresenter(private val view: SearchContract.View,
     }
 
     override fun loadRecentRoute(item: String) {
-        view.showRoute(Route(item))
+        routeRepository.getRouteByNumber(item)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ data ->
+                    view.showRoute(data)
+                }, {
+                    onError()
+                })
     }
 
     override fun loadRecentStop(item: String) {

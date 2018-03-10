@@ -62,9 +62,9 @@ internal class SearchRecentAdapter(private val mListener: ItemClickListener) : R
             mItem = if (item.number.isEmpty()) null else item
 
             search_recent_description_view?.text = if (item.isStop())
-                context.getString(R.string.title_search_stop, item.number)
+                context.getString(R.string.search_stop_item, item.number)
             else
-                context.getString(R.string.title_search_route, item.number)
+                context.getString(R.string.search_route_item, item.number)
 
             itemView?.setOnClickListener {
                 mItem?.let {

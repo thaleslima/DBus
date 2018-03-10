@@ -164,11 +164,11 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun showSnackbarRemoveFavourite() {
-        Snackbar.make(real_swipe_refresh_layout, R.string.title_remove_favourite, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(real_swipe_refresh_layout, R.string.real_time_remove_favourite, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showSnackbarSaveFavourite() {
-        Snackbar.make(real_swipe_refresh_layout, R.string.title_add_favourite, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(real_swipe_refresh_layout, R.string.real_time_add_favourite, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

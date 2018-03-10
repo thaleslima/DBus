@@ -15,6 +15,9 @@ interface RouteDao {
     @Query("SELECT * FROM routes WHERE number LIKE :arg0 || '%'")
     fun getStopsByText(search: String): List<Route>
 
+    @Query("SELECT * FROM routes WHERE number = :arg0")
+    fun getRouteByNumber(number: String): Route?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveAllRoutes(stops: List<Route>)
 
