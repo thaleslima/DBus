@@ -48,4 +48,8 @@ class StopRepository(application: Application) {
     fun getStopsByText(search: String): Observable<List<Stop>> {
         return localSource.getStopsByText(search)
     }
+
+    fun getStopsByNumber(stopNumber: String): Observable<Stop> {
+        return localSource.getStopsByNumber(stopNumber)
+    }
 }

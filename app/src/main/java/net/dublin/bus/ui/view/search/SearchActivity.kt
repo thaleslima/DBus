@@ -15,17 +15,20 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_search.*
 import net.dublin.bus.R
+import net.dublin.bus.data.recent.repository.RecentRepository
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.data.stop.repository.StopRepository
+import net.dublin.bus.model.Recent
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 import net.dublin.bus.ui.view.route.detail.RouteDetailActivity
 
-class SearchActivity : AppCompatActivity(), SearchStopAdapter.ItemClickListener, SearchRouteAdapter.ItemClickListener, SearchContract.View {
+class SearchActivity : AppCompatActivity(), SearchStopAdapter.ItemClickListener, SearchRouteAdapter.ItemClickListener, SearchContract.View, SearchRecentAdapter.ItemClickListener {
     private lateinit var presenter: SearchContract.Presenter
-    private var mAdapter: SearchStopAdapter? = null
-    private var mSearchRouteAdapter: SearchRouteAdapter? = null
+    private lateinit var mAdapter: SearchStopAdapter
+    private lateinit var mSearchRouteAdapter: SearchRouteAdapter
+    private lateinit var mSearchRecentAdapter: SearchRecentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,12 +64,15 @@ class SearchActivity : AppCompatActivity(), SearchStopAdapter.ItemClickListener,
     private fun initialize() {
         presenter = SearchPresenter(this,
                 RouteRepository(application),
-                StopRepository(application))
+                StopRepository(application),
+                RecentRepository(application))
+        presenter.loadRecent()
     }
 
     private fun setupRecyclerView() {
         mAdapter = SearchStopAdapter(this)
         mSearchRouteAdapter = SearchRouteAdapter(this)
+        mSearchRecentAdapter = SearchRecentAdapter(this)
 
         search_stops_view.layoutManager = LinearLayoutManager(this)
         search_stops_view.adapter = mAdapter
@@ -75,21 +81,37 @@ class SearchActivity : AppCompatActivity(), SearchStopAdapter.ItemClickListener,
         search_routes_view.layoutManager = LinearLayoutManager(this)
         search_routes_view.adapter = mSearchRouteAdapter
         search_routes_view.isNestedScrollingEnabled = false
+
+        search_recent_view.layoutManager = LinearLayoutManager(this)
+        search_recent_view.adapter = mSearchRecentAdapter
+        search_recent_view.isNestedScrollingEnabled = false
     }
 
     override fun showStops(data: List<Stop>) {
-        mAdapter?.replaceData(data)
+        mAdapter.replaceData(data)
     }
 
     override fun showRoutes(data: List<Route>) {
-        mSearchRouteAdapter?.replaceData(data)
+        mSearchRouteAdapter.replaceData(data)
+    }
+
+    override fun showRecent(data: List<Recent>) {
+        mSearchRecentAdapter.replaceData(data)
     }
 
     override fun onItemClick(item: Route) {
-        RouteDetailActivity.navigate(this, item)
+        presenter.loadRoute(item)
     }
 
     override fun onItemClick(item: Stop) {
+        presenter.loadStop(item)
+    }
+
+    override fun showRoute(item: Route) {
+        RouteDetailActivity.navigate(this, item)
+    }
+
+    override fun showStop(item: Stop) {
         RealTimeActivity.navigate(this, item)
     }
 
@@ -97,9 +119,21 @@ class SearchActivity : AppCompatActivity(), SearchStopAdapter.ItemClickListener,
         search_text_view.setText("")
     }
 
+    override fun cleanRecentData() {
+        mSearchRecentAdapter.clean()
+    }
+
     override fun cleanData() {
-        mAdapter?.clean()
-        mSearchRouteAdapter?.clean()
+        mAdapter.clean()
+        mSearchRouteAdapter.clean()
+    }
+
+    override fun onStopClick(stop: String) {
+        presenter.loadRecentStop(stop)
+    }
+
+    override fun onRouteClick(route: String) {
+        presenter.loadRecentRoute(route)
     }
 
     private fun hideKeyboard() {

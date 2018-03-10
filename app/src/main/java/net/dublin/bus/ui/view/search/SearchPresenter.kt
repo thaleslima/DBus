@@ -3,36 +3,81 @@ package net.dublin.bus.ui.view.search
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import net.dublin.bus.data.recent.repository.RecentRepository
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.data.stop.repository.StopRepository
+import net.dublin.bus.model.Recent
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
 
 class SearchPresenter(private val view: SearchContract.View,
                       private val routeRepository: RouteRepository,
-                      private val stopRepository: StopRepository) : SearchContract.Presenter {
-
+                      private val stopRepository: StopRepository,
+                      private val recentRepository: RecentRepository) : SearchContract.Presenter {
     private val subscriptions: CompositeDisposable = CompositeDisposable()
 
     override fun unsubscribe() {
         this.subscriptions.clear()
     }
 
+    override fun loadRoute(item: Route) {
+        recentRepository.getSaveRoute(item.number).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({})
+        view.showRoute(item)
+    }
+
+    override fun loadStop(item: Stop) {
+        recentRepository.getSaveStop(item.stopNumber).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({})
+        view.showStop(item)
+    }
+
+    override fun loadRecentRoute(item: String) {
+        view.showRoute(Route(item))
+    }
+
+    override fun loadRecentStop(item: String) {
+        stopRepository.getStopsByNumber(item)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ data ->
+                    view.showStop(data)
+                }, {
+                    onError()
+                })
+    }
+
+
+    override fun loadRecent() {
+        recentRepository.getData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ data ->
+                    view.showRecent(data)
+                }, {
+                    onError()
+                })
+    }
+
     override fun loadSearch(search: String) {
         view.cleanData()
+        unsubscribe()
 
         if (search.isEmpty()) {
+            loadRecent()
             return
         }
 
-        unsubscribe()
+        view.cleanRecentData()
 
         if (search.length >= 2) {
             val subscription1 = stopRepository.getStopsByText(search)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
-                        onNextDataStop(data)
+                        view.showStops(data)
                     }, {
                         onError()
                     })
@@ -44,7 +89,7 @@ class SearchPresenter(private val view: SearchContract.View,
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ data ->
-                    onNextDataRoute(data)
+                    view.showRoutes(data)
                 }, {
                     onError()
                 })
@@ -59,17 +104,5 @@ class SearchPresenter(private val view: SearchContract.View,
 
     private fun onError() {
 
-    }
-
-    private fun onNextDataStop(data: List<Stop>) {
-        if (!data.isEmpty()) {
-            view.showStops(data)
-        }
-    }
-
-    private fun onNextDataRoute(data: List<Route>) {
-        if (!data.isEmpty()) {
-            view.showRoutes(data)
-        }
     }
 }

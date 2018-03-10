@@ -10,7 +10,7 @@
     android:paddingRight="16dp"
     android:paddingStart="16dp"
     android:paddingTop="8dp"
-    android:text="@string/title_search_stops"
+    android:text="@string/title_search_recent"
     android:textAllCaps="true"
     android:textColor="@color/primary_text"
     android:textStyle="bold"

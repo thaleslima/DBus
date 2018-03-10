@@ -40,4 +40,8 @@ class LocalStopDataSource(context: Context) {
             }
         }
     }
+
+    fun getStopsByNumber(stopNumber: String): Observable<Stop> {
+        return Observable.fromCallable { dao.getStopsByNumber(stopNumber) }
+    }
 }

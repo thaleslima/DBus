@@ -33,6 +33,15 @@
     <string name="title_near_search">Search this area</string>
     <string name="title_near_me">Near me</string>
 
+    <string name="title_search_stops">Stops</string>
+    <string name="title_search_routes">Routes</string>
+    <string name="title_search_recent">Recent</string>
+    <string name="title_search_close">Close</string>
+    <string name="title_search_reset">Reset</string>
+    <string name="title_search_hint">Search here</string>
+    <string name="title_search_route">Route %s</string>
+    <string name="title_search_stop">Stop %s</string>
+
     <string name="expand_string">more</string>
     <string name="collapsed_string">less</string>
 </resources>

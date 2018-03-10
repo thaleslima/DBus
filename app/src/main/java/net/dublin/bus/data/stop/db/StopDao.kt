@@ -22,4 +22,7 @@ interface StopDao {
 
     @Query("DELETE FROM stops")
     fun clear()
+
+    @Query("SELECT stopnumber, description FROM stops WHERE stopnumber = :arg0")
+    fun getStopsByNumber(stopNumber: String): Stop
 }

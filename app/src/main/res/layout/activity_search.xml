@@ -10,8 +10,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:elevation="4dp"
+        android:background="@color/white"
         android:paddingBottom="8dp"
         tools:context="net.dublin.bus.ui.view.main.MainActivity">
 
@@ -19,8 +19,10 @@
             android:id="@+id/search_close_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/title_search_close"
+            android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_close_grey_900_24dp" />
@@ -33,7 +35,7 @@
             android:layout_margin="16dp"
             android:background="?attr/selectableItemBackground"
             android:padding="8dp"
-            android:text="Reset"
+            android:text="@string/title_search_reset"
             android:textColor="@color/primary_text"
             android:typeface="sans"
             app:layout_constraintBottom_toBottomOf="@+id/search_close_view"
@@ -50,7 +52,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/white"
             android:ems="10"
-            android:hint="Search here"
+            android:hint="@string/title_search_hint"
             android:imeOptions="actionSearch"
             android:inputType="textNoSuggestions"
             android:paddingBottom="12dp"
@@ -66,6 +68,7 @@
     <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -77,19 +80,21 @@
                 android:id="@+id/search_routes_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="LinearLayoutManager"
-                tools:listitem="@layout/item_list_search" />
+                app:layoutManager="LinearLayoutManager" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/search_stops_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="LinearLayoutManager"
-                tools:listitem="@layout/item_list_search" />
+                app:layoutManager="LinearLayoutManager" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/search_recent_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="LinearLayoutManager" />
         </LinearLayout>
-
     </android.support.v4.widget.NestedScrollView>
-
 </LinearLayout>
 
 

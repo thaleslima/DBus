@@ -70,7 +70,7 @@ public class RealTimeFavouriteScreenTest {
         }
     }
 
-    //@Test
+    @Test
     public void save_remove_favourite_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
         server.setDispatcher(new DispatcherResponse200());
         launchActivity();

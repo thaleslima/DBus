@@ -35,7 +35,9 @@ internal class SearchStopAdapter(private val mListener: ItemClickListener) : Rec
 
     fun replaceData(dataSet: List<Stop>) {
         val dataSetAux = ArrayList<Stop>()
-        dataSetAux.add(Stop())
+        if (!dataSet.isEmpty()) {
+            dataSetAux.add(Stop())
+        }
         dataSetAux.addAll(dataSet)
         setList(dataSetAux)
         notifyDataSetChanged()
