@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,7 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener, RouteContract.
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_route, container, false)
-        setupRecyclerView(view)
+        setupRecyclerView()
         return view
     }
 
@@ -32,11 +31,10 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener, RouteContract.
         initialize()
     }
 
-    private fun setupRecyclerView(view: View) {
+    private fun setupRecyclerView() {
         mAdapter = RouteAdapter(this)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.list)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = mAdapter
+        route_recycler_view.layoutManager = LinearLayoutManager(context)
+        route_recycler_view.adapter = mAdapter
     }
 
     private fun initialize() {
@@ -58,11 +56,11 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener, RouteContract.
     }
 
     override fun showProgress() {
-        route_progress_bar?.visibility = View.VISIBLE
+        route_progress_bar_view?.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        route_progress_bar?.visibility = View.GONE
+        route_progress_bar_view?.visibility = View.GONE
     }
 
     override fun onItemClick(item: Route) {

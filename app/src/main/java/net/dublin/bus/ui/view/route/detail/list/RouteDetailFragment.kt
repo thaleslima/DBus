@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_real_time.*
 import kotlinx.android.synthetic.main.fragment_route_detail.*
 import net.dublin.bus.R
 import net.dublin.bus.model.Stop
@@ -20,20 +18,18 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_route_detail, container, false)
-        setupRecyclerView(view)
-        return view
+        return inflater!!.inflate(R.layout.fragment_route_detail, container, false)
     }
 
-    private fun setupRecyclerView(view: View) {
+    private fun setupRecyclerView() {
         mAdapter = RouteDetailAdapter(this)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.list)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = mAdapter
+        route_detail_recycler_view.layoutManager = LinearLayoutManager(context)
+        route_detail_recycler_view.adapter = mAdapter
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
         initialize()
     }
 
@@ -56,25 +52,19 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
     }
 
     override fun showProgress() {
-        route_detail_progress_bar?.visibility = View.VISIBLE
+        route_detail_progress_bar_view?.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        route_detail_progress_bar?.visibility = View.GONE
+        route_detail_progress_bar_view?.visibility = View.GONE
     }
 
     override fun showSnackBarNoConnection() {
-        Snackbar.make(
-                real_swipe_refresh_layout,
-                R.string.title_no_connection,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter?.loadData() }
+
     }
 
     override fun showSnackBarError() {
-        Snackbar.make(
-                real_swipe_refresh_layout,
-                R.string.error_message,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter?.loadData() }
+
     }
 
     override fun onItemClick(item: Stop) {

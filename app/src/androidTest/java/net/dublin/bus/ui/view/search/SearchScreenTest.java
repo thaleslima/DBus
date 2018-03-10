@@ -114,12 +114,12 @@ public class SearchScreenTest {
         clickOnList(R.id.search_routes_view, 1);
         SystemClock.sleep(1000);
 
-        onView(withId(R.id.route_detail_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.route_detail_progress_bar_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith("Parnell St"))));
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("57 stops"))));
 
-        checkTextOnList(R.id.list, 0, "3544");
-        checkTextOnList(R.id.list, 0, "Beechfield Mnr, Shanganagh Road");
+        checkTextOnList(R.id.route_detail_recycler_view, 0, "3544");
+        checkTextOnList(R.id.route_detail_recycler_view, 0, "Beechfield Mnr, Shanganagh Road");
 
         onView(withId(R.id.route_change_direction_view)).perform(click());
         SystemClock.sleep(500);

@@ -94,18 +94,18 @@ public class RouteDetailScreenTest {
         device.setOrientationLeft();
 
         SystemClock.sleep(500);
-        onView(withId(R.id.route_detail_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.route_detail_progress_bar_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith(ROUTE_IN_TOWARDS))));
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("57 stops"))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("3544")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Beechfield Mnr, Shanganagh Road")))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("3552")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("Shanganagh Road, Rathsallagh")))));
 
         onView(withId(R.id.route_change_direction_view)).perform(click());
@@ -125,18 +125,18 @@ public class RouteDetailScreenTest {
         }
 
         SystemClock.sleep(500);
-        onView(withId(R.id.route_detail_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.route_detail_progress_bar_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith(ROUTE_IN_TOWARDS))));
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("57 stops"))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("3544")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Beechfield Mnr, Shanganagh Road")))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("3552")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("Shanganagh Road, Rathsallagh")))));
 
         onView(withId(R.id.route_change_direction_view)).perform(click());
@@ -162,15 +162,15 @@ public class RouteDetailScreenTest {
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith(ROUTE_OUT_TOWARDS))));
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("53 stops"))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("4962")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Mountjoy Square, Mountjoy Sq Nth")))));
 
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("6059")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("O'Connell St, North Earl Street")))));
 
         device.setOrientationNatural();
@@ -191,15 +191,15 @@ public class RouteDetailScreenTest {
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith(ROUTE_OUT_TOWARDS))));
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("53 stops"))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("4962")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Mountjoy Square, Mountjoy Sq Nth")))));
 
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("6059")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("O'Connell St, North Earl Street")))));
     }
 
@@ -209,7 +209,7 @@ public class RouteDetailScreenTest {
         launchActivity();
 
         SystemClock.sleep(500);
-        onView(withId(R.id.route_detail_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.route_detail_progress_bar_view)).check(matches(not(isDisplayed())));
     }
 
     @Test
@@ -218,18 +218,18 @@ public class RouteDetailScreenTest {
         launchActivity2();
 
         SystemClock.sleep(500);
-        onView(withId(R.id.route_detail_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.route_detail_progress_bar_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith(ROUTE_OUT_TOWARDS))));
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("53 stops"))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("4962")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Mountjoy Square, Mountjoy Sq Nth")))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("6059")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("O'Connell St, North Earl Street")))));
 
         onView(withId(R.id.route_change_direction_view)).perform(click());
@@ -279,9 +279,9 @@ public class RouteDetailScreenTest {
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith(ROUTE_OUT_TOWARDS))));
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("53 stops"))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("4962")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.route_detail_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Mountjoy Square, Mountjoy Sq Nth")))));
     }
 
