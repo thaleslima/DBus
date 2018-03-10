@@ -1,6 +1,7 @@
 package net.dublin.bus.common
 
 import com.google.android.gms.maps.model.LatLng
+import net.dublin.bus.BuildConfig
 
 object Constants {
     const val CONTENT_TYPE = "Content-Type"
@@ -8,8 +9,7 @@ object Constants {
     const val SOAP_ACTION = "soapaction"
 
     const val NAMESPACE = "http://dublinbus.ie/"
-    const val API_URL_BASE = "http://rtpi.dublinbus.ie/"
-    //const val API_URL_BASE = "http://localhost:2543/"
+    private const val API_URL_BASE = BuildConfig.API_URL
 
     const val API_URL_BASE_SERVICE = "${API_URL_BASE}DublinBusRTPIService.asmx?op="
 

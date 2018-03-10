@@ -9,7 +9,6 @@ import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.uiautomator.UiDevice;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +20,6 @@ import com.squareup.okhttp.mockwebserver.RecordedRequest;
 
 import net.dublin.bus.R;
 import net.dublin.bus.ui.view.main.MainActivity;
-import net.dublin.bus.ui.view.route.detail.RouteDetailScreenTest;
 import net.dublin.bus.ui.view.utilities.StringUtil;
 
 import org.hamcrest.Description;
@@ -46,6 +44,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.internal.util.Checks.checkNotNull;
@@ -58,7 +57,6 @@ import static org.junit.runners.MethodSorters.NAME_ASCENDING;
 @LargeTest
 public class SearchScreenTest {
     private static final String TAG = SearchScreenTest.class.getName();
-    private UiDevice device = UiDevice.getInstance(getInstrumentation());
 
     @Rule
     public final ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class, false, false);
@@ -195,6 +193,25 @@ public class SearchScreenTest {
         onView(withId(R.id.search_recent_view)).check(matches(isDisplayed()));
         checkTextOnList(R.id.search_recent_view, 1, "Stop 130");
         checkTextOnList(R.id.search_recent_view, 2, "Route 120");
+    }
+
+    @Test
+    public void searchData_6_clean_search_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
+        launchActivity();
+        onView(withId(R.id.search_text_view)).perform(clearText(), typeText("12"), closeSoftKeyboard());
+        SystemClock.sleep(500);
+        onView(withId(R.id.search_routes_view)).check(matches(isDisplayed()));
+        onView(withId(R.id.search_stops_view)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.search_reset_view)).perform(click());
+        onView(withId(R.id.search_routes_view)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.search_stops_view)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.search_recent_view)).check(matches(isDisplayed()));
+        checkTextOnList(R.id.search_recent_view, 1, "Stop 130");
+        checkTextOnList(R.id.search_recent_view, 2, "Route 120");
+
+        String text = InstrumentationRegistry.getTargetContext().getString(R.string.search_hint);
+        onView(withId(R.id.search_text_view)).check(matches(withHint(text)));
     }
 
     private void clickOnList(final int id, int position) {

@@ -10,6 +10,8 @@ repositories {
 
 android {
     compileSdkVersion 26
+    flavorDimensions "default"
+
     defaultConfig {
         applicationId "net.dublin.bus"
         minSdkVersion 18
@@ -23,6 +25,22 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        mock {
+            buildConfigField 'int', 'API_URL_PORT', '2543'
+            buildConfigField 'String', 'API_URL', '"http://localhost:2543/"'
+        }
+        prod {
+            buildConfigField 'String', 'API_URL', '"http://rtpi.dublinbus.ie/"'
+        }
+    }
+
+    android.variantFilter { variant ->
+        if(variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mock') {
+            variant.setIgnore(true)
         }
     }
 }
