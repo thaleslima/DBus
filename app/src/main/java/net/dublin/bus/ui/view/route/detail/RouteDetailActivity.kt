@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.PopupMenu
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_route.*
+import kotlinx.android.synthetic.main.activity_route_detail.*
 import net.dublin.bus.R
 import net.dublin.bus.common.PreferencesUtils
 import net.dublin.bus.data.route.repository.RouteRepository
@@ -61,7 +61,7 @@ class RouteDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_route)
+        setContentView(R.layout.activity_route_detail)
         initExtra(savedInstanceState)
         setupToolbar()
         setupView()

@@ -18,6 +18,10 @@
     <string name="title_retry">Retry</string>
     <string name="error_message">An error has occurred. Please try again by clicking REFRESH</string>
 
+    <string name="route_detail_change_direction">Chance direction</string>
+    <string name="route_detail_change_map">Change to map</string>
+    <string name="route_detail_change_list">Change to list</string>
+
     <string name="route_detail_size_stops">%s stops</string>
     <string name="route_detail_title">Route %s</string>
     <string name="route_detail_error">No route info available.</string>

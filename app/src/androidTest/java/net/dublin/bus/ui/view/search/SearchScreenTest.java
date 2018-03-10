@@ -163,9 +163,9 @@ public class SearchScreenTest {
         clickOnList(R.id.search_stops_view, 1);
         SystemClock.sleep(1000);
 
-        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith("130"))));
-        onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith("Glasnevin Avenue, Glasnevin Drive"))));
+        onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_number_stop_view)).check(matches(withText(startsWith("130"))));
+        onView(withId(R.id.real_description_stop_view)).check(matches(withText(startsWith("Glasnevin Avenue, Glasnevin Drive"))));
     }
 
     @Test

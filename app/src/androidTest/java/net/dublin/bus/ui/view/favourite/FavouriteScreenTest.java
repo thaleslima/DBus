@@ -79,10 +79,9 @@ public class FavouriteScreenTest {
     public void favourite_1_save_LoadIntoView() throws InterruptedException, UnsupportedEncodingException {
         server.setDispatcher(new DispatcherResponse200());
         launchActivity();
-        SystemClock.sleep(1500);
+        SystemClock.sleep(500);
 
         onView(withId(R.id.favorite_message_empty)).check(matches(isDisplayed()));
-
         onView(withId(R.id.navigation_stop)).perform(click());
 
         addFavorite(0);
@@ -134,7 +133,7 @@ public class FavouriteScreenTest {
     }
 
     private void checkTestOnList(int position, String text) {
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .perform(scrollToPosition(position))
                 .check(matches(atPosition(position, hasDescendant(withText(text)))));
     }
@@ -145,16 +144,16 @@ public class FavouriteScreenTest {
         launchActivity();
         SystemClock.sleep(1500);
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("38")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Damastown via Corduff")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("3 min")))));
 
 
         String messageErrorRequired = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_error_message);
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText(messageErrorRequired)))));
     }
 
@@ -178,7 +177,7 @@ public class FavouriteScreenTest {
 
     private void removeFavorite() {
         SystemClock.sleep(500);
-        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.favourite_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.menu_favorite)).perform(click());
         mDevice.pressBack();
     }

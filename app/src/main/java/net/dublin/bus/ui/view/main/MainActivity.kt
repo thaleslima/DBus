@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (savedInstanceState == null) {
-            checkFavourite()
+            main_navigation.selectedItemId = R.id.navigation_favorite
         }
     }
 

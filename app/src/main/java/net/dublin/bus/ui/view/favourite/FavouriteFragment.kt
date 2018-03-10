@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_favorite.*
+import kotlinx.android.synthetic.main.fragment_favourite.*
 import net.dublin.bus.R
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
@@ -20,7 +20,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, Favour
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_favorite, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_favourite, container, false)
         setupRecyclerView(view)
         initialize()
 
@@ -29,7 +29,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, Favour
 
     private fun setupRecyclerView(view: View) {
         mAdapter = FavouriteAdapter(this)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.list)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.favourite_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = mAdapter
     }

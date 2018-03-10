@@ -60,7 +60,7 @@
                 android:gravity="center_vertical"
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp"
-                android:text="Chance direction"
+                android:text="@string/route_detail_change_direction"
                 android:textColor="@color/colorAccent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/route_name_towards_view" />
@@ -70,6 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/route_detail_change_map"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
