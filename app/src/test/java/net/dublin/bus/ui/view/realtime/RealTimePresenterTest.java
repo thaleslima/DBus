@@ -34,7 +34,7 @@ public class RealTimePresenterTest {
     public void setupRepositoryPresenter() {
         MockitoAnnotations.initMocks(this);
 
-        presenter = new RealTimePresenter(view, repository, STOP_NUMBER);
+        //presenter = new RealTimePresenter(view, repository, STOP_NUMBER);
         STOP_DATA.add(new StopData());
         STOP_DATA.add(new StopData());
         STOP_DATA.add(new StopData());

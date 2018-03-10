@@ -100,7 +100,7 @@ public class FavouriteScreenTest {
 
     private void addFavorite(int position) {
         SystemClock.sleep(500);
-        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
+        onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
         SystemClock.sleep(1000);
         onView(withId(R.id.menu_favorite)).perform(click());
         mDevice.pressBack();

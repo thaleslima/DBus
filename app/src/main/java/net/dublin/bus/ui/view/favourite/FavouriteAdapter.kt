@@ -10,7 +10,6 @@ import android.widget.TextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_list_favorite.view.*
-import kotlinx.android.synthetic.main.item_list_real_time.view.*
 import net.dublin.bus.R
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
 import net.dublin.bus.model.Favourite
@@ -52,9 +51,9 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
         private var realTimes: ArrayList<RealTime> = arrayListOf()
 
         init {
-            realTimes.add(realTime(itemView.findViewById<View>(R.id.favorite_real_time_1_view)))
-            realTimes.add(realTime(itemView.findViewById<View>(R.id.favorite_real_time_2_view)))
-            realTimes.add(realTime(itemView.findViewById<View>(R.id.favorite_real_time_3_view)))
+            realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_1_view)))
+            realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_2_view)))
+            realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_3_view)))
         }
 
         private fun realTime(view: View): RealTime {
@@ -70,8 +69,8 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
         fun bind(item: Favourite) = with(itemView) {
             mItem = item
 
-            favorite_description_view.text = item.description
-            favorite_description_aux_view.text = item.stopNumber
+            favourite_description_view.text = item.description
+            favourite_number_view.text = item.stopNumber
             itemView.setOnClickListener {
                 mItem?.let { it1 -> mListener.onItemClick(it1) }
             }
@@ -125,11 +124,11 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
         }
 
         private fun hideProgress() {
-            itemView.real_progress_bar.visibility = View.GONE
+            itemView.favourite_progress_bar_view.visibility = View.GONE
         }
 
         private fun showProgress() {
-            itemView.real_progress_bar.visibility = View.VISIBLE
+            itemView.favourite_progress_bar_view.visibility = View.VISIBLE
         }
 
         private fun onError() {
@@ -138,11 +137,11 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
         }
 
         private fun showNoData() {
-            itemView.real_message.visibility = View.VISIBLE
+            itemView.favourite_real_time_message_view.visibility = View.VISIBLE
         }
 
         private fun hideNoData() {
-            itemView.real_message.visibility = View.GONE
+            itemView.favourite_real_time_message_view.visibility = View.GONE
         }
     }
 

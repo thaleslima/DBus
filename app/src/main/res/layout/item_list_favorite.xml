@@ -22,13 +22,14 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/favorite_description_view"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/favourite_description_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/favorite_description_aux_view"
+            app:layout_constraintTop_toTopOf="@+id/favourite_number_view"
             app:srcCompat="@drawable/ic_bus_yellow_24dp" />
 
         <TextView
-            android:id="@+id/favorite_description_aux_view"
+            android:id="@+id/favourite_number_view"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,31 +44,31 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/favorite_description_view"
+            android:id="@+id/favourite_description_view"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="100"
             android:textColor="@color/secondary_text"
-            app:layout_constraintStart_toStartOf="@+id/favorite_description_aux_view"
-            app:layout_constraintTop_toBottomOf="@+id/favorite_description_aux_view" />
+            app:layout_constraintStart_toStartOf="@+id/favourite_number_view"
+            app:layout_constraintTop_toBottomOf="@+id/favourite_number_view" />
 
         <View
-            android:id="@+id/route_detail_divider_view"
+            android:id="@+id/favourite_divider_view"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="@color/divider"
-            app:layout_constraintTop_toBottomOf="@+id/favorite_description_view" />
+            app:layout_constraintTop_toBottomOf="@+id/favourite_description_view" />
 
         <FrameLayout
-            android:id="@+id/real_progress_bar"
+            android:id="@+id/favourite_progress_bar_view"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@drawable/frame_bottom"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/route_detail_divider_view">
+            app:layout_constraintTop_toBottomOf="@+id/favourite_divider_view">
 
             <ProgressBar
                 style="?android:attr/progressBarStyleSmall"
@@ -77,7 +78,7 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/real_message"
+            android:id="@+id/favourite_real_time_message_view"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,26 +89,26 @@
             android:text="@string/real_time_error_message"
             android:textColor="@color/secondary_text"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/route_detail_divider_view" />
+            app:layout_constraintTop_toBottomOf="@+id/favourite_divider_view" />
 
         <LinearLayout
-            android:id="@+id/favorite_real_time_view"
+            android:id="@+id/favourite_real_time_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/route_detail_divider_view">
+            app:layout_constraintTop_toBottomOf="@+id/favourite_divider_view">
 
             <include
-                android:id="@+id/favorite_real_time_1_view"
+                android:id="@+id/favourite_real_time_1_view"
                 layout="@layout/real_time_include" />
 
             <include
-                android:id="@+id/favorite_real_time_2_view"
+                android:id="@+id/favourite_real_time_2_view"
                 layout="@layout/real_time_include" />
 
             <include
-                android:id="@+id/favorite_real_time_3_view"
+                android:id="@+id/favourite_real_time_3_view"
                 layout="@layout/real_time_include" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>

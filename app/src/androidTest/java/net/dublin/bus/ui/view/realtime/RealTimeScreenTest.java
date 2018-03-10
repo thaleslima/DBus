@@ -84,8 +84,8 @@ public class RealTimeScreenTest {
 
         SystemClock.sleep(500);
         onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
-        onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
+        onView(withId(R.id.real_number_stop_view)).check(matches(withText(startsWith(STOP_NUMBER))));
+        onView(withId(R.id.real_description_stop_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
         onView(withId(R.id.real_message_empty_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.real_line_note_view)).check(matches(not(isDisplayed())));
 
@@ -158,8 +158,8 @@ public class RealTimeScreenTest {
 
         SystemClock.sleep(500);
         onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
-        onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
+        onView(withId(R.id.real_number_stop_view)).check(matches(withText(startsWith(STOP_NUMBER))));
+        onView(withId(R.id.real_description_stop_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
         onView(withId(R.id.real_message_empty_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
 
@@ -187,8 +187,8 @@ public class RealTimeScreenTest {
 
         SystemClock.sleep(500);
         onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
-        onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
+        onView(withId(R.id.real_number_stop_view)).check(matches(withText(startsWith(STOP_NUMBER))));
+        onView(withId(R.id.real_description_stop_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
         onView(withId(R.id.real_message_empty_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
 
@@ -216,8 +216,8 @@ public class RealTimeScreenTest {
 
         SystemClock.sleep(500);
         onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
-        onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
+        onView(withId(R.id.real_number_stop_view)).check(matches(withText(startsWith(STOP_NUMBER))));
+        onView(withId(R.id.real_description_stop_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
         onView(withId(R.id.real_message_empty_view)).check(matches(isDisplayed()));
 
         String messageErrorRequired = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_error_message);

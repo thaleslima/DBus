@@ -46,8 +46,8 @@ import static android.support.test.internal.util.Checks.checkNotNull;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class RealTimeFavouriteScreenTest {
-    private static final String TAG = RealTimeFavouriteScreenTest.class.getName();
+public class RealTimeFavouriteScreenTest2 {
+    private static final String TAG = RealTimeFavouriteScreenTest2.class.getName();
 
     @Rule
     public final ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class, false, false);
@@ -78,14 +78,14 @@ public class RealTimeFavouriteScreenTest {
         SystemClock.sleep(1500);
         onView(withId(R.id.navigation_stop)).perform(click());
         SystemClock.sleep(500);
-        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         SystemClock.sleep(500);
         onView(withId(R.id.menu_favorite)).perform(click());
         String text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_add_favourite);
         onView(withText(text)).check(matches(isDisplayed()));
         mDevice.pressBack();
         SystemClock.sleep(500);
-        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         SystemClock.sleep(500);
         onView(withId(R.id.menu_favorite)).perform(click());
         text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_remove_favourite);
@@ -99,12 +99,12 @@ public class RealTimeFavouriteScreenTest {
         launchActivity();
         SystemClock.sleep(1500);
         onView(withId(R.id.navigation_stop)).perform(click());
-        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         SystemClock.sleep(500);
         onView(withId(R.id.menu_favorite)).perform(click());
         mDevice.pressBack();
         SystemClock.sleep(500);
-        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+        onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
         SystemClock.sleep(500);
         onView(withId(R.id.menu_favorite)).perform(click());
         mDevice.pressBack();
@@ -112,23 +112,23 @@ public class RealTimeFavouriteScreenTest {
         onView(withId(R.id.navigation_favorite)).perform(click());
         SystemClock.sleep(500);
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("2")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Parnell Square, Parnell Street")))));
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("4")))));
-        onView(withId(R.id.list))
+        onView(withId(R.id.favourite_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("Parnell Square, Rotunda Hospital")))));
 
         SystemClock.sleep(500);
-        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.favourite_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.menu_favorite)).perform(click());
         String text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_remove_favourite);
         onView(withText(text)).check(matches(isDisplayed()));
         mDevice.pressBack();
-        onView(withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.favourite_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.menu_favorite)).perform(click());
         onView(withText(text)).check(matches(isDisplayed()));
     }
