@@ -97,8 +97,8 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
     }
 
     private fun setupViewProperties() {
-        near_search_view.setOnClickListener { search() }
-        near_search_view.visibility = View.GONE
+        near_search_button_view.setOnClickListener { search() }
+        near_search_button_view.visibility = View.GONE
         near_back_view.setOnClickListener { onSupportNavigateUp() }
     }
 
@@ -122,14 +122,14 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
         markerAux = null
         moveCamera = false
 
-        near_search_view.visibility = View.GONE
+        near_search_button_view.visibility = View.GONE
         nearAdapter.clear()
     }
 
     private fun setUpMapIfNeeded() {
         if (mSupportMapFragment == null) {
             val fm = supportFragmentManager
-            mSupportMapFragment = fm.findFragmentById(R.id.map) as SupportMapFragment
+            mSupportMapFragment = fm.findFragmentById(R.id.near_map) as SupportMapFragment
             mSupportMapFragment?.getMapAsync(this)
 
             if (!mapStateManager.restored && LocationUtil.requestLocationOrShowMessage(this, 0)) {
@@ -157,7 +157,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
             moveCamera = true
         }
         map.setOnCameraIdleListener {
-            if (moveCamera) near_search_view.visibility = View.VISIBLE
+            if (moveCamera) near_search_button_view.visibility = View.VISIBLE
         }
 
         if (!mapStateManager.restored) {

@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        BottomNavigationViewHelper.disableShiftMode(navigation)
+        main_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        BottomNavigationViewHelper.disableShiftMode(main_navigation)
 
         main_search_view.setOnClickListener {
             SearchActivity.navigate(this)
@@ -71,14 +71,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onError() {
-        navigation.selectedItemId = R.id.navigation_stop
+        main_navigation.selectedItemId = R.id.navigation_stop
     }
 
     private fun onNextData(data: List<Favourite>) {
         if (data.isEmpty()) {
-            navigation.selectedItemId = R.id.navigation_stop
+            main_navigation.selectedItemId = R.id.navigation_stop
         } else {
-            navigation.selectedItemId = R.id.navigation_favorite
+            main_navigation.selectedItemId = R.id.navigation_favorite
         }
     }
 
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         if (fragment != null) {
             try {
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.container, fragment, "fragmentBase")
+                fragmentTransaction.replace(R.id.main_container, fragment, "fragmentBase")
                 fragmentTransaction.commitAllowingStateLoss()
             } catch (e: Exception) {
                 Log.e(MainActivity::class.java.name, "Error in show view")
