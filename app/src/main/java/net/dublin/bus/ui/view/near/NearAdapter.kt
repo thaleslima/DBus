@@ -6,7 +6,6 @@ import kotlinx.android.synthetic.main.item_list_near.view.*
 import net.dublin.bus.R
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.DistanceFormatter
-import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.utilities.inflate
 import java.util.*
 
@@ -49,9 +48,9 @@ internal class NearAdapter(private val mListener: ItemClickListener) : RecyclerV
 
         fun bind(item: Stop) = with(itemView) {
             mItem = item
-            detail_map_description_aux_view.text = item.stopNumber
-            detail_map_description_view.text = item.description
-            route_detail_time_aux_view.text = DistanceFormatter.formatDistanceKilometer(item.distance)
+            near_number_stop_view.text = item.stopNumber
+            near_description_stop_view.text = item.description
+            near_distance_view.text = DistanceFormatter.formatDistanceKilometer(item.distance)
             itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }

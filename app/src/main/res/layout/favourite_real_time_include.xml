@@ -12,7 +12,7 @@
     tools:visibility="visible">
 
     <TextView
-        android:id="@+id/real_route_view"
+        android:id="@+id/favourite_real_route_view"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
@@ -29,30 +29,30 @@
         tools:text="27" />
 
     <TextView
-        android:id="@+id/real_route_description_view"
+        android:id="@+id/favourite_real_description_view"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_toEndOf="@+id/real_route_view"
-        android:layout_toLeftOf="@+id/live_blip"
-        android:layout_toRightOf="@+id/real_route_view"
-        android:layout_toStartOf="@+id/live_blip"
+        android:layout_toEndOf="@+id/favourite_real_route_view"
+        android:layout_toLeftOf="@+id/favourite_real_blip_view"
+        android:layout_toRightOf="@+id/favourite_real_route_view"
+        android:layout_toStartOf="@+id/favourite_real_blip_view"
         android:ellipsize="end"
         android:fontFamily="sans-serif-light"
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/secondary_text"
-        app:layout_constraintBottom_toBottomOf="@+id/real_route_view"
-        app:layout_constraintEnd_toStartOf="@+id/live_blip"
-        app:layout_constraintStart_toEndOf="@+id/real_route_view"
-        app:layout_constraintTop_toTopOf="@+id/real_route_view"
+        app:layout_constraintBottom_toBottomOf="@+id/favourite_real_route_view"
+        app:layout_constraintEnd_toStartOf="@+id/favourite_real_blip_view"
+        app:layout_constraintStart_toEndOf="@+id/favourite_real_route_view"
+        app:layout_constraintTop_toTopOf="@+id/favourite_real_route_view"
         tools:text="Terminal" />
 
     <TextView
-        android:id="@+id/real_route_time_view"
+        android:id="@+id/favourite_real_time_view"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,17 +62,17 @@
         android:fontFamily="sans-serif"
         android:textColor="@color/primary_text"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/real_route_description_view"
+        app:layout_constraintBottom_toBottomOf="@+id/favourite_real_description_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/real_route_description_view"
+        app:layout_constraintTop_toTopOf="@+id/favourite_real_description_view"
         tools:text="6 min" />
 
     <ImageView
-        android:id="@+id/live_blip"
+        android:id="@+id/favourite_real_blip_view"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/real_route_time_view"
-        app:layout_constraintTop_toTopOf="@+id/real_route_time_view" />
+        app:layout_constraintEnd_toStartOf="@+id/favourite_real_time_view"
+        app:layout_constraintTop_toTopOf="@+id/favourite_real_time_view" />
 
     <View
         android:layout_width="match_parent"
@@ -81,5 +81,5 @@
         android:background="@color/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/real_route_view" />
+        app:layout_constraintTop_toBottomOf="@+id/favourite_real_route_view" />
 </android.support.constraint.ConstraintLayout>

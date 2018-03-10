@@ -101,15 +101,15 @@
 
             <include
                 android:id="@+id/favourite_real_time_1_view"
-                layout="@layout/real_time_include" />
+                layout="@layout/favourite_real_time_include" />
 
             <include
                 android:id="@+id/favourite_real_time_2_view"
-                layout="@layout/real_time_include" />
+                layout="@layout/favourite_real_time_include" />
 
             <include
                 android:id="@+id/favourite_real_time_3_view"
-                layout="@layout/real_time_include" />
+                layout="@layout/favourite_real_time_include" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -59,10 +59,10 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
         private fun realTime(view: View): RealTime {
             return RealTime(
                     view,
-                    view.findViewById(R.id.real_route_view),
-                    view.findViewById(R.id.real_route_description_view),
-                    view.findViewById(R.id.real_route_time_view),
-                    view.findViewById(R.id.live_blip)
+                    view.findViewById(R.id.favourite_real_route_view),
+                    view.findViewById(R.id.favourite_real_description_view),
+                    view.findViewById(R.id.favourite_real_time_view),
+                    view.findViewById(R.id.favourite_real_blip_view)
             )
         }
 
