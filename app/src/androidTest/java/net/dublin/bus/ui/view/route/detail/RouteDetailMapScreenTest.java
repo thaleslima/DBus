@@ -104,8 +104,8 @@ public class RouteDetailMapScreenTest {
         }
         SystemClock.sleep(500);
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_map_description_view)).check(matches(withText(startsWith("Beechfield Mnr, Shanganagh Road"))));
-        onView(withId(R.id.route_detail_serving_aux_view)).check(matches(withText(startsWith("40, 40B, 40D"))));
+        onView(withId(R.id.route_detail_map_description_stop_view)).check(matches(withText(startsWith("Beechfield Mnr, Shanganagh Road"))));
+        onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith("40, 40B, 40D"))));
         SystemClock.sleep(500);
         onView(withId(R.id.route_change_map_list_view)).perform(click());
     }
@@ -134,8 +134,8 @@ public class RouteDetailMapScreenTest {
         }
         SystemClock.sleep(1500);
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_map_description_view)).check(matches(withText(startsWith("Shanganagh Road, Hazelwood"))));
-        onView(withId(R.id.route_detail_serving_aux_view)).check(matches(withText(startsWith("20D, 27, 40"))));
+        onView(withId(R.id.route_detail_map_description_stop_view)).check(matches(withText(startsWith("Shanganagh Road, Hazelwood"))));
+        onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith("20D, 27, 40"))));
         SystemClock.sleep(500);
         onView(withId(R.id.route_change_map_list_view)).perform(click());
     }
@@ -158,8 +158,8 @@ public class RouteDetailMapScreenTest {
         device.setOrientationLeft();
         SystemClock.sleep(2500);
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_map_description_view)).check(matches(withText(startsWith("Beechfield Mnr, Shanganagh Road"))));
-        onView(withId(R.id.route_detail_serving_aux_view)).check(matches(withText(startsWith("40, 40B, 40D"))));
+        onView(withId(R.id.route_detail_map_description_stop_view)).check(matches(withText(startsWith("Beechfield Mnr, Shanganagh Road"))));
+        onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith("40, 40B, 40D"))));
         SystemClock.sleep(500);
         onView(withId(R.id.route_change_map_list_view)).perform(click());
         device.setOrientationNatural();
@@ -183,7 +183,7 @@ public class RouteDetailMapScreenTest {
         SystemClock.sleep(500);
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()));
         String text = InstrumentationRegistry.getTargetContext().getString(R.string.route_detail_error);
-        onView(withId(R.id.route_detail_serving_aux_view)).check(matches(withText(startsWith(text))));
+        onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith(text))));
         SystemClock.sleep(500);
         onView(withId(R.id.route_change_map_list_view)).perform(click());
     }
@@ -208,7 +208,7 @@ public class RouteDetailMapScreenTest {
         SystemClock.sleep(2500);
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()));
         String text = InstrumentationRegistry.getTargetContext().getString(R.string.route_detail_error);
-        onView(withId(R.id.route_detail_serving_aux_view)).check(matches(withText(startsWith(text))));
+        onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith(text))));
         SystemClock.sleep(500);
         onView(withId(R.id.route_change_map_list_view)).perform(click());
         device.setOrientationNatural();

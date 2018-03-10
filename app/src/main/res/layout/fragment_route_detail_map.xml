@@ -5,11 +5,10 @@
     android:layout_height="match_parent">
 
     <fragment
-        android:id="@+id/map"
+        android:id="@+id/route_detail_map_view"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,24 +25,24 @@
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/detail_map_description_aux_view"
+            android:id="@+id/route_detail_map_number_stop_view"
             style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
             android:background="@drawable/frame_round_border"
             android:drawableTop="@drawable/ic_bus_symbol_black_24dp"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center_horizontal"
             android:paddingTop="7dp"
             android:textColor="@color/primary_text"
-            android:fontFamily="sans-serif-medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1234" />
 
         <TextView
-            android:id="@+id/detail_map_description_view"
+            android:id="@+id/route_detail_map_description_stop_view"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,12 +55,12 @@
             android:maxLines="1"
             android:textColor="@color/primary_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/detail_map_description_aux_view"
+            app:layout_constraintStart_toEndOf="@+id/route_detail_map_number_stop_view"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Connell St, Parnell Street" />
 
         <TextView
-            android:id="@+id/route_detail_serving_aux_view"
+            android:id="@+id/route_detail_map_routes_view"
             style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -72,8 +71,8 @@
             android:textColor="@color/secondary_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/detail_map_description_aux_view"
-            app:layout_constraintTop_toBottomOf="@+id/detail_map_description_view"
+            app:layout_constraintStart_toEndOf="@+id/route_detail_map_number_stop_view"
+            app:layout_constraintTop_toBottomOf="@+id/route_detail_map_description_stop_view"
             tools:text="Serving Routes: 4, 7, 7a, 7d, 40b, 40d" />
 
     </android.support.constraint.ConstraintLayout>

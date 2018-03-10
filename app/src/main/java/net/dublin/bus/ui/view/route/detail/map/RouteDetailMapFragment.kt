@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.location.Location
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,7 +72,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
 
         model.getRoutes().observe(activity, Observer<String> {
             it?.let { it1 ->
-                route_detail_serving_aux_view?.text = it1
+                route_detail_map_routes_view?.text = it1
             }
         })
     }
@@ -98,7 +97,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
     private fun setUpMapIfNeeded() {
         if (mSupportMapFragment == null) {
             val fm = childFragmentManager
-            mSupportMapFragment = fm.findFragmentById(R.id.map) as SupportMapFragment
+            mSupportMapFragment = fm.findFragmentById(R.id.route_detail_map_view) as SupportMapFragment
             mSupportMapFragment?.getMapAsync(this)
             LocationUtil.requestLocationOrShowMessage(this, 0)
         }
@@ -172,11 +171,11 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
 
     private fun showLocalSummary(stop: Stop?) {
         stop?.let {
-            detail_map_description_aux_view.text = it.stopNumber
-            detail_map_description_view.text = it.descriptionOrAddress()
+            route_detail_map_number_stop_view.text = it.stopNumber
+            route_detail_map_description_stop_view.text = it.descriptionOrAddress()
             detail_map_stop_view.let { it1 -> ViewUtil.showViewLayout(context, it1) }
             detail_map_stop_view.tag = it
-            route_detail_serving_aux_view.text = null
+            route_detail_map_routes_view.text = null
             model.loadRoutesByStopNumber(activity, it.stopNumber)
         }
     }
