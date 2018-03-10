@@ -8,8 +8,8 @@ object Constants {
     const val SOAP_ACTION = "soapaction"
 
     const val NAMESPACE = "http://dublinbus.ie/"
-    //const val API_URL_BASE = "http://rtpi.dublinbus.ie/"
-    const val API_URL_BASE = "http://localhost:2543/"
+    const val API_URL_BASE = "http://rtpi.dublinbus.ie/"
+    //const val API_URL_BASE = "http://localhost:2543/"
 
     const val API_URL_BASE_SERVICE = "${API_URL_BASE}DublinBusRTPIService.asmx?op="
 

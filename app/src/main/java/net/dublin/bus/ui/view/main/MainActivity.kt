@@ -44,13 +44,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
-        switchContent(FavouriteFragment.newInstance())
 
         main_search_view.setOnClickListener {
             SearchActivity.navigate(this)
         }
 
-
+        if (savedInstanceState == null) {
+            navigation.selectedItemId = R.id.navigation_favorite
+        }
     }
 
     private fun switchContent(fragment: Fragment?) {
