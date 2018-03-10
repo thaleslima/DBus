@@ -48,41 +48,48 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/stop_description_view"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toBottomOf="@+id/real_description_stop_view"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/stop_description_aux_view"
+                    app:layout_constraintTop_toTopOf="@+id/real_number_stop_view"
                     app:srcCompat="@drawable/ic_bus_yellow_24dp" />
 
                 <TextView
-                    android:id="@+id/stop_description_aux_view"
+                    android:id="@+id/real_number_stop_view"
                     style="@style/TextAppearance.AppCompat.Subhead"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:ellipsize="end"
                     android:fontFamily="sans-serif-medium"
+                    android:maxLines="1"
                     android:text="@string/app_name"
                     android:textColor="@color/primary_text"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/stop_description_view"
+                    android:id="@+id/real_description_stop_view"
                     style="@style/TextAppearance.AppCompat.Caption"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="sans-serif-light"
-                    android:text="100"
+                    android:maxLines="1"
                     android:textColor="@color/secondary_text"
-                    app:layout_constraintStart_toStartOf="@+id/stop_description_aux_view"
-                    app:layout_constraintTop_toBottomOf="@+id/stop_description_aux_view" />
+                    app:layout_constraintEnd_toEndOf="@+id/real_number_stop_view"
+                    app:layout_constraintStart_toStartOf="@+id/real_number_stop_view"
+                    app:layout_constraintTop_toBottomOf="@+id/real_number_stop_view"
+                    tools:text="100" />
 
             </android.support.constraint.ConstraintLayout>
 
             <FrameLayout
-                android:id="@+id/real_progress_bar"
+                android:id="@+id/real_progress_bar_view"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/frame_bottom"
@@ -96,7 +103,7 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/real_message"
+                android:id="@+id/real_message_empty_view"
                 style="@style/TextAppearance.AppCompat.Caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +116,7 @@
                 android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/real_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="LinearLayoutManager" />

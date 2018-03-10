@@ -44,17 +44,17 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     private fun setupView() {
-        stop_description_aux_view.text = stopNumber
-        stop_description_view.text = description
+        real_number_stop_view.text = stopNumber
+        real_description_stop_view.text = description
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         real_swipe_refresh_layout.setOnRefreshListener(this)
     }
 
     private fun setupRecyclerView() {
         mAdapter = RealTimeAdapter(this)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = mAdapter
-        recyclerView.isNestedScrollingEnabled = false
+        real_recycler_view.layoutManager = LinearLayoutManager(this)
+        real_recycler_view.adapter = mAdapter
+        real_recycler_view.isNestedScrollingEnabled = false
     }
 
     private fun initialize() {
@@ -92,11 +92,11 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun showProgress() {
-        real_progress_bar.visibility = View.VISIBLE
+        real_progress_bar_view.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        real_progress_bar.visibility = View.GONE
+        real_progress_bar_view.visibility = View.GONE
     }
 
     override fun showProgressSwipe() {
@@ -131,11 +131,11 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun showNoData() {
-        real_message.visibility = View.VISIBLE
+        real_message_empty_view.visibility = View.VISIBLE
     }
 
     override fun hideNoData() {
-        real_message.visibility = View.GONE
+        real_message_empty_view.visibility = View.GONE
     }
 
     override fun showData(data: List<StopData>) {

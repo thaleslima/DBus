@@ -83,24 +83,24 @@ public class RealTimeScreenTest {
         }
 
         SystemClock.sleep(500);
-        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
         onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
-        onView(withId(R.id.real_message)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_message_empty_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.real_line_note_view)).check(matches(not(isDisplayed())));
 
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("38")))));
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Damastown via Corduff")))));
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("3 min")))));
 
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("46a")))));
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("Phoenix Pk via Donnybrook")))));
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("9 min")))));
     }
 
@@ -141,8 +141,8 @@ public class RealTimeScreenTest {
         SystemClock.sleep(500);
         server.setDispatcher(new DispatcherResponse500());
 
-        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.real_message)).check(matches(isDisplayed()));
+        onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_message_empty_view)).check(matches(isDisplayed()));
         onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
 
         server.setDispatcher(new DispatcherResponse200());
@@ -157,24 +157,24 @@ public class RealTimeScreenTest {
         launchActivity();
 
         SystemClock.sleep(500);
-        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
         onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
-        onView(withId(R.id.real_message)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_message_empty_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
 
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("1")))));
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("Shanard Road via O'Connell Street")))));
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(0, hasDescendant(withText("2 min")))));
 
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("11")))));
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("St Pappin's Rd via Drumcondra")))));
-        onView(withId(R.id.recyclerView))
+        onView(withId(R.id.real_recycler_view))
                 .check(matches(atPosition(1, hasDescendant(withText("16 min")))));
 
         SystemClock.sleep(500);
@@ -186,10 +186,10 @@ public class RealTimeScreenTest {
         launchActivity();
 
         SystemClock.sleep(500);
-        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
         onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
-        onView(withId(R.id.real_message)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_message_empty_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
 
         server.setDispatcher(new DispatcherResponse200());
@@ -203,8 +203,8 @@ public class RealTimeScreenTest {
         launchActivity();
 
         SystemClock.sleep(500);
-        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.real_message)).check(matches(isDisplayed()));
+        onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_message_empty_view)).check(matches(isDisplayed()));
         onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()));
         SystemClock.sleep(500);
     }
@@ -215,10 +215,10 @@ public class RealTimeScreenTest {
         launchActivity();
 
         SystemClock.sleep(500);
-        onView(withId(R.id.real_progress_bar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.real_progress_bar_view)).check(matches(not(isDisplayed())));
         onView(withId(R.id.stop_description_aux_view)).check(matches(withText(startsWith(STOP_NUMBER))));
         onView(withId(R.id.stop_description_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))));
-        onView(withId(R.id.real_message)).check(matches(isDisplayed()));
+        onView(withId(R.id.real_message_empty_view)).check(matches(isDisplayed()));
 
         String messageErrorRequired = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_error_message);
         onView(withText(messageErrorRequired)).check(matches(isDisplayed()));
@@ -232,7 +232,7 @@ public class RealTimeScreenTest {
         SystemClock.sleep(1000);
         String text = InstrumentationRegistry.getTargetContext().getString(R.string.error_message);
         onView(withText(text)).check(matches(isDisplayed()));
-        onView(withId(R.id.real_message)).check(matches(isDisplayed()));
+        onView(withId(R.id.real_message_empty_view)).check(matches(isDisplayed()));
     }
 
     @Test
