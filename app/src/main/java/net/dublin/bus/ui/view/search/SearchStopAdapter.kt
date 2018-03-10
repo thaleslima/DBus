@@ -3,7 +3,7 @@ package net.dublin.bus.ui.view.search
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.item_list_search.view.*
+import kotlinx.android.synthetic.main.item_list_search_stop.view.*
 import net.dublin.bus.R
 import net.dublin.bus.ui.utilities.inflate
 import net.dublin.bus.model.Stop
@@ -58,8 +58,8 @@ internal class SearchStopAdapter(private val mListener: ItemClickListener) : Rec
 
         fun bind(item: Stop) = with(itemView) {
             mItem = if (item.stopNumber.isEmpty()) null else item
-            stop_search_description_view?.text = item.description
-            stop_search_description_aux_view?.text = item.stopNumber
+            search_stop_description_view?.text = item.description
+            search_stop_number_view?.text = item.stopNumber
 
             itemView?.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
@@ -67,8 +67,8 @@ internal class SearchStopAdapter(private val mListener: ItemClickListener) : Rec
 
     fun inflate(parent: ViewGroup, viewType: Int): View {
         return when (viewType) {
-            ITEM_TOP -> parent.inflate(R.layout.item_list_search_top)
-            else -> parent.inflate(R.layout.item_list_search)
+            ITEM_TOP -> parent.inflate(R.layout.item_list_search_stop_top)
+            else -> parent.inflate(R.layout.item_list_search_stop)
         }
     }
 

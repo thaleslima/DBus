@@ -49,8 +49,8 @@ internal class RouteDetailAdapter(private val mListener: ItemClickListener) : Re
 
         fun bind(item: Stop) = with(itemView) {
             mItem = item
-            route_detail_description_view.text = item.stopNumber
-            route_detail_description_aux_view.text = item.descriptionOrAddress()
+            route_detail_number_stop_view.text = item.stopNumber
+            route_detail_descripton_stop_view.text = item.descriptionOrAddress()
             itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }

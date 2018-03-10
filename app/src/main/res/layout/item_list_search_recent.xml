@@ -5,8 +5,8 @@
     android:foreground="?android:attr/selectableItemBackground">
 
     <TextView
-        style="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/search_recent_description_view"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -27,6 +27,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"

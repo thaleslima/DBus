@@ -58,7 +58,7 @@ internal class SearchRouteAdapter(private val mListener: ItemClickListener) : Re
 
         fun bind(item: Route) = with(itemView) {
             mItem = if (item.number.isEmpty()) null else item
-            route_search_description_aux_view?.text = item.number
+            search_route_number_view?.text = item.number
             itemView?.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }

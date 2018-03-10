@@ -1,5 +1,4 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/stop_description_aux_view"
     style="@style/TextAppearance.AppCompat.Caption"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

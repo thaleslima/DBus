@@ -14,13 +14,14 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/route_detail_description_aux_view"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/route_detail_descripton_stop_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/route_detail_description_view"
+        app:layout_constraintTop_toTopOf="@+id/route_detail_number_stop_view"
         app:srcCompat="@drawable/ic_bus_yellow_24dp" />
 
     <TextView
-        android:id="@+id/route_detail_description_view"
+        android:id="@+id/route_detail_number_stop_view"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,14 +36,14 @@
         tools:text="@string/app_name" />
 
     <TextView
-        android:id="@+id/route_detail_description_aux_view"
+        android:id="@+id/route_detail_descripton_stop_view"
         style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:textColor="@color/secondary_text"
-        app:layout_constraintStart_toStartOf="@+id/route_detail_description_view"
-        app:layout_constraintTop_toBottomOf="@+id/route_detail_description_view"
+        app:layout_constraintStart_toStartOf="@+id/route_detail_number_stop_view"
+        app:layout_constraintTop_toBottomOf="@+id/route_detail_number_stop_view"
         tools:text="100" />
 
     <View

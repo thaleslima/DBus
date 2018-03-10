@@ -1,5 +1,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
@@ -21,11 +22,11 @@
         android:drawablePadding="2dp"
         android:gravity="center_vertical"
         android:padding="4dp"
-        android:text="27"
         android:textColor="@color/primary_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="27" />
 
     <TextView
         android:id="@+id/real_time_description_view"
@@ -42,13 +43,13 @@
         android:ellipsize="end"
         android:fontFamily="sans-serif-light"
         android:maxLines="1"
-        android:text="Terminal"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/secondary_text"
         app:layout_constraintBottom_toBottomOf="@+id/real_time_route_view"
         app:layout_constraintEnd_toStartOf="@+id/real_time_blip_view"
         app:layout_constraintStart_toEndOf="@+id/real_time_route_view"
-        app:layout_constraintTop_toTopOf="@+id/real_time_route_view" />
+        app:layout_constraintTop_toTopOf="@+id/real_time_route_view"
+        tools:text="Terminal" />
 
     <TextView
         android:id="@+id/real_time_value_view"
@@ -59,17 +60,18 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:fontFamily="sans-serif"
-        android:text="6 min"
         android:textColor="@color/primary_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/real_time_description_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/real_time_description_view" />
+        app:layout_constraintTop_toTopOf="@+id/real_time_description_view"
+        tools:text="6 min" />
 
     <ImageView
         android:id="@+id/real_time_blip_view"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:contentDescription="@null"
         app:layout_constraintEnd_toStartOf="@+id/real_time_value_view"
         app:layout_constraintTop_toTopOf="@+id/real_time_value_view" />
 

@@ -50,7 +50,7 @@ internal class StopAdapter(private val mListener: ItemClickListener) : RecyclerV
         fun bind(item: Stop) = with(itemView) {
             mItem = item
             stop_description_view.text = item.description
-            stop_description_aux_view.text = item.stopNumber
+            stop_number_view.text = item.stopNumber
             itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }

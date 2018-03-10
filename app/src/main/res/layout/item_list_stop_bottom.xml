@@ -15,13 +15,14 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="@+id/stop_description_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/stop_description_aux_view"
+        app:layout_constraintTop_toTopOf="@+id/stop_number_view"
         app:srcCompat="@drawable/ic_bus_yellow_24dp" />
 
     <TextView
-        android:id="@+id/stop_description_aux_view"
+        android:id="@+id/stop_number_view"
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,8 +30,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="9dp"
-        android:textColor="@color/primary_text"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@color/primary_text"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/app_name" />
@@ -42,8 +43,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:textColor="@color/secondary_text"
-        app:layout_constraintStart_toStartOf="@+id/stop_description_aux_view"
-        app:layout_constraintTop_toBottomOf="@+id/stop_description_aux_view"
+        app:layout_constraintStart_toStartOf="@+id/stop_number_view"
+        app:layout_constraintTop_toBottomOf="@+id/stop_number_view"
         tools:text="100" />
 
     <View
