@@ -50,14 +50,14 @@ internal class RealTimeAdapter(private val mListener: ItemClickListener) : Recyc
 
         fun bind(item: StopData) = with(itemView) {
             mItem = item
-            real_route_view.text = mItem?.publishedLineName
-            real_route_description_view.text = mItem?.destinationName
-            real_route_time_view.text = mItem?.timeRemainingFormatted()
+            real_time_route_view.text = mItem?.publishedLineName
+            real_time_description_view.text = mItem?.destinationName
+            real_time_value_view.text = mItem?.timeRemainingFormatted()
 
             // itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1, local_picture) } }
 
-            live_blip.setBackgroundResource(R.drawable.live)
-            val progressAnimation = live_blip.background as AnimationDrawable?
+            real_time_blip_view.setBackgroundResource(R.drawable.live)
+            val progressAnimation = real_time_blip_view.background as AnimationDrawable?
             progressAnimation?.start()
         }
     }
