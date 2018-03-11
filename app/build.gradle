@@ -110,7 +110,6 @@ dependencies {
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // Dependencies for Android unit tests
     androidTestImplementation "junit:junit:$junitVersion"
@@ -121,6 +120,8 @@ dependencies {
     androidTestImplementation "com.squareup.okhttp:mockwebserver:$mockwebserverVersion"
 
     // Espresso UI Testing
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:$espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
     androidTestImplementation("com.android.support.test.espresso:espresso-core:$espressoVersion", {
