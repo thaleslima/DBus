@@ -44,6 +44,7 @@ import org.junit.runners.MethodSorters.NAME_ASCENDING
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class FavouriteScreenTest {
+    private lateinit var stopRepository: StopRepository
 
     @get:Rule
     val activityTestRule = ActivityTestRule(MainActivity::class.java, false, false)
@@ -59,10 +60,11 @@ class FavouriteScreenTest {
     @Throws(Exception::class)
     fun after() {
         MockServer.shutdown()
+        stopRepository.removeAllFavourites()
     }
 
     private fun removeAllFavourites() {
-        val stopRepository = StopRepository(activityTestRule.activity.application)
+        stopRepository = StopRepository(activityTestRule.activity.application)
         stopRepository.removeAllFavourites()
 
         onView(withId(R.id.navigation_stop)).perform(click())
@@ -216,6 +218,7 @@ class FavouriteScreenTest {
 
     private fun addFavorite(position: Int) {
         onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click()))
+        TestUtils.sleep()
         onView(withId(R.id.menu_favorite)).perform(click())
         mDevice.pressBack()
     }
