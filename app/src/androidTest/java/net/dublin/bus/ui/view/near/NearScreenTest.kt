@@ -38,7 +38,7 @@ class NearScreenTest {
 
     @Test
     @Throws(InterruptedException::class, UnsupportedEncodingException::class)
-    fun loadData_map_change_marker_LoadIntoView() {
+    fun changeMapMarker_DisplayedInUi() {
         launchActivity()
         SystemClock.sleep(500)
         onView(withId(R.id.navigation_near)).perform(click())
