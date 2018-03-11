@@ -48,65 +48,34 @@
                 </xs:schema>
                 <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
                     <DocumentElement xmlns="">
-                        <StopData diffgr:id="StopData4" msdata:rowOrder="3">
-                            <ServiceDelivery_ResponseTimestamp>2018-02-24T16:45:27.647+00:00</ServiceDelivery_ResponseTimestamp>
-                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
-                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
-                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
-                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
-                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-24T16:45:27.647+00:00</StopMonitoringDelivery_ResponseTimestamp>
-                            <StopMonitoringDelivery_RequestMessageRef />
-                            <MonitoredStopVisit_RecordedAtTime>2018-02-24T17:45:27.647+00:00</MonitoredStopVisit_RecordedAtTime>
-                            <MonitoredStopVisit_MonitoringRef>00002</MonitoredStopVisit_MonitoringRef>
-                            <MonitoredVehicleJourney_LineRef>46A</MonitoredVehicleJourney_LineRef>
-                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
-                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-24</FramedVehicleJourneyRef_DataFrameRef>
-                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>11165</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
-                            <MonitoredVehicleJourney_PublishedLineName>46A</MonitoredVehicleJourney_PublishedLineName>
-                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
-                            <MonitoredVehicleJourney_DestinationRef>00807</MonitoredVehicleJourney_DestinationRef>
-                            <MonitoredVehicleJourney_DestinationName>Teste 01a</MonitoredVehicleJourney_DestinationName>
-                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
-                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
-                            <MonitoredVehicleJourney_BlockRef>46020</MonitoredVehicleJourney_BlockRef>
-                            <MonitoredVehicleJourney_VehicleRef>43098</MonitoredVehicleJourney_VehicleRef>
-                            <MonitoredCall_VisitNumber>50</MonitoredCall_VisitNumber>
-                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
-                            <MonitoredCall_AimedArrivalTime>2018-02-24T17:55:46+00:00</MonitoredCall_AimedArrivalTime>
-                            <MonitoredCall_ExpectedArrivalTime>2018-02-24T18:11:06+00:00</MonitoredCall_ExpectedArrivalTime>
-                            <MonitoredCall_AimedDepartureTime>2018-02-24T17:55:46+00:00</MonitoredCall_AimedDepartureTime>
-                            <MonitoredCall_ExpectedDepartureTime>2018-02-24T18:11:06+00:00</MonitoredCall_ExpectedDepartureTime>
-                            <Timestamp>2018-02-24T17:45:28.08+00:00</Timestamp>
-                            <LineNote />
-                        </StopData>
-                        <StopData diffgr:id="StopData5" msdata:rowOrder="4">
+                        <StopData diffgr:id="StopData7" msdata:rowOrder="6">
                             <ServiceDelivery_ResponseTimestamp>2018-02-24T17:45:27.647+00:00</ServiceDelivery_ResponseTimestamp>
                             <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
                             <ServiceDelivery_Status>true</ServiceDelivery_Status>
                             <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
                             <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
-                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-24T17:45:27.647+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-24T18:45:27.647+00:00</StopMonitoringDelivery_ResponseTimestamp>
                             <StopMonitoringDelivery_RequestMessageRef />
                             <MonitoredStopVisit_RecordedAtTime>2018-02-24T17:45:27.647+00:00</MonitoredStopVisit_RecordedAtTime>
                             <MonitoredStopVisit_MonitoringRef>00002</MonitoredStopVisit_MonitoringRef>
                             <MonitoredVehicleJourney_LineRef>46A</MonitoredVehicleJourney_LineRef>
                             <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
                             <FramedVehicleJourneyRef_DataFrameRef>2018-02-24</FramedVehicleJourneyRef_DataFrameRef>
-                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>11177</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>10806</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
                             <MonitoredVehicleJourney_PublishedLineName>46A</MonitoredVehicleJourney_PublishedLineName>
                             <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
                             <MonitoredVehicleJourney_DestinationRef>00807</MonitoredVehicleJourney_DestinationRef>
-                            <MonitoredVehicleJourney_DestinationName>Teste 01b</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_DestinationName>Teste 04a</MonitoredVehicleJourney_DestinationName>
                             <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
                             <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
-                            <MonitoredVehicleJourney_BlockRef>46005</MonitoredVehicleJourney_BlockRef>
-                            <MonitoredVehicleJourney_VehicleRef>36009</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredVehicleJourney_BlockRef>46019</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>36025</MonitoredVehicleJourney_VehicleRef>
                             <MonitoredCall_VisitNumber>50</MonitoredCall_VisitNumber>
                             <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
-                            <MonitoredCall_AimedArrivalTime>2018-02-24T18:05:46+00:00</MonitoredCall_AimedArrivalTime>
-                            <MonitoredCall_ExpectedArrivalTime>2018-02-24T18:11:53+00:00</MonitoredCall_ExpectedArrivalTime>
-                            <MonitoredCall_AimedDepartureTime>2018-02-24T18:05:46+00:00</MonitoredCall_AimedDepartureTime>
-                            <MonitoredCall_ExpectedDepartureTime>2018-02-24T18:11:53+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <MonitoredCall_AimedArrivalTime>2018-02-24T18:25:42+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-24T18:29:47+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-24T18:25:42+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-24T18:29:47+00:00</MonitoredCall_ExpectedDepartureTime>
                             <Timestamp>2018-02-24T17:45:28.08+00:00</Timestamp>
                             <LineNote />
                         </StopData>
@@ -127,7 +96,7 @@
                             <MonitoredVehicleJourney_PublishedLineName>38</MonitoredVehicleJourney_PublishedLineName>
                             <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
                             <MonitoredVehicleJourney_DestinationRef>04745</MonitoredVehicleJourney_DestinationRef>
-                            <MonitoredVehicleJourney_DestinationName>Teste 01c</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_DestinationName>Teste 04b</MonitoredVehicleJourney_DestinationName>
                             <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
                             <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
                             <MonitoredVehicleJourney_BlockRef>38006</MonitoredVehicleJourney_BlockRef>
@@ -141,6 +110,38 @@
                             <Timestamp>2018-02-24T17:45:28.08+00:00</Timestamp>
                             <LineNote />
                         </StopData>
+                        <StopData diffgr:id="StopData8" msdata:rowOrder="7">
+                            <ServiceDelivery_ResponseTimestamp>2018-02-24T17:45:27.647+00:00</ServiceDelivery_ResponseTimestamp>
+                            <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
+                            <ServiceDelivery_Status>true</ServiceDelivery_Status>
+                            <ServiceDelivery_MoreData>false</ServiceDelivery_MoreData>
+                            <StopMonitoringDelivery_Version>1.0</StopMonitoringDelivery_Version>
+                            <StopMonitoringDelivery_ResponseTimestamp>2018-02-24T18:45:27.647+00:00</StopMonitoringDelivery_ResponseTimestamp>
+                            <StopMonitoringDelivery_RequestMessageRef />
+                            <MonitoredStopVisit_RecordedAtTime>2018-02-24T17:45:27.647+00:00</MonitoredStopVisit_RecordedAtTime>
+                            <MonitoredStopVisit_MonitoringRef>00002</MonitoredStopVisit_MonitoringRef>
+                            <MonitoredVehicleJourney_LineRef>46A</MonitoredVehicleJourney_LineRef>
+                            <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
+                            <FramedVehicleJourneyRef_DataFrameRef>2018-02-24</FramedVehicleJourneyRef_DataFrameRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>11192</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <MonitoredVehicleJourney_PublishedLineName>46A</MonitoredVehicleJourney_PublishedLineName>
+                            <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
+                            <MonitoredVehicleJourney_DestinationRef>00807</MonitoredVehicleJourney_DestinationRef>
+                            <MonitoredVehicleJourney_DestinationName>Teste 04c</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
+                            <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
+                            <MonitoredVehicleJourney_BlockRef>46021</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>33617</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredCall_VisitNumber>50</MonitoredCall_VisitNumber>
+                            <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
+                            <MonitoredCall_AimedArrivalTime>2018-02-24T18:35:42+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-24T18:33:25+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-24T18:35:42+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-24T18:33:25+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-24T17:45:28.097+00:00</Timestamp>
+                            <LineNote />
+                        </StopData>
+
                         <StopData diffgr:id="StopData1" msdata:rowOrder="0">
                             <ServiceDelivery_ResponseTimestamp>2018-02-24T17:45:27.647+00:00</ServiceDelivery_ResponseTimestamp>
                             <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
@@ -234,8 +235,7 @@
                             <Timestamp>2018-02-24T17:45:28.08+00:00</Timestamp>
                             <LineNote />
                         </StopData>
-
-                        <StopData diffgr:id="StopData7" msdata:rowOrder="6">
+                        <StopData diffgr:id="StopData4" msdata:rowOrder="3">
                             <ServiceDelivery_ResponseTimestamp>2018-02-24T17:45:27.647+00:00</ServiceDelivery_ResponseTimestamp>
                             <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
                             <ServiceDelivery_Status>true</ServiceDelivery_Status>
@@ -248,25 +248,25 @@
                             <MonitoredVehicleJourney_LineRef>46A</MonitoredVehicleJourney_LineRef>
                             <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
                             <FramedVehicleJourneyRef_DataFrameRef>2018-02-24</FramedVehicleJourneyRef_DataFrameRef>
-                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>10806</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>11165</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
                             <MonitoredVehicleJourney_PublishedLineName>46A</MonitoredVehicleJourney_PublishedLineName>
                             <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
                             <MonitoredVehicleJourney_DestinationRef>00807</MonitoredVehicleJourney_DestinationRef>
                             <MonitoredVehicleJourney_DestinationName>Phoenix Pk via Donnybrook</MonitoredVehicleJourney_DestinationName>
                             <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
                             <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
-                            <MonitoredVehicleJourney_BlockRef>46019</MonitoredVehicleJourney_BlockRef>
-                            <MonitoredVehicleJourney_VehicleRef>36025</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredVehicleJourney_BlockRef>46020</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>43098</MonitoredVehicleJourney_VehicleRef>
                             <MonitoredCall_VisitNumber>50</MonitoredCall_VisitNumber>
                             <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
-                            <MonitoredCall_AimedArrivalTime>2018-02-24T18:25:42+00:00</MonitoredCall_AimedArrivalTime>
-                            <MonitoredCall_ExpectedArrivalTime>2018-02-24T18:29:47+00:00</MonitoredCall_ExpectedArrivalTime>
-                            <MonitoredCall_AimedDepartureTime>2018-02-24T18:25:42+00:00</MonitoredCall_AimedDepartureTime>
-                            <MonitoredCall_ExpectedDepartureTime>2018-02-24T18:29:47+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <MonitoredCall_AimedArrivalTime>2018-02-24T17:55:46+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-24T18:11:06+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-24T17:55:46+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-24T18:11:06+00:00</MonitoredCall_ExpectedDepartureTime>
                             <Timestamp>2018-02-24T17:45:28.08+00:00</Timestamp>
                             <LineNote />
                         </StopData>
-                        <StopData diffgr:id="StopData8" msdata:rowOrder="7">
+                        <StopData diffgr:id="StopData5" msdata:rowOrder="4">
                             <ServiceDelivery_ResponseTimestamp>2018-02-24T17:45:27.647+00:00</ServiceDelivery_ResponseTimestamp>
                             <ServiceDelivery_ProducerRef>bac</ServiceDelivery_ProducerRef>
                             <ServiceDelivery_Status>true</ServiceDelivery_Status>
@@ -279,24 +279,26 @@
                             <MonitoredVehicleJourney_LineRef>46A</MonitoredVehicleJourney_LineRef>
                             <MonitoredVehicleJourney_DirectionRef>Inbound</MonitoredVehicleJourney_DirectionRef>
                             <FramedVehicleJourneyRef_DataFrameRef>2018-02-24</FramedVehicleJourneyRef_DataFrameRef>
-                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>11192</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
+                            <FramedVehicleJourneyRef_DatedVehicleJourneyRef>11177</FramedVehicleJourneyRef_DatedVehicleJourneyRef>
                             <MonitoredVehicleJourney_PublishedLineName>46A</MonitoredVehicleJourney_PublishedLineName>
                             <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
                             <MonitoredVehicleJourney_DestinationRef>00807</MonitoredVehicleJourney_DestinationRef>
                             <MonitoredVehicleJourney_DestinationName>Phoenix Pk via Donnybrook</MonitoredVehicleJourney_DestinationName>
                             <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
                             <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
-                            <MonitoredVehicleJourney_BlockRef>46021</MonitoredVehicleJourney_BlockRef>
-                            <MonitoredVehicleJourney_VehicleRef>33617</MonitoredVehicleJourney_VehicleRef>
+                            <MonitoredVehicleJourney_BlockRef>46005</MonitoredVehicleJourney_BlockRef>
+                            <MonitoredVehicleJourney_VehicleRef>36009</MonitoredVehicleJourney_VehicleRef>
                             <MonitoredCall_VisitNumber>50</MonitoredCall_VisitNumber>
                             <MonitoredCall_VehicleAtStop>false</MonitoredCall_VehicleAtStop>
-                            <MonitoredCall_AimedArrivalTime>2018-02-24T18:35:42+00:00</MonitoredCall_AimedArrivalTime>
-                            <MonitoredCall_ExpectedArrivalTime>2018-02-24T18:33:25+00:00</MonitoredCall_ExpectedArrivalTime>
-                            <MonitoredCall_AimedDepartureTime>2018-02-24T18:35:42+00:00</MonitoredCall_AimedDepartureTime>
-                            <MonitoredCall_ExpectedDepartureTime>2018-02-24T18:33:25+00:00</MonitoredCall_ExpectedDepartureTime>
-                            <Timestamp>2018-02-24T17:45:28.097+00:00</Timestamp>
+                            <MonitoredCall_AimedArrivalTime>2018-02-24T18:05:46+00:00</MonitoredCall_AimedArrivalTime>
+                            <MonitoredCall_ExpectedArrivalTime>2018-02-24T18:11:53+00:00</MonitoredCall_ExpectedArrivalTime>
+                            <MonitoredCall_AimedDepartureTime>2018-02-24T18:05:46+00:00</MonitoredCall_AimedDepartureTime>
+                            <MonitoredCall_ExpectedDepartureTime>2018-02-24T18:11:53+00:00</MonitoredCall_ExpectedDepartureTime>
+                            <Timestamp>2018-02-24T17:45:28.08+00:00</Timestamp>
                             <LineNote />
                         </StopData>
+
+
                     </DocumentElement>
                 </diffgr:diffgram>
             </GetRealTimeStopData_ForceLineNoteVisitResult>

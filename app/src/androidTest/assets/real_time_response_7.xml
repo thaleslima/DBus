@@ -65,7 +65,7 @@
                             <MonitoredVehicleJourney_PublishedLineName>46A</MonitoredVehicleJourney_PublishedLineName>
                             <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
                             <MonitoredVehicleJourney_DestinationRef>00807</MonitoredVehicleJourney_DestinationRef>
-                            <MonitoredVehicleJourney_DestinationName>Teste 07a</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_DestinationName>Teste 02a</MonitoredVehicleJourney_DestinationName>
                             <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
                             <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
                             <MonitoredVehicleJourney_BlockRef>46019</MonitoredVehicleJourney_BlockRef>
@@ -96,7 +96,7 @@
                             <MonitoredVehicleJourney_PublishedLineName>38</MonitoredVehicleJourney_PublishedLineName>
                             <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
                             <MonitoredVehicleJourney_DestinationRef>04745</MonitoredVehicleJourney_DestinationRef>
-                            <MonitoredVehicleJourney_DestinationName>Teste 07b</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_DestinationName>Teste 02b</MonitoredVehicleJourney_DestinationName>
                             <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
                             <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
                             <MonitoredVehicleJourney_BlockRef>38006</MonitoredVehicleJourney_BlockRef>
@@ -127,7 +127,7 @@
                             <MonitoredVehicleJourney_PublishedLineName>46A</MonitoredVehicleJourney_PublishedLineName>
                             <MonitoredVehicleJourney_OperatorRef>bac</MonitoredVehicleJourney_OperatorRef>
                             <MonitoredVehicleJourney_DestinationRef>00807</MonitoredVehicleJourney_DestinationRef>
-                            <MonitoredVehicleJourney_DestinationName>Teste 07c</MonitoredVehicleJourney_DestinationName>
+                            <MonitoredVehicleJourney_DestinationName>Teste 02c</MonitoredVehicleJourney_DestinationName>
                             <MonitoredVehicleJourney_Monitored>true</MonitoredVehicleJourney_Monitored>
                             <MonitoredVehicleJourney_InCongestion>false</MonitoredVehicleJourney_InCongestion>
                             <MonitoredVehicleJourney_BlockRef>46021</MonitoredVehicleJourney_BlockRef>

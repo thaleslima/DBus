@@ -13,6 +13,7 @@ import org.hamcrest.Matcher
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.swipeDown
 import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast
 import android.support.test.espresso.matcher.ViewMatchers.withId
@@ -21,7 +22,9 @@ import android.support.test.internal.util.Checks.checkNotNull
 
 object TestUtils {
     fun checkRecyclerHasDescendant(id: Int, position: Int, text: String) {
-        onView(withId(id)).check(matches(atPosition(position, hasDescendant(withText(text)))))
+        onView(withId(id))
+                .perform(scrollToPosition<RecyclerView.ViewHolder>(position))
+                .check(matches(atPosition(position, hasDescendant(withText(text)))))
     }
 
     fun swipeRefresh(id: Int) {

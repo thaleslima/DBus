@@ -52,4 +52,8 @@ class StopRepository(application: Application) {
     fun getStopsByNumber(stopNumber: String): Observable<Stop> {
         return localSource.getStopsByNumber(stopNumber)
     }
+
+    fun removeAllFavourites() {
+        return localFavouriteSource.removeAllFavourites()
+    }
 }

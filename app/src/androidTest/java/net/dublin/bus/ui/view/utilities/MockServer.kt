@@ -1,17 +1,13 @@
 package net.dublin.bus.ui.view.utilities
 
+import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.util.Log
-
 import com.squareup.okhttp.mockwebserver.Dispatcher
 import com.squareup.okhttp.mockwebserver.MockResponse
 import com.squareup.okhttp.mockwebserver.MockWebServer
 import com.squareup.okhttp.mockwebserver.RecordedRequest
-
 import net.dublin.bus.common.Constants
-
 import java.io.IOException
-
-import android.support.test.InstrumentationRegistry.getInstrumentation
 
 object MockServer {
     private val TAG = MockServer::class.java.name
@@ -20,6 +16,10 @@ object MockServer {
     private const val FILE_NAME_WARNING_NO_ITEMS_REAL_TIME_RESPONSE = "real_time_warning_response.xml"
     private const val FILE_NAME_WARNING_REAL_TIME_RESPONSE = "real_time_line_note_response.xml"
     private const val FILE_NAME_NO_ITEMS_REAL_TIME_RESPONSE = "real_time_no_items_response.xml"
+
+    private const val FILE_NAME_REAL_TIME_RESPONSE_1 = "real_time_response_%s.xml"
+    private var stopsRealTime = listOf(3, 4, 6, 15, 17, 18, 19, 27, 2)
+    private var stopsRealTime2 = listOf(2, 7)
 
     private lateinit var server: MockWebServer
 
@@ -56,6 +56,50 @@ object MockServer {
 
     fun setDispatcherResponse500() {
         server.setDispatcher(DispatcherResponse500())
+    }
+
+    fun setDispatcherRealTime200() {
+        server.setDispatcher(createDispatcherRealTime200())
+    }
+
+    fun setDispatcherRealTime200And500() {
+        server.setDispatcher(createDispatcherRealTime200And500())
+    }
+
+    private fun createDispatcherRealTime200(): Dispatcher {
+        return object : Dispatcher() {
+            @Throws(InterruptedException::class)
+            override fun dispatch(request: RecordedRequest): MockResponse {
+                for (stop in stopsRealTime) {
+                    if (request.path.contains("${Constants.API_URL_REAL_TIME_SOAP_METHOD}&n=$stop")) {
+                        return MockResponse()
+                                .setResponseCode(200)
+                                .setBody(StringUtil.getStringFromFile(getInstrumentation().context, String.format(FILE_NAME_REAL_TIME_RESPONSE_1, stop)))
+                    }
+                }
+
+                throw InterruptedException()
+            }
+        }
+    }
+
+    fun createDispatcherRealTime200And500(): Dispatcher {
+        return object : Dispatcher() {
+            @Throws(InterruptedException::class)
+            override fun dispatch(request: RecordedRequest): MockResponse {
+                for (stop in stopsRealTime2) {
+                    if (request.path.contains("${Constants.API_URL_REAL_TIME_SOAP_METHOD}&n=$stop")) {
+                        return MockResponse()
+                                .setResponseCode(200)
+                                .setBody(StringUtil.getStringFromFile(getInstrumentation().context, String.format(FILE_NAME_REAL_TIME_RESPONSE_1, stop)))
+                    }
+                }
+
+                return MockResponse()
+                        .setResponseCode(500)
+                        .setBody("")
+            }
+        }
     }
 
     private fun createDispatcher200(path: String, file: String): Dispatcher {

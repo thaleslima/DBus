@@ -62,4 +62,8 @@ class LocalStopFavouriteDataSource(context: Context) {
             }
         }
     }
+
+    fun removeAllFavourites() {
+        dao.clear()
+    }
 }
