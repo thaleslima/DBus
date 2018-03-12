@@ -16,14 +16,15 @@ object MockServer {
     private const val FILE_NAME_WARNING_NO_ITEMS_REAL_TIME_RESPONSE = "real_time_warning_response.xml"
     private const val FILE_NAME_WARNING_REAL_TIME_RESPONSE = "real_time_line_note_response.xml"
     private const val FILE_NAME_NO_ITEMS_REAL_TIME_RESPONSE = "real_time_no_items_response.xml"
-
     private const val FILE_NAME_REAL_TIME_RESPONSE_1 = "real_time_response_%s.xml"
-    private var stopsRealTime = listOf(3, 4, 6, 15, 17, 18, 19, 27, 2)
-    private var stopsRealTime2 = listOf(2, 7)
-
     private const val FILE_ROUTE_INBOUND_RESPONSE = "stops_by_route_inbound_response.xml"
     private const val FILE_ROUTE_OUTBOUND_RESPONSE = "stops_by_route_outbound_response.xml"
     private const val FILE_ROUTE_INBOUND_NO_ITEMS_RESPONSE = "stops_by_route_inbound_no_items_response.xml"
+    private const val FILE_ROUTES_STOP_RESPONSE = "routes_by_stop_response.xml"
+    private const val FILE_ROUTES_STOP_2_RESPONSE = "routes_by_stop_2_response.xml"
+
+    private var stopsRealTime = listOf(3, 4, 6, 15, 17, 18, 19, 27, 2)
+    private var stopsRealTime2 = listOf(2, 7)
 
     private lateinit var server: MockWebServer
 
@@ -82,6 +83,15 @@ object MockServer {
         server.setDispatcher(createDispatcher200(Constants.API_URL_ROUTE_DETAIL_METHOD, FILE_ROUTE_INBOUND_NO_ITEMS_RESPONSE))
     }
 
+    fun setDispatcherInboundResponse200() {
+        server.setDispatcher(createDispatcherInboundResponse200(FILE_ROUTES_STOP_RESPONSE))
+    }
+
+    fun setDispatcherInboundResponse2_200() {
+        server.setDispatcher(createDispatcherInboundResponse200(FILE_ROUTES_STOP_2_RESPONSE))
+    }
+
+
     private fun createDispatcherRealTime200(): Dispatcher {
         return object : Dispatcher() {
             @Throws(InterruptedException::class)
@@ -114,6 +124,27 @@ object MockServer {
                 return MockResponse()
                         .setResponseCode(500)
                         .setBody("")
+            }
+        }
+    }
+
+    private fun createDispatcherInboundResponse200(fileStopResponse: String): Dispatcher {
+        return object : Dispatcher() {
+            @Throws(InterruptedException::class)
+            override fun dispatch(request: RecordedRequest): MockResponse {
+                if (request.path.contains(Constants.API_URL_ROUTE_DETAIL_METHOD)) {
+                    return MockResponse()
+                            .setResponseCode(200)
+                            .setBody(StringUtil.getStringFromFile(getInstrumentation().context, FILE_ROUTE_INBOUND_RESPONSE))
+                }
+
+                if (request.path.contains(Constants.API_URL_ROUTE_BY_STOP_METHOD)) {
+                    return MockResponse()
+                            .setResponseCode(200)
+                            .setBody(StringUtil.getStringFromFile(getInstrumentation().context, fileStopResponse))
+                }
+
+                throw InterruptedException()
             }
         }
     }
