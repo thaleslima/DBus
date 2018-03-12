@@ -11,8 +11,10 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.swipeDown
 import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast
@@ -27,6 +29,10 @@ object TestUtils {
                 .check(matches(atPosition(position, hasDescendant(withText(text)))))
     }
 
+    fun clickOnList(id: Int, position: Int) {
+        onView(withId(id)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, ViewActions.click()))
+    }
+
     fun swipeRefresh(id: Int) {
         sleep()
         onView(withId(id)).perform(withCustomConstraints(swipeDown(), isDisplayingAtLeast(85)))
@@ -36,7 +42,7 @@ object TestUtils {
         SystemClock.sleep(500)
     }
 
-    fun atPosition(position: Int, itemMatcher: Matcher<View>): Matcher<View> {
+    private fun atPosition(position: Int, itemMatcher: Matcher<View>): Matcher<View> {
         checkNotNull(itemMatcher)
 
         return object : BoundedMatcher<View, RecyclerView>(RecyclerView::class.java) {
@@ -55,7 +61,7 @@ object TestUtils {
         }
     }
 
-    fun withCustomConstraints(action: ViewAction, constraints: Matcher<View>): ViewAction {
+    private fun withCustomConstraints(action: ViewAction, constraints: Matcher<View>): ViewAction {
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> {
                 return constraints

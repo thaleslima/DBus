@@ -21,6 +21,8 @@ object MockServer {
     private var stopsRealTime = listOf(3, 4, 6, 15, 17, 18, 19, 27, 2)
     private var stopsRealTime2 = listOf(2, 7)
 
+    private const val FILE_ROUTE_INBOUND_RESPONSE = "stops_by_route_inbound_response.xml"
+
     private lateinit var server: MockWebServer
 
     @Throws(IOException::class)
@@ -66,6 +68,10 @@ object MockServer {
         server.setDispatcher(createDispatcherRealTime200And500())
     }
 
+    fun setDispatcherRouteInbound200() {
+        server.setDispatcher(createDispatcher200(Constants.API_URL_ROUTE_DETAIL_METHOD, FILE_ROUTE_INBOUND_RESPONSE))
+    }
+
     private fun createDispatcherRealTime200(): Dispatcher {
         return object : Dispatcher() {
             @Throws(InterruptedException::class)
@@ -83,7 +89,7 @@ object MockServer {
         }
     }
 
-    fun createDispatcherRealTime200And500(): Dispatcher {
+    private fun createDispatcherRealTime200And500(): Dispatcher {
         return object : Dispatcher() {
             @Throws(InterruptedException::class)
             override fun dispatch(request: RecordedRequest): MockResponse {
