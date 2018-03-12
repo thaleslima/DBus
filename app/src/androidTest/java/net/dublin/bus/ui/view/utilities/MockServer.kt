@@ -22,6 +22,8 @@ object MockServer {
     private var stopsRealTime2 = listOf(2, 7)
 
     private const val FILE_ROUTE_INBOUND_RESPONSE = "stops_by_route_inbound_response.xml"
+    private const val FILE_ROUTE_OUTBOUND_RESPONSE = "stops_by_route_outbound_response.xml"
+    private const val FILE_ROUTE_INBOUND_NO_ITEMS_RESPONSE = "stops_by_route_inbound_no_items_response.xml"
 
     private lateinit var server: MockWebServer
 
@@ -70,6 +72,14 @@ object MockServer {
 
     fun setDispatcherRouteInbound200() {
         server.setDispatcher(createDispatcher200(Constants.API_URL_ROUTE_DETAIL_METHOD, FILE_ROUTE_INBOUND_RESPONSE))
+    }
+
+    fun setDispatcherRouteOutbound200() {
+        server.setDispatcher(createDispatcher200(Constants.API_URL_ROUTE_DETAIL_METHOD, FILE_ROUTE_OUTBOUND_RESPONSE))
+    }
+
+    fun setDispatcherRouteOutboundNoItems200() {
+        server.setDispatcher(createDispatcher200(Constants.API_URL_ROUTE_DETAIL_METHOD, FILE_ROUTE_INBOUND_NO_ITEMS_RESPONSE))
     }
 
     private fun createDispatcherRealTime200(): Dispatcher {

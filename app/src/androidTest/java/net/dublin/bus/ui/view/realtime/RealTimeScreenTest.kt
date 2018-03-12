@@ -141,7 +141,6 @@ class RealTimeScreenTest {
     }
 
     @Test
-    @Throws(InterruptedException::class, UnsupportedEncodingException::class)
     fun withItemsAndWarmingMessage_updateSwipe_DisplayedInUi() {
         setDispatcherTimeWarningWithItemsResponse200()
         launchActivity()
@@ -160,7 +159,6 @@ class RealTimeScreenTest {
     }
 
     @Test
-    @Throws(InterruptedException::class, UnsupportedEncodingException::class)
     fun noItemsAndWarmingMessage_DisplayedInUi() {
         setDispatcherTimeWarningNoItemsResponse200()
         launchActivity()
@@ -171,7 +169,6 @@ class RealTimeScreenTest {
     }
 
     @Test
-    @Throws(InterruptedException::class, UnsupportedEncodingException::class)
     fun noItems_showsMessageUi() {
         setDispatcherNoItemsResponse200()
         launchActivity()
@@ -197,8 +194,7 @@ class RealTimeScreenTest {
     }
 
     @Test
-    @Throws(InterruptedException::class, UnsupportedEncodingException::class)
-    fun errorConnection_retry_ShowsErrorUi() {
+    fun errorConnection_retry_DisplayedInUi() {
         setDispatcherResponse500()
         launchActivity()
 
