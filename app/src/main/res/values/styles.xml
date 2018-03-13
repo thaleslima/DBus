@@ -3,27 +3,34 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+    </style>
+
     <style name="AppTheme.Teal" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/teal_500</item>
         <item name="colorPrimary">@color/teal_500</item>
         <item name="colorPrimaryDark">@color/teal_500</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 O
     <style name="AppTheme.Orange" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/blue_grey_500</item>
         <item name="colorPrimary">@color/blue_grey_500</item>
         <item name="colorPrimaryDark">@color/blue_grey_500</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.Purple" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/purple_800</item>
         <item name="colorPrimary">@color/purple_800</item>
         <item name="colorPrimaryDark">@color/purple_900</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -31,7 +38,7 @@ O
 
 
     <style name="AppTheme.White" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/white</item>
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/purple_900</item>
         <item name="colorAccent">@color/colorAccent</item>
