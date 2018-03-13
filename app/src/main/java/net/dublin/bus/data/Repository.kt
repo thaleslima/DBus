@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
 import net.dublin.bus.common.Utility
-import net.dublin.bus.data.stop.local.LocalRouteDataSource
+import net.dublin.bus.data.route.local.LocalRouteDataSource
 import net.dublin.bus.data.stop.local.LocalStopDataSource
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop

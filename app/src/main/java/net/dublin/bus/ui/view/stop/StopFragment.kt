@@ -1,10 +1,10 @@
 package net.dublin.bus.ui.view.stop
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +15,9 @@ import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 
-class StopFragment : Fragment(), StopAdapter.ItemClickListener, StopContract.View {
+class StopFragment : Fragment(), StopAdapter.ItemClickListener {
+    private lateinit var model: StopViewModel
     private var mAdapter: StopAdapter? = null
-    private var presenter: StopContract.Presenter? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -37,43 +37,32 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener, StopContract.Vie
     }
 
     private fun initialize() {
-        presenter = StopPresenter(this, StopRepository(activity.application))
-        presenter?.loadData()
+        showProgress()
+
+        val factory = StopViewModelFactory(StopRepository(activity.application))
+        model = ViewModelProviders.of(activity, factory).get(StopViewModel::class.java)
+        model.getStops().observe(activity, Observer<List<Stop>> {
+            it?.let {
+                showData(it)
+            }
+            hideProgress()
+        })
     }
 
-    override fun onPause() {
-        super.onPause()
-        presenter?.unsubscribe()
-    }
-
-    override fun isNetworkAvailable(): Boolean {
+    fun isNetworkAvailable(): Boolean {
         return Utility.isNetworkAvailable(activity)
     }
 
-    override fun showData(data: List<Stop>) {
+    fun showData(data: List<Stop>) {
         mAdapter?.replaceData(data)
     }
 
-    override fun showProgress() {
+    fun showProgress() {
         stop_progress_bar_view?.visibility = View.VISIBLE
     }
 
-    override fun hideProgress() {
+    fun hideProgress() {
         stop_progress_bar_view?.visibility = View.GONE
-    }
-
-    override fun showSnackBarNoConnection() {
-        Snackbar.make(
-                stop_swipe_refresh_layout,
-                R.string.title_no_connection,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter?.loadData() }
-    }
-
-    override fun showSnackBarError() {
-        Snackbar.make(
-                stop_swipe_refresh_layout,
-                R.string.error_message,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter?.loadData() }
     }
 
     override fun onItemClick(item: Stop) {

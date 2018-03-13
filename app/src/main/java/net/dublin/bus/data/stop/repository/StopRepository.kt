@@ -1,6 +1,7 @@
 package net.dublin.bus.data.stop.repository
 
 import android.app.Application
+import android.arch.lifecycle.LiveData
 import io.reactivex.Observable
 import io.reactivex.Single
 import net.dublin.bus.data.stop.local.LocalStopDataSource
@@ -14,7 +15,7 @@ class StopRepository(application: Application) {
     private var remoteSource: RemoteStopDataSource = RemoteStopDataSource()
     private var localFavouriteSource: LocalStopFavouriteDataSource = LocalStopFavouriteDataSource(application)
 
-    fun getData(): Observable<List<Stop>> {
+    fun getData(): LiveData<List<Stop>> {
         return localSource.getAll()
     }
 

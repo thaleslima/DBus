@@ -1,28 +1,26 @@
 package net.dublin.bus.ui.view.route
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_real_time.*
 import kotlinx.android.synthetic.main.fragment_route.*
 import net.dublin.bus.R
+import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Route
 import net.dublin.bus.ui.view.route.detail.RouteDetailActivity
-import net.dublin.bus.data.route.repository.RouteRepository
-import net.dublin.bus.ui.utilities.Utility
 
-class RouteFragment : Fragment(), RouteAdapter.ItemClickListener, RouteContract.View {
-    private var presenter: RouteContract.Presenter? = null
+class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
+    private lateinit var model: RouteViewModel
     private var mAdapter: RouteAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_route, container, false)
-        return view
+        return inflater!!.inflate(R.layout.fragment_route, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -38,47 +36,30 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener, RouteContract.
     }
 
     private fun initialize() {
-        presenter = RoutePresenter(this, RouteRepository(activity.application))
-        presenter?.loadData()
+        val factory = RouteViewModelFactory(RouteRepository(activity.application))
+        model = ViewModelProviders.of(activity, factory).get(RouteViewModel::class.java)
+        model.getStops().observe(activity, Observer<List<Route>> {
+            it?.let {
+                showData(it)
+            }
+            hideProgress()
+        })
     }
 
-    override fun onPause() {
-        super.onPause()
-        presenter?.unsubscribe()
-    }
-
-    override fun isNetworkAvailable(): Boolean {
-        return Utility.isNetworkAvailable(activity)
-    }
-
-    override fun showData(data: List<Route>) {
+    fun showData(data: List<Route>) {
         mAdapter?.replaceData(data)
     }
 
-    override fun showProgress() {
+    fun showProgress() {
         route_progress_bar_view?.visibility = View.VISIBLE
     }
 
-    override fun hideProgress() {
+    fun hideProgress() {
         route_progress_bar_view?.visibility = View.GONE
     }
 
     override fun onItemClick(item: Route) {
         RouteDetailActivity.navigate(context, item.number, item.outboundTowards, item.inboundTowards)
-    }
-
-    override fun showSnackBarNoConnection() {
-        Snackbar.make(
-                real_swipe_refresh_layout,
-                R.string.title_no_connection,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter?.loadData() }
-    }
-
-    override fun showSnackBarError() {
-        Snackbar.make(
-                real_swipe_refresh_layout,
-                R.string.error_message,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { presenter?.loadData() }
     }
 
     companion object {

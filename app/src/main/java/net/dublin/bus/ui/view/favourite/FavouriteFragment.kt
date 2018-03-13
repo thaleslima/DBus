@@ -52,11 +52,11 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, Favour
     }
 
     override fun showNoData() {
-        favorite_message_empty.visibility = View.VISIBLE
+        favorite_message_empty?.visibility = View.VISIBLE
     }
 
     override fun hideNoData() {
-        favorite_message_empty.visibility = View.GONE
+        favorite_message_empty?.visibility = View.GONE
     }
 
     override fun showSnackBarNoConnection() {

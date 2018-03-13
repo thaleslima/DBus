@@ -1,5 +1,6 @@
-package net.dublin.bus.data.stop.local
+package net.dublin.bus.data.route.local
 
+import android.arch.lifecycle.LiveData
 import android.content.Context
 import io.reactivex.Observable
 import net.dublin.bus.data.BusDatabase
@@ -14,8 +15,8 @@ class LocalRouteDataSource(context: Context) {
         dao = db.getRouteDao()
     }
 
-    fun getAll(): Observable<List<Route>> {
-        return Observable.fromCallable { dao.getRoutes() }
+    fun getAll(): LiveData<List<Route>> {
+        return dao.getRoutes()
     }
 
     fun getRouteByNumber(number: String): Observable<Route> {

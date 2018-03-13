@@ -1,5 +1,6 @@
 package net.dublin.bus.data.stop.local
 
+import android.arch.lifecycle.LiveData
 import android.content.Context
 import io.reactivex.Observable
 import net.dublin.bus.data.BusDatabase
@@ -15,8 +16,8 @@ class LocalStopDataSource(context: Context) {
         dao = db.getStopDao()
     }
 
-    fun getAll(): Observable<List<Stop>> {
-        return Observable.fromCallable { dao.getStops() }
+    fun getAll(): LiveData<List<Stop>> {
+        return dao.getStops()
     }
 
     fun getStopsByLatLng(latitude: Double, longitude: Double): Observable<List<Stop>> {

@@ -1,5 +1,6 @@
 package net.dublin.bus.data.stop.db
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -9,7 +10,7 @@ import net.dublin.bus.model.Stop
 @Dao
 interface StopDao {
     @Query("SELECT stopnumber, description FROM stops")
-    fun getStops(): List<Stop>
+    fun getStops(): LiveData<List<Stop>>
 
     @Query("SELECT stopnumber, description FROM stops WHERE stopnumber LIKE :search || '%' OR description LIKE '%' || :search || '%'")
     fun getStopsByText(search: String): List<Stop>

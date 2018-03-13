@@ -1,5 +1,7 @@
 package net.dublin.bus.ui.view.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -8,7 +10,7 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import net.dublin.bus.*
+import net.dublin.bus.R
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.BottomNavigationViewHelper
@@ -19,6 +21,7 @@ import net.dublin.bus.ui.view.search.SearchActivity
 import net.dublin.bus.ui.view.stop.StopFragment
 
 class MainActivity : AppCompatActivity() {
+    private var checkFavourite: Boolean = false
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -43,9 +46,21 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
+    companion object {
+        private const val EXTRA_CHECK_FAVOURITE = "route_number"
+
+        fun navigate(context: Context, checkFavourite: Boolean) {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra(EXTRA_CHECK_FAVOURITE, checkFavourite)
+            context.startActivity(intent)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initExtra()
+
         main_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(main_navigation)
 
@@ -54,20 +69,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (savedInstanceState == null) {
-            main_navigation.selectedItemId = R.id.navigation_favorite
+            checkFavourite()
         }
     }
 
+    private fun initExtra() {
+        checkFavourite = intent.getBooleanExtra(EXTRA_CHECK_FAVOURITE, false)
+    }
+
     private fun checkFavourite() {
-        val repository = StopRepository(application)
-        repository.getFavourites()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ data ->
-                    onNextData(data)
-                }, {
-                    onError()
-                })
+        if (checkFavourite) {
+            val repository = StopRepository(application)
+            repository.getFavourites()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ data ->
+                        onNextData(data)
+                    }, {
+                        onError()
+                    })
+        } else {
+            main_navigation.selectedItemId = R.id.navigation_favorite
+        }
     }
 
     private fun onError() {
