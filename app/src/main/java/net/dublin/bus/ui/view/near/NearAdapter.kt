@@ -50,6 +50,7 @@ internal class NearAdapter(private val mListener: ItemClickListener) : RecyclerV
             mItem = item
             near_number_stop_view.text = item.stopNumber
             near_description_stop_view.text = item.description
+            near_routes_view.text = item.routes
             near_distance_view.text = DistanceFormatter.formatDistanceKilometer(item.distance)
             itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }

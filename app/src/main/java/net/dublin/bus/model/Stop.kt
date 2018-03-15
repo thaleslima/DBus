@@ -40,8 +40,7 @@ data class Stop(
         @Ignore
         var location: String? = null,
 
-        @Ignore
-        var route: String? = null,
+        var routes: String? = null,
 
         @Ignore
         var distance: Double = 0.0,

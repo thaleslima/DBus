@@ -90,7 +90,7 @@ object RouteDetailMapper {
                             stopNumber = stopNumber,
                             latitude = lat ?: 0.0,
                             longitude = lon ?: 0.0,
-                            route = route,
+                            routes = route,
                             direction = direction,
                             address = address,
                             location = location,

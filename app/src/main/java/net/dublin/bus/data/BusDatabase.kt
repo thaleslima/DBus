@@ -9,17 +9,24 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import net.dublin.bus.data.recent.db.RecentDao
 import net.dublin.bus.data.route.db.RouteDao
+import net.dublin.bus.data.routestop.db.RouteStopDao
 import net.dublin.bus.data.stop.db.StopDao
 import net.dublin.bus.data.stop.db.StopFavouriteDao
 import net.dublin.bus.model.*
 
-@Database(entities = [(Stop::class), (Route::class), (Favourite::class), (Recent::class)], version = 1)
+@Database(entities = [
+    (Stop::class),
+    (Route::class),
+    (Favourite::class),
+    (Recent::class),
+    (RouteStop::class)], version = 1)
 abstract class BusDatabase : RoomDatabase() {
 
     abstract fun getStopDao(): StopDao
     abstract fun getRouteDao(): RouteDao
     abstract fun getFavoriteDao(): StopFavouriteDao
     abstract fun getRecentDao(): RecentDao
+    abstract fun getRouteStopDao(): RouteStopDao
 
     companion object {
         private var INSTANCE: BusDatabase? = null
