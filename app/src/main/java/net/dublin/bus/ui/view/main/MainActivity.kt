@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkFavourite() {
         if (checkFavourite) {
             val repository = StopRepository(application)
-            repository.getFavourites()
+            repository.hasFavourite()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
@@ -97,11 +97,11 @@ class MainActivity : AppCompatActivity() {
         main_navigation.selectedItemId = R.id.navigation_stop
     }
 
-    private fun onNextData(data: List<Favourite>) {
-        if (data.isEmpty()) {
-            main_navigation.selectedItemId = R.id.navigation_stop
-        } else {
+    private fun onNextData(data: Boolean) {
+        if (data) {
             main_navigation.selectedItemId = R.id.navigation_favorite
+        } else {
+            main_navigation.selectedItemId = R.id.navigation_stop
         }
     }
 

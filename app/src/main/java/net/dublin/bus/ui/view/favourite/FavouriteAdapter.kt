@@ -19,6 +19,7 @@ import java.util.*
 
 internal class FavouriteAdapter(private val mListener: ItemClickListener) : RecyclerView.Adapter<FavouriteAdapter.LocalViewHolder>() {
     private val mDataSet: MutableList<Favourite> = ArrayList()
+    private val dataReal: HashMap<String, List<StopData>> = HashMap()
 
     internal interface ItemClickListener {
         fun onItemClick(item: Favourite)
@@ -44,6 +45,12 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
     private fun setList(dataSet: List<Favourite>) {
         mDataSet.clear()
         mDataSet.addAll(dataSet)
+    }
+
+    fun updateRealData() {
+        if (dataReal.size > 0) {
+            notifyDataSetChanged()
+        }
     }
 
     internal inner class LocalViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_list_favorite)) {
@@ -75,20 +82,26 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
                 mItem?.let { it1 -> mListener.onItemClick(it1) }
             }
 
+            val d = dataReal[item.stopNumber]
 
-            hideData()
-            hideNoData()
-            showProgress()
+            if (d != null) {
+                onNextData(d)
+            } else {
+                hideData()
+                hideNoData()
+                showProgress()
+            }
+
             val repository = RealTimeRepository()
             repository.getData(item.stopNumber)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
+                        dataReal[item.stopNumber] = data
                         onNextData(data)
                     }, {
                         onError()
                     })
-
         }
 
         private fun onNextData(data: List<StopData>) {

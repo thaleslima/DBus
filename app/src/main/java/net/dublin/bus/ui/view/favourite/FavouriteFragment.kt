@@ -1,5 +1,7 @@
 package net.dublin.bus.ui.view.favourite
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -14,9 +16,10 @@ import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 
-class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, FavouriteContract.View {
-    private var mAdapter: FavouriteAdapter? = null
-    private lateinit var presenter: FavouriteContract.Presenter
+class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener {
+    private lateinit var model: FavouriteViewModel
+
+    private lateinit var mAdapter: FavouriteAdapter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,34 +38,42 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, Favour
     }
 
     private fun initialize() {
-        presenter = FavouritePresenter(this, StopRepository(activity.application))
+        val factory = FavouriteViewModelFactory(StopRepository(activity.application))
+        model = ViewModelProviders.of(activity, factory).get(FavouriteViewModel::class.java)
+        model.getStops().observe(activity, Observer<List<Favourite>> {
+            it?.let {
+                onData(it)
+            }
+        })
+    }
+
+    private fun onData(data: List<Favourite>) {
+        hideNoData()
+        showData(data)
+        if (data.isEmpty()) {
+            showNoData()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.loadData()
+        mAdapter.updateRealData()
     }
 
-    override fun isNetworkAvailable(): Boolean {
+    fun isNetworkAvailable(): Boolean {
         return Utility.isNetworkAvailable(activity)
     }
 
-    override fun showData(data: List<Favourite>) {
-        mAdapter?.replaceData(data)
+    fun showData(data: List<Favourite>) {
+        mAdapter.replaceData(data)
     }
 
-    override fun showNoData() {
+    private fun showNoData() {
         favorite_message_empty?.visibility = View.VISIBLE
     }
 
-    override fun hideNoData() {
+    private fun hideNoData() {
         favorite_message_empty?.visibility = View.GONE
-    }
-
-    override fun showSnackBarNoConnection() {
-    }
-
-    override fun showSnackBarError() {
     }
 
     override fun onItemClick(item: Favourite) {

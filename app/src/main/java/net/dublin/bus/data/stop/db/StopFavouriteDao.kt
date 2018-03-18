@@ -1,5 +1,6 @@
 package net.dublin.bus.data.stop.db
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -9,7 +10,10 @@ import net.dublin.bus.model.Favourite
 @Dao
 interface StopFavouriteDao {
     @Query("SELECT stopnumber, description FROM favourites")
-    fun getStops(): List<Favourite>
+    fun getStops(): LiveData<List<Favourite>>
+
+    @Query("SELECT stopnumber, description FROM favourites")
+    fun hasFavourites(): List<Favourite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(favourite: Favourite)

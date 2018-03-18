@@ -1,5 +1,6 @@
 package net.dublin.bus.data.stop.local
 
+import android.arch.lifecycle.LiveData
 import android.content.Context
 import io.reactivex.Observable
 import net.dublin.bus.data.BusDatabase
@@ -15,8 +16,14 @@ class LocalStopFavouriteDataSource(context: Context) {
         dao = db.getFavoriteDao()
     }
 
-    fun getAll(): Observable<List<Favourite>> {
-        return Observable.fromCallable { dao.getStops() }
+    fun getAll(): LiveData<List<Favourite>> {
+        return dao.getStops()
+    }
+
+    fun hasFavourite(): Observable<Boolean>  {
+        return Observable.fromCallable { dao.hasFavourites() }.map {
+            !it.isEmpty()
+        }
     }
 
     fun isFavourite(stopNumber: String): Observable<Boolean> {

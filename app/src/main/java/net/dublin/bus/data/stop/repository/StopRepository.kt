@@ -42,7 +42,7 @@ class StopRepository(application: Application) {
         return localFavouriteSource.removeFavourite(stopNumber)
     }
 
-    fun getFavourites(): Observable<List<Favourite>> {
+    fun getFavourites(): LiveData<List<Favourite>> {
         return localFavouriteSource.getAll()
     }
 
@@ -56,5 +56,9 @@ class StopRepository(application: Application) {
 
     fun removeAllFavourites() {
         return localFavouriteSource.removeAllFavourites()
+    }
+
+    fun hasFavourite(): Observable<Boolean> {
+        return localFavouriteSource.hasFavourite()
     }
 }
