@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.item_list_favorite.view.*
+import kotlinx.android.synthetic.main.item_list_favourite_with_real.view.*
 import net.dublin.bus.R
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
 import net.dublin.bus.model.Favourite
@@ -21,6 +21,16 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
     private val mDataSet: MutableList<Favourite> = ArrayList()
     private val dataReal: HashMap<String, List<StopData>> = HashMap()
 
+    companion object {
+        private const val ITEM_WITH_REAL = 1
+
+        private const val ITEM = 2
+
+        private const val ITEM_TOP = 3
+        private const val ITEM_MIDDLE = 4
+        private const val ITEM_BOTTOM = 5
+    }
+
     internal interface ItemClickListener {
         fun onItemClick(item: Favourite)
     }
@@ -30,7 +40,7 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
     }
 
     override fun onBindViewHolder(holder: LocalViewHolder, position: Int) {
-        holder.bind(mDataSet[position])
+        holder.bind(mDataSet[position], position < 4)
     }
 
     override fun getItemCount(): Int {
@@ -53,14 +63,29 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
         }
     }
 
-    internal inner class LocalViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_list_favorite)) {
+    override fun getItemViewType(position: Int): Int {
+        if (position >= 4) {
+            return when {
+                mDataSet.size == 5 -> ITEM
+                position == 4 -> ITEM_TOP
+                position == mDataSet.size - 1 -> ITEM_BOTTOM
+                else -> ITEM_MIDDLE
+            }
+        }
+
+        return ITEM_WITH_REAL
+    }
+
+    internal inner class LocalViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(inflate(parent, viewType)) {
         private var mItem: Favourite? = null
         private var realTimes: ArrayList<RealTime> = arrayListOf()
 
         init {
-            realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_1_view)))
-            realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_2_view)))
-            realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_3_view)))
+            if (itemView.findViewById<View>(R.id.favourite_real_time_1_view) != null) {
+                realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_1_view)))
+                realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_2_view)))
+                realTimes.add(realTime(itemView.findViewById<View>(R.id.favourite_real_time_3_view)))
+            }
         }
 
         private fun realTime(view: View): RealTime {
@@ -73,7 +98,7 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
             )
         }
 
-        fun bind(item: Favourite) = with(itemView) {
+        fun bind(item: Favourite, loadReal: Boolean) = with(itemView) {
             mItem = item
 
             favourite_description_view.text = item.description
@@ -82,26 +107,27 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
                 mItem?.let { it1 -> mListener.onItemClick(it1) }
             }
 
-            val d = dataReal[item.stopNumber]
+            if (loadReal) {
+                val d = dataReal[item.stopNumber]
+                if (d != null) {
+                    onNextData(d)
+                } else {
+                    hideData()
+                    hideNoData()
+                    showProgress()
+                }
 
-            if (d != null) {
-                onNextData(d)
-            } else {
-                hideData()
-                hideNoData()
-                showProgress()
+                val repository = RealTimeRepository()
+                repository.getData(item.stopNumber)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({ data ->
+                            dataReal[item.stopNumber] = data
+                            onNextData(data)
+                        }, {
+                            onError()
+                        })
             }
-
-            val repository = RealTimeRepository()
-            repository.getData(item.stopNumber)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ data ->
-                        dataReal[item.stopNumber] = data
-                        onNextData(data)
-                    }, {
-                        onError()
-                    })
         }
 
         private fun onNextData(data: List<StopData>) {
@@ -155,6 +181,16 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
 
         private fun hideNoData() {
             itemView.favourite_real_time_message_view.visibility = View.GONE
+        }
+    }
+
+    fun inflate(parent: ViewGroup, viewType: Int): View {
+        return when (viewType) {
+            ITEM -> parent.inflate(R.layout.item_list_favourite)
+            ITEM_TOP -> parent.inflate(R.layout.item_list_favourite_top)
+            ITEM_MIDDLE -> parent.inflate(R.layout.item_list_favourite_middle)
+            ITEM_BOTTOM -> parent.inflate(R.layout.item_list_favourite_bottom)
+            else -> parent.inflate(R.layout.item_list_favourite_with_real)
         }
     }
 

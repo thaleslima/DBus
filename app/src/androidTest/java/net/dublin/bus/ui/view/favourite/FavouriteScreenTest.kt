@@ -66,9 +66,6 @@ class FavouriteScreenTest {
     private fun removeAllFavourites() {
         stopRepository = StopRepository(activityTestRule.activity.application)
         stopRepository.removeAllFavourites()
-
-        onView(withId(R.id.navigation_stop)).perform(click())
-        onView(withId(R.id.navigation_favorite)).perform(click())
     }
 
     @Test
@@ -106,9 +103,7 @@ class FavouriteScreenTest {
         checkTestOnList(0, "Damastown via Navan Road")
         checkTestOnList(0, "23 min")
         TestUtils.sleep()
-        checkTestOnList(8, "Teste 08c")
-        checkTestOnList(8, "Teste 08b")
-        checkTestOnList(8, "Teste 08a")
+        checkTestOnList(8, "27")
         TestUtils.sleep()
         checkTestOnList(0, "Damastown via Corduff")
         checkTestOnList(0, "Phoenix Pk via Donnybrook")
@@ -148,6 +143,7 @@ class FavouriteScreenTest {
         onView(withId(R.id.navigation_stop)).perform(click())
         onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.menu_favorite)).perform(click())
+        TestUtils.sleep()
         var text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_add_favourite)
         onView(withText(text)).check(matches(isDisplayed()))
         mDevice.pressBack()
@@ -212,8 +208,8 @@ class FavouriteScreenTest {
     private fun launchActivity() {
         val intent = Intent()
         activityTestRule.launchActivity(intent)
-        TestUtils.sleep()
         removeAllFavourites()
+        TestUtils.sleep()
     }
 
     private fun addFavorite(position: Int) {
