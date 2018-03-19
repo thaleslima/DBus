@@ -1,45 +1,29 @@
 package net.dublin.bus.ui.view.favourite
 
 import android.content.Intent
-import android.os.SystemClock
 import android.support.test.InstrumentationRegistry
+import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.assertion.ViewAssertions
+import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.test.espresso.matcher.BoundedMatcher
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.test.uiautomator.UiDevice
 import android.support.v7.widget.RecyclerView
-import android.view.View
-
 import net.dublin.bus.R
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.ui.view.main.MainActivity
 import net.dublin.bus.ui.view.utilities.MockServer
 import net.dublin.bus.ui.view.utilities.TestUtils
-
-import org.hamcrest.Description
-import org.hamcrest.Matcher
+import org.hamcrest.CoreMatchers.not
 import org.junit.After
 import org.junit.Before
-import org.junit.FixMethodOrder
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import java.io.UnsupportedEncodingException
-
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.internal.util.Checks.checkNotNull
-import org.hamcrest.CoreMatchers.not
-import org.junit.runners.MethodSorters.NAME_ASCENDING
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -66,6 +50,9 @@ class FavouriteScreenTest {
     private fun removeAllFavourites() {
         stopRepository = StopRepository(activityTestRule.activity.application)
         stopRepository.removeAllFavourites()
+
+        onView(withId(R.id.navigation_stop)).perform(click())
+        onView(withId(R.id.navigation_favorite)).perform(click())
     }
 
     @Test

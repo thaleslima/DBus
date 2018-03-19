@@ -25,9 +25,13 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener {
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_favourite, container, false)
         setupRecyclerView(view)
-        initialize()
 
         return view
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initialize()
     }
 
     private fun setupRecyclerView(view: View) {
