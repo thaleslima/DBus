@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.PopupMenu
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_route_detail.*
 import net.dublin.bus.R
@@ -21,10 +23,12 @@ import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.view.main.MainActivity
 import net.dublin.bus.ui.view.route.detail.list.RouteDetailFragment
 import net.dublin.bus.ui.view.route.detail.map.RouteDetailMapFragment
+import net.dublin.bus.ui.view.timetable.TimetablesActivity
 import java.util.*
 
 class RouteDetailActivity : AppCompatActivity() {
     private lateinit var number: String
+    private lateinit var code: String
     private lateinit var model: RouteDetailViewModel
 
     private var outbound: String? = null
@@ -39,20 +43,14 @@ class RouteDetailActivity : AppCompatActivity() {
         private const val BUNDLE_DIRECTION = "bundle_direction"
         private const val BUNDLE_TOWARDS = "bundle_towards"
         const val EXTRA_ROUTE_NUMBER = "route_number"
+        const val EXTRA_ROUTE_CODE = "route_code"
         const val EXTRA_ROUTE_OUT_TOWARDS = "route_outbound_towards"
         const val EXTRA_ROUTE_IN_TOWARDS = "route_inbound_towards"
-
-        fun navigate(context: Context, number: String?, outbound: String?, inbound: String?) {
-            val intent = Intent(context, RouteDetailActivity::class.java)
-            intent.putExtra(EXTRA_ROUTE_NUMBER, number)
-            intent.putExtra(EXTRA_ROUTE_OUT_TOWARDS, outbound)
-            intent.putExtra(EXTRA_ROUTE_IN_TOWARDS, inbound)
-            context.startActivity(intent)
-        }
 
         fun navigate(context: Context, item: Route) {
             val intent = Intent(context, RouteDetailActivity::class.java)
             intent.putExtra(EXTRA_ROUTE_NUMBER, item.number)
+            intent.putExtra(EXTRA_ROUTE_CODE, item.number)
             intent.putExtra(EXTRA_ROUTE_OUT_TOWARDS, item.outboundTowards)
             intent.putExtra(EXTRA_ROUTE_IN_TOWARDS, item.inboundTowards)
             context.startActivity(intent)
@@ -77,6 +75,21 @@ class RouteDetailActivity : AppCompatActivity() {
         outState?.putString(BUNDLE_TOWARDS, routeNameTowards)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.route_detail, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_assignment -> {
+                TimetablesActivity.navigate(this, number, code)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun setupLoadData() {
         val factory = RouteDetailViewModelFactory(RouteRepository(this))
         model = ViewModelProviders.of(this, factory).get(RouteDetailViewModel::class.java)
@@ -98,20 +111,20 @@ class RouteDetailActivity : AppCompatActivity() {
         }
     }
 
-    fun loadData() {
+    private fun loadData() {
         model.loadStops(number, directionCurrent)
     }
 
-    fun reloadData() {
+    private fun reloadData() {
         model.reloadStops(number, directionCurrent)
     }
 
-    fun showSnackBarNoConnection() {
+    private fun showSnackBarNoConnection() {
         Snackbar.make(container, R.string.title_no_connection,
                 Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { loadData() }.show()
     }
 
-    fun showSnackBarError() {
+    private fun showSnackBarError() {
         Snackbar.make(container, R.string.error_message,
                 Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { loadData() }.show()
     }
@@ -203,6 +216,8 @@ class RouteDetailActivity : AppCompatActivity() {
 
     private fun initExtra(savedInstanceState: Bundle?) {
         number = intent.getStringExtra(EXTRA_ROUTE_NUMBER)
+        code = intent.getStringExtra(EXTRA_ROUTE_CODE)
+
         outbound = intent.getStringExtra(EXTRA_ROUTE_OUT_TOWARDS)
         inbound = intent.getStringExtra(EXTRA_ROUTE_IN_TOWARDS)
 

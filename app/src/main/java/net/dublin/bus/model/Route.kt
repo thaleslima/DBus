@@ -23,6 +23,6 @@ data class Route(
         var outboundTowards: String? = null,
         var outboundVia: String? = null,
         var seqNumber: String? = null,
-//        var stops: List<Stop>? = null,
-        var towards: String? = null
+        var towards: String? = null,
+        var code: String? = null
 )

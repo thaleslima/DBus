@@ -13,6 +13,7 @@ import net.dublin.bus.R
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Route
 import net.dublin.bus.ui.view.route.detail.RouteDetailActivity
+import net.dublin.bus.ui.view.timetable.TimetablesActivity
 
 class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     private lateinit var model: RouteViewModel
@@ -59,7 +60,11 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     }
 
     override fun onItemClick(item: Route) {
-        RouteDetailActivity.navigate(context, item.number, item.outboundTowards, item.inboundTowards)
+        RouteDetailActivity.navigate(context, item)
+    }
+
+    override fun onLongItemClick(item: Route) {
+        TimetablesActivity.navigate(context, item.number, item.code ?: "")
     }
 
     companion object {

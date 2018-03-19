@@ -24,6 +24,7 @@ object Constants {
     const val API_URL_ROUTE_DETAIL_CONTENT = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><GetStopDataByRouteAndDirection  xmlns=\"http://dublinbus.ie/\"><route>%s</route><direction>%s</direction></GetStopDataByRouteAndDirection ></soap:Body></soap:Envelope>"
 
     const val API_URL_STOP_NEAR = "${NAMESPACE}Templates/Public/RoutePlannerService/RTPIMapHandler.ashx?ne=53.650000,-6.000000&sw=53.050000,-6.700000&zoom=13&czoom=16&rjson=true"
+    const val API_URL_TIMETABLE = "${NAMESPACE}Your-Journey1/Timetables/All-Timetables/%s/"
 
     const val LATITUDE = 53.3474
     const val LONGITUDE = -6.25962

@@ -15,13 +15,20 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
     </style>
 
+
     <style name="AppTheme.Teal" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@color/teal_500</item>
         <item name="colorPrimary">@color/teal_500</item>
         <item name="colorPrimaryDark">@color/teal_500</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-O
+
+    <style name="AppTheme.Blue" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="AppTheme.Orange" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/blue_grey_500</item>
         <item name="colorPrimary">@color/blue_grey_500</item>

@@ -20,6 +20,7 @@ internal class RouteAdapter(private val mListener: ItemClickListener) : Recycler
 
     internal interface ItemClickListener {
         fun onItemClick(item: Route)
+        fun onLongItemClick(item: Route)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocalViewHolder {
@@ -51,6 +52,10 @@ internal class RouteAdapter(private val mListener: ItemClickListener) : Recycler
             mItem = item
             route_description_view.text = item.number
             itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
+            itemView.setOnLongClickListener {
+                mItem?.let { it1 -> mListener.onLongItemClick(it1) }
+                true
+            }
         }
     }
 

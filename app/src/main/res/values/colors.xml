@@ -12,17 +12,14 @@
     <color name="grey_900">#212121</color>
 
     <color name="secondary_text">#727272</color>
-
     <color name="divider">#F5F5F5</color>
 
     <color name="teal_500">#009688</color>
-
     <color name="blue_grey_500">#607D8B</color>
-
     <color name="purple_800">#6A1B9A</color>
     <color name="purple_900">#4A148C</color>
-
     <color name="yellow">#f7e600</color>
+    <color name="blue">#009ee0</color>
 
 
 </resources>

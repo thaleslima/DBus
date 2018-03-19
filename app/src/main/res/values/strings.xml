@@ -50,4 +50,8 @@
 
     <string name="favorite_message_empty_title">Nothing saved yet</string>
     <string name="favorite_message_empty">When you see something you like, tap on the heart to save.</string>
+
+    <string name="timetables_title">Timetables %s</string>
+    <string name="timetables_menu_title">Timetables</string>
+
 </resources>
