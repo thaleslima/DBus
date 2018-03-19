@@ -12,7 +12,7 @@ interface StopDao {
     @Query("SELECT stopnumber, description, routes FROM stops")
     fun getStops(): LiveData<List<Stop>>
 
-    @Query("SELECT stopnumber, description, routes FROM stops WHERE stopnumber LIKE :search || '%' OR description LIKE '%' || :search || '%'")
+    @Query("SELECT stopnumber, description, routes FROM stops WHERE stopnumber LIKE :search || '%' OR description LIKE :search || '%'")
     fun getStopsByText(search: String): List<Stop>
 
     @Query("SELECT stopnumber, description, latitude, longitude, routes FROM stops ORDER BY abs(latitude - (:latitude)) + abs(longitude - (:longitude)) LIMIT 30")
