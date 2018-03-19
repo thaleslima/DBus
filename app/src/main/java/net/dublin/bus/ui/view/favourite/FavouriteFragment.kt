@@ -3,7 +3,9 @@ package net.dublin.bus.ui.view.favourite
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -16,7 +18,7 @@ import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 
-class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener {
+class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var model: FavouriteViewModel
 
     private lateinit var mAdapter: FavouriteAdapter
@@ -25,12 +27,12 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener {
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_favourite, container, false)
         setupRecyclerView(view)
-
         return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
         initialize()
     }
 
@@ -51,17 +53,40 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener {
         })
     }
 
+    private fun setupView() {
+        favourite_swipe_refresh_layout.setOnRefreshListener(this)
+    }
+
     private fun onData(data: List<Favourite>) {
+        enableProgressSwipe()
         hideNoData()
         showData(data)
         if (data.isEmpty()) {
+            disableProgressSwipe()
             showNoData()
         }
+    }
+
+    private fun hideProgressSwipe() {
+        favourite_swipe_refresh_layout?.isRefreshing = false
+    }
+
+    private fun enableProgressSwipe() {
+        favourite_swipe_refresh_layout?.visibility = View.VISIBLE
+    }
+
+    private fun disableProgressSwipe() {
+        favourite_swipe_refresh_layout?.visibility = View.GONE
     }
 
     override fun onResume() {
         super.onResume()
         mAdapter.updateRealData()
+    }
+
+    override fun onRefresh() {
+        mAdapter.updateRealData()
+        Handler().postDelayed({ hideProgressSwipe() }, 500)
     }
 
     fun isNetworkAvailable(): Boolean {
