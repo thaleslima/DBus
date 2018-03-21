@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "215919300433",
+    "firebase_url": "https://dublin-bus-8633f.firebaseio.com",
+    "project_id": "dublin-bus-8633f",
+    "storage_bucket": "dublin-bus-8633f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215919300433:android:98799854898f0614",
+        "android_client_info": {
+          "package_name": "net.dublin.bus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215919300433-tn1gp40taidh33tso6ouuh04gk54qtqh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.dublin.bus",
+            "certificate_hash": "292d352bb9dcf44de1771f05b0470c5ce1a57f2c"
+          }
+        },
+        {
+          "client_id": "215919300433-1duptjgg0gt22keohr28gc2utnslpm0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHgE0SUEIkXJoubqCj4sT5CU9LAyDgXE8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215919300433-1duptjgg0gt22keohr28gc2utnslpm0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
