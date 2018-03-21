@@ -231,13 +231,17 @@ class RouteDetailActivity : AppCompatActivity() {
         outbound = intent.getStringExtra(EXTRA_ROUTE_OUT_TOWARDS)
         inbound = intent.getStringExtra(EXTRA_ROUTE_IN_TOWARDS)
 
-        menu[2] = outbound
-        directionCurrent = "O"
-        routeNameTowards = outbound
+        if (!outbound.isEmpty()) {
+            menu[2] = outbound
+            directionCurrent = "O"
+            routeNameTowards = outbound
+        }
 
-        menu[1] = inbound
-        directionCurrent = "I"
-        routeNameTowards = inbound
+        if (!inbound.isEmpty()) {
+            menu[1] = inbound
+            directionCurrent = "I"
+            routeNameTowards = inbound
+        }
 
         if (savedInstanceState != null) {
             directionCurrent = savedInstanceState.getString(BUNDLE_DIRECTION)

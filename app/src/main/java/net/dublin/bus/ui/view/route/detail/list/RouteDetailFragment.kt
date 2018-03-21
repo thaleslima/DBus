@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.fragment_route_detail.*
 import net.dublin.bus.R
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Utility
+import net.dublin.bus.ui.view.realtime.RealTimeActivity
 
 class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, RouteDetailContract.View {
     private lateinit var presenter: RouteDetailContract.Presenter
@@ -68,6 +69,7 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
     }
 
     override fun onItemClick(item: Stop) {
+        RealTimeActivity.navigate(context, item)
     }
 
     companion object {
