@@ -26,6 +26,7 @@
             android:drawableLeft="@drawable/ic_search_blue_800_24dp"
             android:drawablePadding="24dp"
             android:drawableStart="@drawable/ic_search_blue_800_24dp"
+            android:elevation="2dp"
             android:ems="10"
             android:focusable="false"
             android:hint="@string/main_search_hint"
