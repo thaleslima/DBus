@@ -17,7 +17,7 @@ import net.dublin.bus.ui.view.timetable.TimetablesActivity
 
 class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     private lateinit var model: RouteViewModel
-    private var mAdapter: RouteAdapter? = null
+    private lateinit var mAdapter: RouteAdapter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -48,7 +48,7 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     }
 
     fun showData(data: List<Route>) {
-        mAdapter?.replaceData(data)
+        mAdapter.replaceData(data)
     }
 
     fun showProgress() {
@@ -64,7 +64,7 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     }
 
     override fun onLongItemClick(item: Route) {
-        TimetablesActivity.navigate(context, item.number, item.code ?: "")
+        TimetablesActivity.navigate(context, item.number, item.code)
     }
 
     companion object {

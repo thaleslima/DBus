@@ -9,10 +9,12 @@ import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.PopupMenu
+import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_route_detail.*
 import net.dublin.bus.R
 import net.dublin.bus.common.PreferencesUtils
@@ -31,13 +33,14 @@ class RouteDetailActivity : AppCompatActivity() {
     private lateinit var code: String
     private lateinit var model: RouteDetailViewModel
 
-    private var outbound: String? = null
-    private var inbound: String? = null
+    private lateinit var outbound: String
+    private lateinit var inbound: String
     private var map: Boolean = false
 
     private val menu = TreeMap<Int, String>()
     private var directionCurrent: String = "I"
     private var routeNameTowards: String = ""
+    private var menuAssignment: MenuItem? = null
 
     companion object {
         private const val BUNDLE_DIRECTION = "bundle_direction"
@@ -50,10 +53,15 @@ class RouteDetailActivity : AppCompatActivity() {
         fun navigate(context: Context, item: Route) {
             val intent = Intent(context, RouteDetailActivity::class.java)
             intent.putExtra(EXTRA_ROUTE_NUMBER, item.number)
-            intent.putExtra(EXTRA_ROUTE_CODE, item.number)
+            intent.putExtra(EXTRA_ROUTE_CODE, item.code)
             intent.putExtra(EXTRA_ROUTE_OUT_TOWARDS, item.outboundTowards)
             intent.putExtra(EXTRA_ROUTE_IN_TOWARDS, item.inboundTowards)
-            context.startActivity(intent)
+
+            if (!TextUtils.isEmpty(item.outboundTowards) || !TextUtils.isEmpty(item.inboundTowards)) {
+                context.startActivity(intent)
+            } else {
+                Toast.makeText(context, R.string.route_detail_no_items, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -77,6 +85,8 @@ class RouteDetailActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.route_detail, menu)
+        menuAssignment = menu.findItem(R.id.menu_assignment)
+        menuAssignment?.isVisible = !TextUtils.isEmpty(code)
         return true
     }
 
@@ -203,13 +213,13 @@ class RouteDetailActivity : AppCompatActivity() {
     }
 
     private fun changeInbound() {
-        routeNameTowards = inbound ?: ""
+        routeNameTowards = inbound
         directionCurrent = "I"
         reloadData()
     }
 
     private fun changeToOutbound() {
-        routeNameTowards = outbound ?: ""
+        routeNameTowards = outbound
         directionCurrent = "O"
         reloadData()
     }
@@ -221,17 +231,13 @@ class RouteDetailActivity : AppCompatActivity() {
         outbound = intent.getStringExtra(EXTRA_ROUTE_OUT_TOWARDS)
         inbound = intent.getStringExtra(EXTRA_ROUTE_IN_TOWARDS)
 
-        if (outbound != null) {
-            menu[2] = outbound!!
-            directionCurrent = "O"
-            routeNameTowards = outbound!!
-        }
+        menu[2] = outbound
+        directionCurrent = "O"
+        routeNameTowards = outbound
 
-        if (inbound != null) {
-            menu[1] = inbound!!
-            directionCurrent = "I"
-            routeNameTowards = inbound!!
-        }
+        menu[1] = inbound
+        directionCurrent = "I"
+        routeNameTowards = inbound
 
         if (savedInstanceState != null) {
             directionCurrent = savedInstanceState.getString(BUNDLE_DIRECTION)

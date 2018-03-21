@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.NonNull
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
 import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -58,8 +59,7 @@ class TimetablesActivity : AppCompatActivity() {
     }
 
     private fun loadUrl() {
-        //web_view.loadUrl(Constants.API_URL_TIMETABLE.format(code))
-        web_view.loadUrl(Constants.API_URL_TIMETABLE.format("113"))
+        web_view.loadUrl(Constants.API_URL_TIMETABLE.format(code))
     }
 
     private inner class WebClient : WebViewClient() {
@@ -113,11 +113,13 @@ class TimetablesActivity : AppCompatActivity() {
         private const val EXTRA_ROUTE_NUMBER = "route_number"
         private const val EXTRA_ROUTE_CODE = "route_code_number"
 
-        fun navigate(context: Context, routeNumber: String, routeCode: String) {
+        fun navigate(context: Context, routeNumber: String, routeCode: String?) {
             val intent = Intent(context, TimetablesActivity::class.java)
             intent.putExtra(EXTRA_ROUTE_NUMBER, routeNumber)
             intent.putExtra(EXTRA_ROUTE_CODE, routeCode)
-            context.startActivity(intent)
+            if (!TextUtils.isEmpty(routeCode)) {
+                context.startActivity(intent)
+            }
         }
     }
 }

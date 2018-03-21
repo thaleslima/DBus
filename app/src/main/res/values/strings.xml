@@ -25,6 +25,7 @@
     <string name="route_detail_size_stops">%s stops</string>
     <string name="route_detail_title">Route %s</string>
     <string name="route_detail_error">No route info available.</string>
+    <string name="route_detail_no_items">No items</string>
 
     <string name="real_time_remove_favourite">Removed from Favourites</string>
     <string name="real_time_add_favourite">Saved in Favourites</string>
