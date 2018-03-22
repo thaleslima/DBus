@@ -68,6 +68,7 @@ class RouteDetailMapScreenTest {
         clickMarker("stopNumber3544")
 
         //Check marker selected
+        sleep()
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()))
         onView(withId(R.id.route_detail_map_description_stop_view)).check(matches(withText(startsWith("Beechfield Mnr, Shanganagh Road"))))
         onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith("40, 40B, 40D"))))
@@ -93,6 +94,7 @@ class RouteDetailMapScreenTest {
         clickMarker("stopNumber3552")
 
         //Check second marker selected
+        sleep()
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()))
         onView(withId(R.id.route_detail_map_description_stop_view)).check(matches(withText(startsWith("Shanganagh Road, Hazelwood"))))
         onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith("20D, 27, 40"))))
@@ -127,6 +129,7 @@ class RouteDetailMapScreenTest {
         device.setOrientationLeft()
 
         //Check marker selected
+        sleep()
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()))
         onView(withId(R.id.route_detail_map_description_stop_view)).check(matches(withText(startsWith("Beechfield Mnr, Shanganagh Road"))))
         onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith("40, 40B, 40D"))))
@@ -152,6 +155,7 @@ class RouteDetailMapScreenTest {
         clickMarker("stopNumber3544")
 
         //Check message error route
+        sleep()
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()))
         val text = InstrumentationRegistry.getTargetContext().getString(R.string.route_detail_error)
         onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith(text))))
@@ -177,6 +181,7 @@ class RouteDetailMapScreenTest {
         device.setOrientationLeft()
 
         //Check message error route
+        sleep()
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()))
         val text = InstrumentationRegistry.getTargetContext().getString(R.string.route_detail_error)
         onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith(text))))
@@ -195,6 +200,7 @@ class RouteDetailMapScreenTest {
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_NUMBER, ROUTE_NUMBER)
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_OUT_TOWARDS, ROUTE_OUT_TOWARDS)
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_IN_TOWARDS, ROUTE_IN_TOWARDS)
+        intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_CODE, ROUTE_CODE)
 
         activityTestRule.launchActivity(intent)
         SystemClock.sleep(500)
@@ -203,8 +209,9 @@ class RouteDetailMapScreenTest {
     companion object {
         private val TAG = RouteDetailMapScreenTest::class.java.name
 
-        private val ROUTE_NUMBER = "7b"
-        private val ROUTE_IN_TOWARDS = "route_inbound_towards"
-        private val ROUTE_OUT_TOWARDS = "route_outbound_towards"
+        private const val ROUTE_NUMBER = "7b"
+        private const val ROUTE_IN_TOWARDS = "route_inbound_towards"
+        private const val ROUTE_OUT_TOWARDS = "route_outbound_towards"
+        private const val ROUTE_CODE = "113"
     }
 }

@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.PopupMenu
 import android.text.TextUtils
@@ -132,13 +133,15 @@ class RouteDetailActivity : AppCompatActivity() {
     }
 
     private fun showSnackBarNoConnection() {
-        Snackbar.make(container, R.string.title_no_connection,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { loadData() }.show()
+        Snackbar.make(container, R.string.title_no_connection, Snackbar.LENGTH_INDEFINITE)
+                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
+                .setAction(R.string.title_retry) { loadData() }.show()
     }
 
     private fun showSnackBarError() {
-        Snackbar.make(container, R.string.error_message,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { loadData() }.show()
+        Snackbar.make(container, R.string.error_message, Snackbar.LENGTH_INDEFINITE)
+                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
+                .setAction(R.string.title_retry) { loadData() }.show()
     }
 
     fun isNetworkAvailable(): Boolean {

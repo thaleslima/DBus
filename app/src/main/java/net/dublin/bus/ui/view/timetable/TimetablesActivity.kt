@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.NonNull
 import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
@@ -113,13 +114,15 @@ class TimetablesActivity : AppCompatActivity() {
     }
 
     private fun showSnackBarNoConnection() {
-        Snackbar.make(container, R.string.title_no_connection,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { loadUrl() }.show()
+        Snackbar.make(container, R.string.title_no_connection, Snackbar.LENGTH_INDEFINITE)
+                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
+                .setAction(R.string.title_retry) { loadUrl() }.show()
     }
 
     private fun showSnackBarError() {
-        Snackbar.make(container, R.string.error_message,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.title_retry) { loadUrl() }.show()
+        Snackbar.make(container, R.string.error_message, Snackbar.LENGTH_INDEFINITE)
+                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
+                .setAction(R.string.title_retry) { loadUrl() }.show()
     }
 
     fun showProgress() {

@@ -1,6 +1,7 @@
 package net.dublin.bus.ui.view.favourite
 
 import android.content.Intent
+import android.os.SystemClock
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
@@ -153,6 +154,7 @@ class FavouriteScreenTest {
         onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.menu_favorite)).perform(click())
         mDevice.pressBack()
+        TestUtils.sleep()
 
         //Add Favourite 2
         onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, click()))
@@ -187,8 +189,8 @@ class FavouriteScreenTest {
         onView(withText(text)).check(matches(isDisplayed()))
         mDevice.pressBack()
 
+        TestUtils.sleep()
         // Verify only one favourite 2 was deleted
-        onView(withText("Parnell Square, Rotunda Hospital")).check(ViewAssertions.doesNotExist())
         onView(withId(R.id.favorite_message_empty)).check(matches(isDisplayed()))
     }
 
