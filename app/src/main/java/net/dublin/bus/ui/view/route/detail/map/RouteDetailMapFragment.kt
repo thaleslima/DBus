@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_route_detail_map.*
 import net.dublin.bus.R
+import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.*
@@ -80,6 +81,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
     private fun setupViewProperties() {
         detail_map_stop_view?.setOnClickListener { v ->
             detail_map_stop_view?.let {
+                AnalyticsUtil.sendRouteDetailMapEvent(context)
                 RealTimeActivity.navigate(context, v.tag as Stop)
             }
         }

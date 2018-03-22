@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_stop.*
 import net.dublin.bus.R
+import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Utility
@@ -66,6 +67,7 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
     }
 
     override fun onItemClick(item: Stop) {
+        AnalyticsUtil.sendRouteEvent(context)
         RealTimeActivity.navigate(context, item)
     }
 

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_route.*
 import net.dublin.bus.R
+import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Route
 import net.dublin.bus.ui.view.route.detail.RouteDetailActivity
@@ -65,6 +66,7 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
 
     override fun onLongItemClick(item: Route) {
         TimetablesActivity.navigate(context, item.number, item.code)
+        AnalyticsUtil.sendClickLongTimetablesEvent(context)
     }
 
     companion object {

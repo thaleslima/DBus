@@ -17,6 +17,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_route_detail.*
 import net.dublin.bus.R
+import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.common.PreferencesUtils
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Route
@@ -93,6 +94,7 @@ class RouteDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_assignment -> {
+                AnalyticsUtil.sendMenuTimetablesEvent(this)
                 TimetablesActivity.navigate(this, number, code)
                 true
             }
@@ -155,6 +157,7 @@ class RouteDetailActivity : AppCompatActivity() {
 
         route_change_map_list_view.setOnClickListener({
             map = !map
+            sendEvent()
             changeMapOrList()
             changeIcoMapOrList()
             PreferencesUtils.saveShowMapAtRouteDeail(it.context, map)
@@ -171,6 +174,11 @@ class RouteDetailActivity : AppCompatActivity() {
         }
 
         changeIcoMapOrList()
+    }
+
+    private fun sendEvent() {
+        AnalyticsUtil.sendMapOrListProperty(this, map)
+        AnalyticsUtil.sendListOrMapEvent(this, map)
     }
 
     private fun changeMapOrList() {

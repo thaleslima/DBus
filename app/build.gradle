@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'io.fabric'
-
+apply plugin: 'com.google.firebase.firebase-perf'
 
 repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
@@ -77,6 +77,8 @@ dependencies {
     }
 
     implementation 'com.google.firebase:firebase-core:12.0.0'
+    implementation 'com.google.firebase:firebase-perf:12.0.0'
+    
     implementation "com.google.android.gms:play-services-maps:12.0.0"
     implementation "com.google.android.gms:play-services-location:12.0.0"
     implementation "com.android.support:appcompat-v7:26.1.0"

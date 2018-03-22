@@ -40,6 +40,8 @@ interface RealTimeContract {
         fun showSnackbarRemoveFavourite()
 
         fun showSnackbarSaveFavourite()
+
+        fun sendFavoriteEvent(value: Boolean)
     }
 
     interface Presenter : BasePresenter {

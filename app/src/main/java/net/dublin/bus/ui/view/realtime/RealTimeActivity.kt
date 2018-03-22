@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_real_time.*
 import net.dublin.bus.R
+import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
@@ -187,6 +188,10 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun sendFavoriteEvent(value: Boolean) {
+        AnalyticsUtil.sendFavoriteEvent(this, value)
     }
 
     companion object {

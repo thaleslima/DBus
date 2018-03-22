@@ -21,6 +21,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_near.*
 import net.dublin.bus.R
+import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.common.Constants
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
@@ -247,6 +248,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
     }
 
     override fun onItemClick(item: Stop) {
+        AnalyticsUtil.sendRouteNearEvent(this)
         RealTimeActivity.navigate(this, item)
     }
 

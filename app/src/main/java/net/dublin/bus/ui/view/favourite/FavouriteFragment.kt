@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_favourite.*
 import net.dublin.bus.R
+import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.Utility
@@ -106,6 +107,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
     }
 
     override fun onItemClick(item: Favourite) {
+        AnalyticsUtil.sendRouteFavouriteEvent(context)
         RealTimeActivity.navigate(activity, item)
     }
 

@@ -11,6 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import net.dublin.bus.R
+import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.BottomNavigationViewHelper
@@ -26,19 +27,21 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_stop -> {
+                AnalyticsUtil.trackScreenStops(this)
                 switchContent(StopFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_route -> {
+                AnalyticsUtil.trackScreenRoutes(this)
                 switchContent(RouteFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_near -> {
-                //switchContent(NearFragment.newInstance())
                 NearActivity.navigate(this)
                 return@OnNavigationItemSelectedListener false
             }
             R.id.navigation_favorite -> {
+                AnalyticsUtil.trackScreenFavourites(this)
                 switchContent(FavouriteFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
@@ -80,11 +83,12 @@ class MainActivity : AppCompatActivity() {
     private fun checkFavourite() {
         if (checkFavourite) {
             val repository = StopRepository(application)
-            repository.hasFavourite()
+            repository.getQtdStops()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
-                        onNextData(data)
+                        AnalyticsUtil.sendFavouritesQtdProperty(this, data)
+                        onNextData(data > 0)
                     }, {
                         onError()
                     })

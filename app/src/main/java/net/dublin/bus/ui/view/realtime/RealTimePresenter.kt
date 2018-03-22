@@ -70,6 +70,8 @@ class RealTimePresenter(private val view: RealTimeContract.View,
             stopRepository.removeFavourite(stopNumber)
         }
 
+        view.sendFavoriteEvent(!isFavorite)
+
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

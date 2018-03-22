@@ -13,7 +13,7 @@ interface StopFavouriteDao {
     fun getStops(): LiveData<List<Favourite>>
 
     @Query("SELECT stopnumber, description FROM favourites")
-    fun hasFavourites(): List<Favourite>
+    fun getQtdStops(): List<Favourite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(favourite: Favourite)

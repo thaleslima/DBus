@@ -20,10 +20,8 @@ class LocalStopFavouriteDataSource(context: Context) {
         return dao.getStops()
     }
 
-    fun hasFavourite(): Observable<Boolean>  {
-        return Observable.fromCallable { dao.hasFavourites() }.map {
-            !it.isEmpty()
-        }
+    fun getQtdStops(): Observable<Int> {
+        return Observable.fromCallable { dao.getQtdStops() }.map { it.size }
     }
 
     fun isFavourite(stopNumber: String): Observable<Boolean> {
@@ -55,7 +53,7 @@ class LocalStopFavouriteDataSource(context: Context) {
         }
     }
 
-    fun removeFavourite(stopNumber: String) : Observable<Boolean>{
+    fun removeFavourite(stopNumber: String): Observable<Boolean> {
         return Observable.create { subscriber ->
             try {
                 dao.removeFavourite(stopNumber)

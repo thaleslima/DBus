@@ -58,7 +58,7 @@ class StopRepository(application: Application) {
         return localFavouriteSource.removeAllFavourites()
     }
 
-    fun hasFavourite(): Observable<Boolean> {
-        return localFavouriteSource.hasFavourite()
+    fun getQtdStops(): Observable<Int> {
+        return localFavouriteSource.getQtdStops()
     }
 }
