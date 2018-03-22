@@ -60,7 +60,7 @@
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp"
                 android:text="@string/route_detail_change_direction"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/route_name_towards_view" />
 

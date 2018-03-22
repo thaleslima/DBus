@@ -1,12 +1,10 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/indigo_900</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -15,15 +13,15 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
     </style>
 
-
     <style name="AppTheme.Teal" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@color/teal_500</item>
         <item name="colorPrimary">@color/teal_500</item>
         <item name="colorPrimaryDark">@color/teal_500</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/teal_900</item>
     </style>
 
     <style name="AppTheme.Blue" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/blue</item>
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryDark">@color/blue</item>
         <item name="colorAccent">@color/colorPrimary</item>
@@ -33,21 +31,21 @@
         <item name="android:windowBackground">@color/blue_grey_500</item>
         <item name="colorPrimary">@color/blue_grey_500</item>
         <item name="colorPrimaryDark">@color/blue_grey_500</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/blue_grey_900</item>
     </style>
 
     <style name="AppTheme.Purple" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/purple_800</item>
         <item name="colorPrimary">@color/purple_800</item>
         <item name="colorPrimaryDark">@color/purple_900</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/purple_900</item>
     </style>
 
     <style name="AppTheme.White" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/white</item>
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/purple_900</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/purple_900</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
