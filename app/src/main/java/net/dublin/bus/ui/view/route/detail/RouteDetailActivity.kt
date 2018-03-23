@@ -16,14 +16,11 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_route_detail.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
-import net.dublin.bus.common.PreferencesUtils
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
-import net.dublin.bus.ui.utilities.Utility
-import net.dublin.bus.ui.utilities.snackBarErrorMessage
-import net.dublin.bus.ui.utilities.snackBarNoConnection
+import net.dublin.bus.ui.utilities.*
 import net.dublin.bus.ui.view.main.MainActivity
 import net.dublin.bus.ui.view.route.detail.list.RouteDetailFragment
 import net.dublin.bus.ui.view.route.detail.map.RouteDetailMapFragment
@@ -95,7 +92,7 @@ class RouteDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_assignment -> {
-                AnalyticsUtil.sendMenuTimetablesEvent(this)
+                Analytics.sendMenuTimetablesEvent(this)
                 TimetablesActivity.navigate(this, number, code)
                 true
             }
@@ -140,10 +137,6 @@ class RouteDetailActivity : AppCompatActivity() {
         snackBarErrorMessage(container, { loadData() }).show()
     }
 
-    fun isNetworkAvailable(): Boolean {
-        return Utility.isNetworkAvailable(this)
-    }
-
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -152,14 +145,14 @@ class RouteDetailActivity : AppCompatActivity() {
 
     private fun setupView() {
         route_name_towards_view.text = routeNameTowards
-        map = PreferencesUtils.getShowMapAtRouteDeail(this)
+        map = getShowMapAtRouteDetail()
 
         route_change_map_list_view.setOnClickListener({
             map = !map
             sendEvent()
             changeMapOrList()
             changeIcoMapOrList()
-            PreferencesUtils.saveShowMapAtRouteDeail(it.context, map)
+            RouteDetailActivity@this.saveShowMapAtRouteDetail(map)
         })
 
         route_change_direction_view.setOnClickListener { v -> showFilterPopup(v) }
@@ -176,8 +169,8 @@ class RouteDetailActivity : AppCompatActivity() {
     }
 
     private fun sendEvent() {
-        AnalyticsUtil.sendMapOrListProperty(this, map)
-        AnalyticsUtil.sendListOrMapEvent(this, map)
+        Analytics.sendMapOrListProperty(this, map)
+        Analytics.sendListOrMapEvent(this, map)
     }
 
     private fun changeMapOrList() {

@@ -1,14 +1,21 @@
 package net.dublin.bus.ui.utilities
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.preference.PreferenceManager
 import android.support.annotation.NonNull
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import net.dublin.bus.R
+
+private const val PREFERENCES_MAP = "preferences_map"
 
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
@@ -32,5 +39,50 @@ fun Context.snackBarErrorMessage(@NonNull view: View, listener: (View) -> Unit):
             .setAction(R.string.title_retry, listener)
 }
 
+fun Context.getDip(value: Int): Int {
+    val displayMetrics = this.resources.displayMetrics
 
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value.toFloat(), displayMetrics).toInt()
+}
+
+fun Fragment.getDip(value: Int): Int {
+    return this.context.getDip(value)
+}
+
+fun Context.isNetworkAvailable(): Boolean {
+    val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val info = cm.activeNetworkInfo
+    return info != null && info.isConnected && info.isAvailable
+}
+
+fun Context.showViewLayout(view: View) {
+    var animation = AnimationUtils.loadAnimation(this, R.anim.abc_slide_out_bottom)
+    animation.duration = 200
+    view.startAnimation(animation)
+    view.visibility = View.GONE
+
+    animation = AnimationUtils.loadAnimation(this, R.anim.abc_slide_in_bottom)
+    animation.duration = 400
+    view.startAnimation(animation)
+    view.visibility = View.VISIBLE
+}
+
+fun Context.hideViewLayout(view: View) {
+    val animation = AnimationUtils.loadAnimation(this, R.anim.abc_slide_out_bottom)
+    animation.duration = 200
+    view.startAnimation(animation)
+    view.visibility = View.GONE
+}
+
+fun Context.saveShowMapAtRouteDetail(value: Boolean) {
+    val settings = PreferenceManager.getDefaultSharedPreferences(this)
+    val editor = settings.edit()
+    editor.putBoolean(PREFERENCES_MAP, value)
+    editor.apply()
+}
+
+fun Context.getShowMapAtRouteDetail(): Boolean {
+    val settings = PreferenceManager.getDefaultSharedPreferences(this)
+    return settings.getBoolean(PREFERENCES_MAP, false)
+}
 

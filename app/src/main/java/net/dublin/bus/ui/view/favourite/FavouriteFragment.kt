@@ -13,10 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_favourite.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
-import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 
 class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeRefreshLayout.OnRefreshListener {
@@ -90,10 +89,6 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
         Handler().postDelayed({ hideProgressSwipe() }, 500)
     }
 
-    fun isNetworkAvailable(): Boolean {
-        return Utility.isNetworkAvailable(activity)
-    }
-
     fun showData(data: List<Favourite>) {
         mAdapter.replaceData(data)
     }
@@ -107,7 +102,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
     }
 
     override fun onItemClick(item: Favourite) {
-        AnalyticsUtil.sendRouteFavouriteEvent(context)
+        Analytics.sendRouteFavouriteEvent(context)
         RealTimeActivity.navigate(activity, item)
     }
 

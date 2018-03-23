@@ -8,7 +8,7 @@ import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import net.dublin.bus.ui.view.search.SearchActivity
 
-object AnalyticsUtil {
+object Analytics {
     private interface Constants {
         companion object {
             const val FAVORITE = "favorite"

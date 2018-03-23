@@ -7,7 +7,7 @@ interface RealTimeContract {
     interface View {
         fun getSizeData(): Int
 
-        fun isNetworkAvailable(): Boolean
+        fun hasNetwork(): Boolean
 
         fun showData(data: List<StopData>)
 

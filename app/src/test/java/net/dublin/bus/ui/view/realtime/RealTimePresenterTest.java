@@ -120,7 +120,7 @@ public class RealTimePresenterTest {
     @Test
     public void loadData_1_NoConnection_ShowsErrorUi() {
         when(repository.getData(STOP_NUMBER)).thenReturn(Observable.<List<StopData>>error(new Exception()));
-        when(view.isNetworkAvailable()).thenReturn(false);
+        when(view.hasNetwork()).thenReturn(false);
 
         presenter.loadData();
 
@@ -175,7 +175,7 @@ public class RealTimePresenterTest {
     @Test
     public void loadData_ErrorConnection_ShowsErrorUi() {
         when(repository.getData(STOP_NUMBER)).thenReturn(Observable.<List<StopData>>error(new Exception()));
-        when(view.isNetworkAvailable()).thenReturn(true);
+        when(view.hasNetwork()).thenReturn(true);
 
         presenter.loadData();
 

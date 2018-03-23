@@ -91,7 +91,7 @@ class RealTimePresenter(private val view: RealTimeContract.View,
         view.hideProgress()
         view.hideProgressSwipe()
 
-        if (view.isNetworkAvailable()) {
+        if (view.hasNetwork()) {
             view.showSnackBarError()
         } else {
             view.showSnackBarNoConnection()

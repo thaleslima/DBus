@@ -21,7 +21,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_near.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.common.Constants
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
@@ -86,7 +86,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
 
         near_recycler_view.viewTreeObserver.addOnGlobalLayoutListener({
             try {
-                val padding = Sizes.getDip(this@NearActivity, 10)
+                val padding = getDip(10)
                 mMap?.setPadding(0, near_recycler_view.height - padding, 0, near_recycler_view.height - padding)
             } catch (e: Exception) {
                 e.fillInStackTrace()
@@ -245,7 +245,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
     }
 
     override fun onItemClick(item: Stop) {
-        AnalyticsUtil.sendRouteNearEvent(this)
+        Analytics.sendRouteNearEvent(this)
         RealTimeActivity.navigate(this, item)
     }
 

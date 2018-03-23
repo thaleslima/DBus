@@ -10,10 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_stop.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
-import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 
 class StopFragment : Fragment(), StopAdapter.ItemClickListener {
@@ -50,10 +49,6 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
         })
     }
 
-    fun isNetworkAvailable(): Boolean {
-        return Utility.isNetworkAvailable(activity)
-    }
-
     fun showData(data: List<Stop>) {
         mAdapter?.replaceData(data)
     }
@@ -67,7 +62,7 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
     }
 
     override fun onItemClick(item: Stop) {
-        AnalyticsUtil.sendRouteEvent(context)
+        Analytics.sendRouteEvent(context)
         RealTimeActivity.navigate(context, item)
     }
 

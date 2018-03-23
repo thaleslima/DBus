@@ -11,9 +11,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.data.stop.repository.StopRepository
-import net.dublin.bus.model.Favourite
 import net.dublin.bus.ui.utilities.BottomNavigationViewHelper
 import net.dublin.bus.ui.view.favourite.FavouriteFragment
 import net.dublin.bus.ui.view.near.NearActivity
@@ -27,12 +26,12 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_stop -> {
-                AnalyticsUtil.trackScreenStops(this)
+                Analytics.trackScreenStops(this)
                 switchContent(StopFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_route -> {
-                AnalyticsUtil.trackScreenRoutes(this)
+                Analytics.trackScreenRoutes(this)
                 switchContent(RouteFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener false
             }
             R.id.navigation_favorite -> {
-                AnalyticsUtil.trackScreenFavourites(this)
+                Analytics.trackScreenFavourites(this)
                 switchContent(FavouriteFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
-                        AnalyticsUtil.sendFavouritesQtdProperty(this, data)
+                        Analytics.sendFavouritesQtdProperty(this, data)
                         onNextData(data > 0)
                     }, {
                         onError()

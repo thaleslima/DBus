@@ -35,7 +35,7 @@ object Haversine {
         return EARTH_RADIUS * c // <-- d
     }
 
-    fun haversin(`val`: Double): Double {
+    private fun haversin(`val`: Double): Double {
         return Math.pow(Math.sin(`val` / 2), 2.0)
     }
 }

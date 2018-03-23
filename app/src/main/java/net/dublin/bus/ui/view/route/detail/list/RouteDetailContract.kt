@@ -6,8 +6,6 @@ import net.dublin.bus.ui.view.BasePresenter
 
 interface RouteDetailContract {
     interface View {
-        fun isNetworkAvailable(): Boolean
-
         fun showData(data: List<Stop>)
 
         fun showProgress()

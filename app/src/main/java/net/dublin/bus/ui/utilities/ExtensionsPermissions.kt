@@ -6,9 +6,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
-import net.dublin.bus.common.PreferencesUtils
-
-private const val LOCATION_ASKED_BEFORE = "location_asked_before"
 
 private fun hasPermission(context: Context, permission: String): Boolean {
     return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
@@ -23,10 +20,8 @@ private fun requestPermissions(fragment: Fragment, requestCode: Int, vararg perm
 }
 
 private fun shouldShowRequestPermissionRationale(activity: Activity): Boolean {
-    val contactsAskedBefore = PreferencesUtils.getIntData(LOCATION_ASKED_BEFORE, activity)
     val shouldShowRequest = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)
-
-    return contactsAskedBefore == 1 && shouldShowRequest || contactsAskedBefore == 0 && !shouldShowRequest || shouldShowRequest
+    return  shouldShowRequest || !shouldShowRequest || shouldShowRequest
 }
 
 private fun showLocationRequestPermission(fragment: Fragment, requestCod: Int) {
@@ -45,10 +40,6 @@ private fun showLocationRequestPermission(activity: Activity, requestCod: Int) {
     }
 }
 
-
-private fun saveAskedBefore(context: Context) {
-    PreferencesUtils.saveData(LOCATION_ASKED_BEFORE, 1, context)
-}
 
 fun Context.hasLocationPermission(): Boolean {
     return (hasPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)

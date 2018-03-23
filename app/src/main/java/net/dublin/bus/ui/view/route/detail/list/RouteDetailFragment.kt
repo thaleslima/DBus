@@ -1,7 +1,6 @@
 package net.dublin.bus.ui.view.route.detail.list
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -9,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_route_detail.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.model.Stop
-import net.dublin.bus.ui.utilities.Utility
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 
 class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, RouteDetailContract.View {
@@ -45,10 +43,6 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
         presenter.loadData()
     }
 
-    override fun isNetworkAvailable(): Boolean {
-        return Utility.isNetworkAvailable(activity)
-    }
-
     override fun showData(data: List<Stop>) {
         mAdapter?.replaceData(data)
     }
@@ -70,7 +64,7 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
     }
 
     override fun onItemClick(item: Stop) {
-        AnalyticsUtil.sendRouteDetailListEvent(context)
+        Analytics.sendRouteDetailListEvent(context)
         RealTimeActivity.navigate(context, item)
     }
 

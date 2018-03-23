@@ -15,7 +15,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_search.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.data.recent.repository.RecentRepository
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.data.stop.repository.StopRepository
@@ -113,7 +113,7 @@ class SearchActivity : AppCompatActivity(), SearchStopAdapter.ItemClickListener,
     }
 
     override fun showStop(item: Stop) {
-        AnalyticsUtil.sendRouteSearchEvent(this)
+        Analytics.sendRouteSearchEvent(this)
         RealTimeActivity.navigate(this, item)
     }
 

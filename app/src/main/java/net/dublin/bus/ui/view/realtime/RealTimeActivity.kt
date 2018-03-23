@@ -13,16 +13,13 @@ import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_real_time.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.data.realtime.repository.RealTimeRepository
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Favourite
 import net.dublin.bus.model.Stop
 import net.dublin.bus.model.StopData
-import net.dublin.bus.ui.utilities.Utility
-import net.dublin.bus.ui.utilities.snack
-import net.dublin.bus.ui.utilities.snackBarErrorMessage
-import net.dublin.bus.ui.utilities.snackBarNoConnection
+import net.dublin.bus.ui.utilities.*
 
 class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener, RealTimeContract.View, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var presenter: RealTimeContract.Presenter
@@ -138,8 +135,8 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
         mAdapter?.replaceData(data)
     }
 
-    override fun isNetworkAvailable(): Boolean {
-        return Utility.isNetworkAvailable(this)
+    override fun hasNetwork(): Boolean {
+        return isNetworkAvailable()
     }
 
     override fun onItemClick(item: String, view: ImageView) {
@@ -186,7 +183,7 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun sendFavoriteEvent(value: Boolean) {
-        AnalyticsUtil.sendFavoriteEvent(this, value)
+        Analytics.sendFavoriteEvent(this, value)
     }
 
     companion object {

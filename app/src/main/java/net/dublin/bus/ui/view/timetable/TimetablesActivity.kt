@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_timetables.*
 import kotlinx.android.synthetic.main.content_timetables.*
 import net.dublin.bus.R
 import net.dublin.bus.common.Constants
-import net.dublin.bus.ui.utilities.Utility
+import net.dublin.bus.ui.utilities.isNetworkAvailable
 import net.dublin.bus.ui.utilities.snackBarErrorMessage
 import net.dublin.bus.ui.utilities.snackBarNoConnection
 
@@ -99,10 +99,6 @@ class TimetablesActivity : AppCompatActivity() {
                 webView.loadUrl("javascript:$script;")
             }
         }
-    }
-
-    fun isNetworkAvailable(): Boolean {
-        return Utility.isNetworkAvailable(this)
     }
 
     private fun onError() {

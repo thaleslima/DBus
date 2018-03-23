@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_route_detail_map.*
 import net.dublin.bus.R
-import net.dublin.bus.common.AnalyticsUtil
+import net.dublin.bus.common.Analytics
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.*
@@ -81,14 +81,14 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
     private fun setupViewProperties() {
         detail_map_stop_view?.setOnClickListener { v ->
             detail_map_stop_view?.let {
-                AnalyticsUtil.sendRouteDetailMapEvent(context)
+                Analytics.sendRouteDetailMapEvent(context)
                 RealTimeActivity.navigate(context, v.tag as Stop)
             }
         }
 
         detail_map_stop_view.viewTreeObserver.addOnGlobalLayoutListener({
             try {
-                val padding = Sizes.getDip(this@RouteDetailMapFragment.context, 10)
+                val padding = getDip(10)
                 mMap?.setPadding(0, detail_map_stop_view.height + padding, 0, detail_map_stop_view.height + padding)
             } catch (e: Exception) {
                 e.fillInStackTrace()
@@ -175,7 +175,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
         stop?.let {
             route_detail_map_number_stop_view.text = it.stopNumber
             route_detail_map_description_stop_view.text = it.descriptionOrAddress()
-            detail_map_stop_view.let { it1 -> ViewUtil.showViewLayout(context, it1) }
+            detail_map_stop_view.let { it1 -> activity.showViewLayout(it1) }
             detail_map_stop_view.tag = it
             route_detail_map_routes_view.text = null
             model.loadRoutesByStopNumber(activity, it.stopNumber)
@@ -183,7 +183,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
     }
 
     private fun hideLocalSummary() {
-        detail_map_stop_view.let { ViewUtil.hideViewLayout(context, it) }
+        detail_map_stop_view.let { activity.hideViewLayout(it) }
     }
 
     override fun onNewLocation(location: Location) {

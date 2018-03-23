@@ -23,7 +23,7 @@ object DistanceFormatter {
         if (isDistanceInKm) {
             if (distance < 1) {
                 unit = METRIC_M
-                formattedDistance = DecimalFormat("#").format(DistanceMetricsHelper.convertKmToM(distance))
+                formattedDistance = DecimalFormat("#").format(convertKmToM(distance))
             } else {
                 unit = METRIC_KM
                 formattedDistance = DecimalFormat("#.##").format(distance)
@@ -31,7 +31,7 @@ object DistanceFormatter {
         } else {
             if (distance < 1) {
                 unit = METRIC_YARDS
-                formattedDistance = DecimalFormat("#").format(DistanceMetricsHelper.convertMilesToYard(distance))
+                formattedDistance = DecimalFormat("#").format(convertMilesToYard(distance))
             } else {
                 unit = METRIC_MILES
                 formattedDistance = DecimalFormat("#.##").format(distance)
@@ -39,5 +39,21 @@ object DistanceFormatter {
         }
 
         return "$formattedDistance $unit"
+    }
+
+    fun convertKmToMiles(km: Double): Double {
+        return km * 0.621371
+    }
+
+    fun convertKmToM(km: Double): Double {
+        return km * 1000
+    }
+
+    fun convertMilesToKm(miles: Double): Double {
+        return miles * 1.60934
+    }
+
+    fun convertMilesToYard(miles: Double): Double {
+        return miles * 1760
     }
 }
