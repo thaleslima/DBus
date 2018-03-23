@@ -7,8 +7,6 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.NonNull
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
@@ -21,6 +19,8 @@ import kotlinx.android.synthetic.main.content_timetables.*
 import net.dublin.bus.R
 import net.dublin.bus.common.Constants
 import net.dublin.bus.ui.utilities.Utility
+import net.dublin.bus.ui.utilities.snackBarErrorMessage
+import net.dublin.bus.ui.utilities.snackBarNoConnection
 
 class TimetablesActivity : AppCompatActivity() {
     private var number: String? = null
@@ -114,15 +114,11 @@ class TimetablesActivity : AppCompatActivity() {
     }
 
     private fun showSnackBarNoConnection() {
-        Snackbar.make(container, R.string.title_no_connection, Snackbar.LENGTH_INDEFINITE)
-                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
-                .setAction(R.string.title_retry) { loadUrl() }.show()
+        snackBarNoConnection(container, { loadUrl() }).show()
     }
 
     private fun showSnackBarError() {
-        Snackbar.make(container, R.string.error_message, Snackbar.LENGTH_INDEFINITE)
-                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
-                .setAction(R.string.title_retry) { loadUrl() }.show()
+        snackBarErrorMessage(container, { loadUrl() }).show()
     }
 
     fun showProgress() {

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -21,14 +20,17 @@ import net.dublin.bus.model.Favourite
 import net.dublin.bus.model.Stop
 import net.dublin.bus.model.StopData
 import net.dublin.bus.ui.utilities.Utility
+import net.dublin.bus.ui.utilities.snack
+import net.dublin.bus.ui.utilities.snackBarErrorMessage
+import net.dublin.bus.ui.utilities.snackBarNoConnection
 
 class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener, RealTimeContract.View, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var presenter: RealTimeContract.Presenter
     private var mAdapter: RealTimeAdapter? = null
     private var stopNumber: String = ""
     private var description: String = ""
-    private var snackBarNoConnection: Snackbar? = null
-    private var snackBarError: Snackbar? = null
+    private var snackNoConnection: Snackbar? = null
+    private var snackError: Snackbar? = null
     private var menuFavourite: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,22 +112,18 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun showSnackBarNoConnection() {
-        snackBarNoConnection = Snackbar.make(real_swipe_refresh_layout, R.string.title_no_connection, Snackbar.LENGTH_INDEFINITE)
-                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
-                .setAction(R.string.title_retry) { presenter.loadData() }
-        snackBarNoConnection?.show()
+        snackNoConnection = snackBarNoConnection(real_swipe_refresh_layout, { presenter.loadData() })
+        snackNoConnection?.show()
     }
 
     override fun showSnackBarError() {
-        snackBarError = Snackbar.make(real_swipe_refresh_layout, R.string.error_message, Snackbar.LENGTH_INDEFINITE)
-                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
-                .setAction(R.string.title_retry) { presenter.loadData() }
-        snackBarError?.show()
+        snackError = snackBarErrorMessage(real_swipe_refresh_layout, { presenter.loadData() })
+        snackError?.show()
     }
 
     override fun hideSnackBar() {
-        snackBarNoConnection?.dismiss()
-        snackBarError?.dismiss()
+        snackNoConnection?.dismiss()
+        snackError?.dismiss()
     }
 
     override fun showNoData() {
@@ -162,15 +160,11 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun showSnackbarRemoveFavourite() {
-        Snackbar.make(real_swipe_refresh_layout, R.string.real_time_remove_favourite, Snackbar.LENGTH_SHORT)
-                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
-                .show()
+        snack(real_swipe_refresh_layout, R.string.real_time_remove_favourite)
     }
 
     override fun showSnackbarSaveFavourite() {
-        Snackbar.make(real_swipe_refresh_layout, R.string.real_time_add_favourite, Snackbar.LENGTH_SHORT)
-                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
-                .show()
+        snack(real_swipe_refresh_layout, R.string.real_time_add_favourite)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -5,9 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.PopupMenu
 import android.text.TextUtils
@@ -24,6 +22,8 @@ import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.Utility
+import net.dublin.bus.ui.utilities.snackBarErrorMessage
+import net.dublin.bus.ui.utilities.snackBarNoConnection
 import net.dublin.bus.ui.view.main.MainActivity
 import net.dublin.bus.ui.view.route.detail.list.RouteDetailFragment
 import net.dublin.bus.ui.view.route.detail.map.RouteDetailMapFragment
@@ -133,15 +133,11 @@ class RouteDetailActivity : AppCompatActivity() {
     }
 
     private fun showSnackBarNoConnection() {
-        Snackbar.make(container, R.string.title_no_connection, Snackbar.LENGTH_INDEFINITE)
-                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
-                .setAction(R.string.title_retry) { loadData() }.show()
+        snackBarNoConnection(container, { loadData() }).show()
     }
 
     private fun showSnackBarError() {
-        Snackbar.make(container, R.string.error_message, Snackbar.LENGTH_INDEFINITE)
-                .setActionTextColor(ContextCompat.getColor(this, R.color.button))
-                .setAction(R.string.title_retry) { loadData() }.show()
+        snackBarErrorMessage(container, { loadData() }).show()
     }
 
     fun isNetworkAvailable(): Boolean {
