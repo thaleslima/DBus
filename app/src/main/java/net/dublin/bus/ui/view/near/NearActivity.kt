@@ -25,10 +25,7 @@ import net.dublin.bus.common.AnalyticsUtil
 import net.dublin.bus.common.Constants
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
-import net.dublin.bus.ui.utilities.LocationRequestWrapper
-import net.dublin.bus.ui.utilities.LocationUtil
-import net.dublin.bus.ui.utilities.PermissionsUtils
-import net.dublin.bus.ui.utilities.Sizes
+import net.dublin.bus.ui.utilities.*
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 import java.util.*
 
@@ -133,7 +130,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
             mSupportMapFragment = fm.findFragmentById(R.id.near_map) as SupportMapFragment
             mSupportMapFragment?.getMapAsync(this)
 
-            if (!mapStateManager.restored && LocationUtil.requestLocationOrShowMessage(this, 0)) {
+            if (!mapStateManager.restored && requestLocationOrShowMessage(0)) {
                 connectLocation()
             }
         }
@@ -143,7 +140,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
     override fun onMapReady(map: GoogleMap) {
         mMap = map
 
-        if (PermissionsUtils.Location.hasPermission(this)) {
+        if (hasLocationPermission()) {
             mMap?.isMyLocationEnabled = true
             mMap?.uiSettings?.isMyLocationButtonEnabled = false
         }

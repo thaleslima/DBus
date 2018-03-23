@@ -1,0 +1,78 @@
+package net.dublin.bus.ui.utilities
+
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
+import net.dublin.bus.common.PreferencesUtils
+
+private const val LOCATION_ASKED_BEFORE = "location_asked_before"
+
+private fun hasPermission(context: Context, permission: String): Boolean {
+    return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+}
+
+private fun requestPermissions(activity: Activity, requestCode: Int, vararg permissions: String) {
+    ActivityCompat.requestPermissions(activity, permissions, requestCode)
+}
+
+private fun requestPermissions(fragment: Fragment, requestCode: Int, vararg permissions: String) {
+    fragment.requestPermissions(permissions, requestCode)
+}
+
+private fun shouldShowRequestPermissionRationale(activity: Activity): Boolean {
+    val contactsAskedBefore = PreferencesUtils.getIntData(LOCATION_ASKED_BEFORE, activity)
+    val shouldShowRequest = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)
+
+    return contactsAskedBefore == 1 && shouldShowRequest || contactsAskedBefore == 0 && !shouldShowRequest || shouldShowRequest
+}
+
+private fun showLocationRequestPermission(fragment: Fragment, requestCod: Int) {
+    if (shouldShowRequestPermissionRationale(fragment.activity)) {
+        requestPermissions(fragment, requestCod,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+}
+
+private fun showLocationRequestPermission(activity: Activity, requestCod: Int) {
+    if (shouldShowRequestPermissionRationale(activity)) {
+        requestPermissions(activity, requestCod,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+}
+
+
+private fun saveAskedBefore(context: Context) {
+    PreferencesUtils.saveData(LOCATION_ASKED_BEFORE, 1, context)
+}
+
+fun Context.hasLocationPermission(): Boolean {
+    return (hasPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+            && hasPermission(this, Manifest.permission.ACCESS_FINE_LOCATION))
+}
+
+fun Fragment.hasLocationPermission(): Boolean {
+    return this.context.hasLocationPermission()
+}
+
+fun Fragment.requestLocationOrShowMessage(requestCode: Int): Boolean {
+    if (!hasLocationPermission()) {
+        showLocationRequestPermission(this, requestCode)
+        return false
+    }
+    return true
+}
+
+fun Activity.requestLocationOrShowMessage(requestCode: Int): Boolean {
+    if (!hasLocationPermission()) {
+        showLocationRequestPermission(this, requestCode)
+        return false
+    }
+    return true
+}
+
+

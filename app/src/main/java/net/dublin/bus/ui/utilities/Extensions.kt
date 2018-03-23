@@ -31,3 +31,6 @@ fun Context.snackBarErrorMessage(@NonNull view: View, listener: (View) -> Unit):
             .setActionTextColor(ContextCompat.getColor(this, R.color.button))
             .setAction(R.string.title_retry, listener)
 }
+
+
+

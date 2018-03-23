@@ -101,7 +101,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
             val fm = childFragmentManager
             mSupportMapFragment = fm.findFragmentById(R.id.route_detail_map_view) as SupportMapFragment
             mSupportMapFragment?.getMapAsync(this)
-            LocationUtil.requestLocationOrShowMessage(this, 0)
+            requestLocationOrShowMessage( 0)
         }
     }
 
@@ -109,7 +109,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
     override fun onMapReady(map: GoogleMap) {
         mMap = map
 
-        if (PermissionsUtils.Location.hasPermission(activity)) {
+        if (hasLocationPermission()) {
             mMap?.isMyLocationEnabled = true
             mMap?.uiSettings?.isMyLocationButtonEnabled = false
         }
