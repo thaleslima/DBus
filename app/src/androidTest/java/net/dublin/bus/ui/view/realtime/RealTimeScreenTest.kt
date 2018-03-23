@@ -58,6 +58,7 @@ class RealTimeScreenTest {
             launchActivity()
         }
 
+        sleep()
         onView(withId(R.id.real_progress_bar_view)).check(matches(not<View>(isDisplayed())))
         onView(withId(R.id.real_number_stop_view)).check(matches(withText(startsWith(STOP_NUMBER))))
         onView(withId(R.id.real_description_stop_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))))

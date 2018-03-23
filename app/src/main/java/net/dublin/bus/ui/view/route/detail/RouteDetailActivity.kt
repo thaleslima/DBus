@@ -53,8 +53,8 @@ class RouteDetailActivity : AppCompatActivity() {
             val intent = Intent(context, RouteDetailActivity::class.java)
             intent.putExtra(EXTRA_ROUTE_NUMBER, item.number)
             intent.putExtra(EXTRA_ROUTE_CODE, item.code)
-            intent.putExtra(EXTRA_ROUTE_OUT_TOWARDS, item.outboundTowards)
-            intent.putExtra(EXTRA_ROUTE_IN_TOWARDS, item.inboundTowards)
+            intent.putExtra(EXTRA_ROUTE_OUT_TOWARDS, item.outboundTowards ?: "")
+            intent.putExtra(EXTRA_ROUTE_IN_TOWARDS, item.inboundTowards ?: "")
 
             if (!TextUtils.isEmpty(item.outboundTowards) || !TextUtils.isEmpty(item.inboundTowards)) {
                 context.startActivity(intent)

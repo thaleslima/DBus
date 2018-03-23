@@ -114,6 +114,7 @@ class RouteDetailScreenTest {
             device.setOrientationLeft()
         }
 
+        sleep()
         //Check Title
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith(ROUTE_OUT_TOWARDS))))
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("53 stops"))))
@@ -214,6 +215,7 @@ class RouteDetailScreenTest {
         setDispatcherRouteOutbound200()
         onView(withText(text)).perform(click())
 
+        sleep()
         //Check Title
         onView(withId(R.id.route_name_towards_view)).check(matches(withText(startsWith(ROUTE_OUT_TOWARDS))))
         onView(withId(R.id.route_count_view)).check(matches(withText(startsWith("53 stops"))))
@@ -228,6 +230,7 @@ class RouteDetailScreenTest {
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_NUMBER, ROUTE_NUMBER)
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_OUT_TOWARDS, ROUTE_OUT_TOWARDS)
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_IN_TOWARDS, ROUTE_IN_TOWARDS)
+        intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_CODE, ROUTE_CODE)
 
         activityTestRule.launchActivity(intent)
         SystemClock.sleep(500)
@@ -237,6 +240,10 @@ class RouteDetailScreenTest {
         val intent = Intent()
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_NUMBER, ROUTE_NUMBER)
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_OUT_TOWARDS, ROUTE_OUT_TOWARDS)
+        intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_IN_TOWARDS, "")
+
+        intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_CODE, ROUTE_CODE)
+
         activityTestRule.launchActivity(intent)
         SystemClock.sleep(500)
     }
@@ -245,5 +252,7 @@ class RouteDetailScreenTest {
         private const val ROUTE_NUMBER = "7b"
         private const val ROUTE_IN_TOWARDS = "route_inbound_towards"
         private const val ROUTE_OUT_TOWARDS = "route_outbound_towards"
+        private const val ROUTE_CODE = "113"
+
     }
 }
