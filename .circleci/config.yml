@@ -22,7 +22,7 @@ jobs:
 
       - run:
           name: Build
-          command: ./gradlew assemble
+          command: ./gradlew assembleProd
 
       - save_cache:
           paths:
