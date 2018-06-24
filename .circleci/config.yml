@@ -21,10 +21,6 @@ jobs:
           command: yes | sdkmanager --licenses || true
 
       - run:
-          name: Run Linters
-          command: ./gradlew check
-
-      - run:
           name: Build
           command: ./gradlew assemble
 
