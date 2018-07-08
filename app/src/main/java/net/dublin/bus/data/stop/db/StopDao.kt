@@ -1,10 +1,7 @@
 package net.dublin.bus.data.stop.db
 
 import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import net.dublin.bus.model.Stop
 
 @Dao
@@ -26,4 +23,10 @@ interface StopDao {
 
     @Query("SELECT stopnumber, description FROM stops WHERE stopnumber = :stopNumber")
     fun getStopsByNumber(stopNumber: String): Stop
+
+    @Transaction
+    fun replaceAll(stops: List<Stop>) {
+        clear()
+        saveAllStops(stops)
+    }
 }

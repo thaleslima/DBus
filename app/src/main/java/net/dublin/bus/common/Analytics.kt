@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 
 import com.google.firebase.analytics.FirebaseAnalytics
+import io.reactivex.internal.operators.maybe.MaybeDoAfterSuccess
 import net.dublin.bus.ui.view.search.SearchActivity
 
 object Analytics {
@@ -38,6 +39,10 @@ object Analytics {
             const val ROUTE_ORIGIN_SEARCH = "search_screen"
             const val ROUTE_ORIGIN_SCREEN = "route_screen"
             const val ROUTE_ORIGIN_FAVOURITE = "favourite_screen"
+
+            const val SYNC_STATUS = "sync_status"
+            const val SYNC_SUCCESS = "sync_success"
+            const val SYNC_ERROR = "sync_error"
         }
     }
 
@@ -63,6 +68,18 @@ object Analytics {
         val params = Bundle()
         params.putString(FirebaseAnalytics.Param.VALUE, action)
         FirebaseAnalytics.getInstance(context).logEvent(Constants.BUTTON_LIST_MAP, params)
+    }
+
+    fun sendSyncStatus(context: Context, success: Boolean) {
+        val action: String = if (success) {
+            Constants.SYNC_SUCCESS
+        } else {
+            Constants.SYNC_ERROR
+        }
+
+        val params = Bundle()
+        params.putString(FirebaseAnalytics.Param.VALUE, action)
+        FirebaseAnalytics.getInstance(context).logEvent(Constants.SYNC_STATUS, params)
     }
 
     fun sendMenuTimetablesEvent(context: Context) {

@@ -5,8 +5,7 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import net.dublin.bus.BuildConfig
 import net.dublin.bus.data.recent.db.RecentDao
 import net.dublin.bus.data.route.db.RouteDao
 import net.dublin.bus.data.routestop.db.RouteStopDao
@@ -51,10 +50,13 @@ abstract class BusDatabase : RoomDatabase() {
     private class DatabaseCallback(val context: Context) : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
-            Repository(context).initRepository()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ })
+            val repository = Repository(context)
+
+            repository.initRepository()
+
+            if (!BuildConfig.MOCK) {
+                repository.startFetchService()
+            }
         }
     }
 }

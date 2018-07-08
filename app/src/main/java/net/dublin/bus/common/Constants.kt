@@ -26,6 +26,13 @@ object Constants {
     const val API_URL_STOP_NEAR = "${NAMESPACE}Templates/Public/RoutePlannerService/RTPIMapHandler.ashx?ne=53.650000,-6.000000&sw=53.050000,-6.700000&zoom=13&czoom=16&rjson=true"
     const val API_URL_TIMETABLE = "${NAMESPACE}Your-Journey1/Timetables/All-Timetables/%s/"
 
+    const val API_URL_LAST_UPDATE = "https://dublin-bus-8633f.appspot.com/lastUpdate"
+
+    private const val API_URL_BASE_STORAGE = "https://storage.googleapis.com/dublin-bus/"
+
+    const val API_URL_STORAGE_ROUTES = "${API_URL_BASE_STORAGE}routes.gz?"
+    const val API_URL_STORAGE_STOPS = "${API_URL_BASE_STORAGE}stops.gz?"
+
     const val LATITUDE = 53.3474
     const val LONGITUDE = -6.25962
 
