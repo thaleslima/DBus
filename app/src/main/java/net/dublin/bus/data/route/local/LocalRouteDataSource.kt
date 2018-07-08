@@ -27,6 +27,14 @@ class LocalRouteDataSource(context: Context) {
         dao.saveAllRoutes(routes)
     }
 
+    fun replaceAll(routes: List<Route>) {
+        dao.replaceAll(routes)
+    }
+
+    fun clear() {
+        dao.clear()
+    }
+
     fun getStopsByText(search: String): Observable<List<Route>> {
         return Observable.fromCallable { dao.getStopsByText(search) }
     }
