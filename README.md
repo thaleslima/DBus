@@ -4,9 +4,9 @@
 <a href="https://play.google.com/store/apps/details?id=net.dublin.bus" target="_blank">
 <img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
 
-Includes most of the important features from the Official Dublin Bus App along side more practical features.
+    Includes most of the important features from the Official Dublin Bus App along side more practical features.
 
-You will be able to know all the arrivals of buses in real time. Also you can add your frequently stops to your favorite list.
+    You will be able to know all the arrivals of buses in real time. Also you can add your frequently stops to your favorite list.
 
     Features:
     -- Real Time Information
