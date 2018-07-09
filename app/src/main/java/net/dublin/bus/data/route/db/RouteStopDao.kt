@@ -1,4 +1,4 @@
-package net.dublin.bus.data.routestop.db
+package net.dublin.bus.data.route.db
 
 import android.arch.persistence.room.*
 import net.dublin.bus.model.Route

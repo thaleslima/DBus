@@ -51,14 +51,14 @@ class RealTimePresenter(private val view: RealTimeContract.View,
         stopRepository.isFavourite(stopNumber)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ data ->
+                .subscribe { data ->
                     isFavorite = data
                     if (data) {
                         view.showFavouriteYes()
                     } else {
                         view.showFavouriteNo()
                     }
-                })
+                }
     }
 
     override fun addOrRemoveFavourite() {
@@ -74,7 +74,7 @@ class RealTimePresenter(private val view: RealTimeContract.View,
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
+                .subscribe {
                     isFavorite = if (!isFavorite) {
                         view.showFavouriteYes()
                         view.showSnackbarSaveFavourite()
@@ -84,7 +84,7 @@ class RealTimePresenter(private val view: RealTimeContract.View,
                         view.showSnackbarRemoveFavourite()
                         false
                     }
-                })
+                }
     }
 
     private fun onError() {

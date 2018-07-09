@@ -1,7 +1,6 @@
 package net.dublin.bus.ui.view.favourite
 
 import android.content.Intent
-import android.os.SystemClock
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click

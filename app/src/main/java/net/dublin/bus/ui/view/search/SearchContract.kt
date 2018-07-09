@@ -3,7 +3,6 @@ package net.dublin.bus.ui.view.search
 import net.dublin.bus.model.Recent
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
-import net.dublin.bus.model.StopData
 import net.dublin.bus.ui.view.BasePresenter
 
 interface SearchContract {

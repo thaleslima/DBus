@@ -7,14 +7,24 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import net.dublin.bus.common.*
-import net.dublin.bus.data.route.local.LocalRouteDataSource
-import net.dublin.bus.data.stop.local.LocalStopDataSource
+import net.dublin.bus.data.route.db.RouteDao
+import net.dublin.bus.data.stop.db.StopDao
 import net.dublin.bus.data.sync.SyncIntentService
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.view.main.MainActivity
 
 class Repository(val context: Context) {
+    private var routeDao: RouteDao
+    private var stopDao: StopDao
+
+    init {
+        val db = BusDatabase.getDatabase(context)
+        routeDao = db.getRouteDao()
+        stopDao = db.getStopDao()
+    }
+
+
     fun initRepository() {
         val appExecutors = AppExecutors.instance
         appExecutors.diskIO().execute {
@@ -23,10 +33,8 @@ class Repository(val context: Context) {
             val g = Gson()
             val stopList: List<Stop> = g.fromJson(jsonStops, object : TypeToken<List<Stop>>() {}.type)
             val routesList: List<Route> = g.fromJson(jsonRoutes, object : TypeToken<List<Route>>() {}.type)
-            val routeDataSource = LocalRouteDataSource(context)
-            val stopDataSource = LocalStopDataSource(context)
-            routeDataSource.saveAll(routesList)
-            stopDataSource.saveAll(stopList)
+            routeDao.saveAllRoutes(routesList)
+            stopDao.saveAllStops(stopList)
             Log.d(Repository::class.java.name, "bd created")
         }
     }
@@ -67,11 +75,11 @@ class Repository(val context: Context) {
         val stopList = g.fromJson<List<Stop>>(stopString, object : TypeToken<List<Stop>>() {}.type)
 
         if (!routeList.isEmpty()) {
-            LocalRouteDataSource(context).replaceAll(routeList)
+            routeDao.replaceAll(routeList)
         }
 
         if (!stopList.isEmpty()) {
-            LocalStopDataSource(context).replaceAll(stopList)
+            stopDao.replaceAll(stopList)
         }
 
         setLastDate(routesStringRemote)

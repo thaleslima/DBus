@@ -61,7 +61,7 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
         }
     }
 
-    fun loadData() {
+    private fun loadData() {
         val factory = RouteDetailViewModelFactory(RouteRepository(requireContext()))
         model = ViewModelProviders.of(requireActivity(), factory).get(RouteDetailViewModel::class.java)
         model.getStops().observe(requireActivity(), Observer<List<Stop>> {

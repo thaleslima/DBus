@@ -8,7 +8,7 @@ import android.content.Context
 import net.dublin.bus.BuildConfig
 import net.dublin.bus.data.recent.db.RecentDao
 import net.dublin.bus.data.route.db.RouteDao
-import net.dublin.bus.data.routestop.db.RouteStopDao
+import net.dublin.bus.data.route.db.RouteStopDao
 import net.dublin.bus.data.stop.db.StopDao
 import net.dublin.bus.data.stop.db.StopFavouriteDao
 import net.dublin.bus.model.*

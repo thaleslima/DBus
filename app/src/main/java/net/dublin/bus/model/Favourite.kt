@@ -60,7 +60,7 @@ data class Favourite(
         return null
     }
 
-    fun latitudeDoubleOrNull(): Double? {
+    private fun latitudeDoubleOrNull(): Double? {
         latitude?.let {
             return it.toDoubleOrNull()
         }
@@ -68,7 +68,7 @@ data class Favourite(
         return null
     }
 
-    fun longitudeDoubleOrNull(): Double? {
+    private fun longitudeDoubleOrNull(): Double? {
         longitude?.let {
             return it.toDoubleOrNull()
         }

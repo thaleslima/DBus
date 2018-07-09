@@ -65,7 +65,7 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
     }
 
     override fun onItemClick(item: Stop) {
-        Analytics.sendRouteDetailListEvent(context)
+        Analytics.sendRouteDetailListEvent(requireContext())
         RealTimeActivity.navigate(requireContext(), item)
     }
 

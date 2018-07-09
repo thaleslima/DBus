@@ -3,31 +3,38 @@ package net.dublin.bus.data.route.repository
 import android.arch.lifecycle.LiveData
 import android.content.Context
 import io.reactivex.Observable
+import net.dublin.bus.data.BusDatabase
 import net.dublin.bus.data.route.RouteComparator
-import net.dublin.bus.data.route.remote.RouteDataSource
-import net.dublin.bus.data.route.local.LocalRouteDataSource
+import net.dublin.bus.data.route.db.RouteDao
+import net.dublin.bus.data.route.remote.RouteDataSourceRemote
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
 import java.util.*
 
-class RouteRepository(context: Context){
-    private var localSource: LocalRouteDataSource = LocalRouteDataSource(context)
-    private var remoteSource: RouteDataSource = RouteDataSource()
+class RouteRepository(context: Context) {
+    private var routeDao: RouteDao
+    private var routeRemote: RouteDataSourceRemote
+
+    init {
+        val db = BusDatabase.getDatabase(context)
+        routeDao = db.getRouteDao()
+        routeRemote = RouteDataSourceRemote()
+    }
 
     fun getData(): LiveData<List<Route>> {
-        return localSource.getAll()
+        return routeDao.getRoutes()
     }
 
     fun getRouteByNumber(number: String): Observable<Route> {
-        return localSource.getRouteByNumber(number)
+        return Observable.fromCallable { routeDao.getRouteByNumber(number) }
     }
 
     fun getDataDetail(route: String, direction: String): Observable<List<Stop>> {
-        return RouteDataSource().getDataDetail(route, direction)
+        return RouteDataSourceRemote().getDataDetail(route, direction)
     }
 
     fun getRoutesByStopNumber(stopNumber: String): Observable<String> {
-        return remoteSource
+        return routeRemote
                 .getRoutesByStopNumber(stopNumber)
                 .map {
                     Collections.sort(it, RouteComparator())
@@ -40,7 +47,7 @@ class RouteRepository(context: Context){
     }
 
     fun getStopsByText(search: String): Observable<List<Route>> {
-        return localSource.getStopsByText(search).map {
+        return Observable.fromCallable { routeDao.getStopsByText(search) }.map {
             Collections.sort(it, RouteComparator())
             it
         }

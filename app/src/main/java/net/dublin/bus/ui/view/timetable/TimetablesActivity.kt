@@ -110,11 +110,11 @@ class TimetablesActivity : AppCompatActivity() {
     }
 
     private fun showSnackBarNoConnection() {
-        snackBarNoConnection(container, { loadUrl() }).show()
+        snackBarNoConnection(container) { loadUrl() }.show()
     }
 
     private fun showSnackBarError() {
-        snackBarErrorMessage(container, { loadUrl() }).show()
+        snackBarErrorMessage(container) { loadUrl() }.show()
     }
 
     fun showProgress() {
