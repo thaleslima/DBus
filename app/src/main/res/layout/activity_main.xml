@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/frame_round_horizontal_search"
-            android:drawableLeft="@drawable/ic_search_blue_800_24dp"
             android:drawablePadding="24dp"
             android:drawableStart="@drawable/ic_search_blue_800_24dp"
             android:elevation="2dp"

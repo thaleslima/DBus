@@ -8,7 +8,7 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import java.util.zip.GZIPInputStream
 
-object Network2Utils {
+object NetworkUtils {
     @Throws(IOException::class)
     fun getResponseFromHttpUrl(url: String, gZip: Boolean): String {
         val client = OkHttpClient()

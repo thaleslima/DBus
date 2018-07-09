@@ -17,13 +17,14 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.test.uiautomator.UiDevice
 import android.support.test.uiautomator.UiObjectNotFoundException
 import android.support.test.uiautomator.UiSelector
+import net.dublin.bus.BuildConfig
 import net.dublin.bus.R
 import net.dublin.bus.ui.view.utilities.MockServer
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherInboundResponse200
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherInboundResponse2_200
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherResponse500
 import net.dublin.bus.ui.view.utilities.TestUtils.sleep
-import org.hamcrest.CoreMatchers.startsWith
+import org.hamcrest.Matchers.startsWith
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -60,6 +61,8 @@ class RouteDetailMapScreenTest {
         setDispatcherInboundResponse200()
         launchActivity()
 
+        if (!BuildConfig.MOCK_MAP) return
+
         //Change map
         onView(withId(R.id.route_change_map_list_view)).perform(click())
         sleep()
@@ -82,6 +85,8 @@ class RouteDetailMapScreenTest {
     fun loadMap_clickSecondMarker_DisplayedInUi() {
         setDispatcherInboundResponse200()
         launchActivity()
+
+        if (!BuildConfig.MOCK_MAP) return
 
         //Change map
         onView(withId(R.id.route_change_map_list_view)).perform(click())
@@ -119,6 +124,8 @@ class RouteDetailMapScreenTest {
         setDispatcherInboundResponse200()
         launchActivity()
 
+        if (!BuildConfig.MOCK_MAP) return
+
         //Change map
         onView(withId(R.id.route_change_map_list_view)).perform(click())
 
@@ -147,6 +154,8 @@ class RouteDetailMapScreenTest {
         setDispatcherInboundResponse200()
         launchActivity()
 
+        if (!BuildConfig.MOCK_MAP) return
+
         //Change map
         onView(withId(R.id.route_change_map_list_view)).perform(click())
 
@@ -169,6 +178,8 @@ class RouteDetailMapScreenTest {
     fun loadMap_clickMarker_rotateScreen_errorConnection_ShowsErrorUi() {
         setDispatcherInboundResponse200()
         launchActivity()
+
+        if (!BuildConfig.MOCK_MAP) return
 
         //Change map
         onView(withId(R.id.route_change_map_list_view)).perform(click())

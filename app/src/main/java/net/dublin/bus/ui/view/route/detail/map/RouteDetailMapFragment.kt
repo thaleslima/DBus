@@ -36,11 +36,11 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
     private var mStopNumber: String? = null
     private var mStopNumberRestore: String? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_route_detail_map, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_route_detail_map, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initExtra(savedInstanceState)
         setUpMapIfNeeded()
@@ -53,25 +53,25 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
         mStopNumber?.let {
-            outState?.putString(BUNDLE_MARKER_STOP, it)
+            outState.putString(BUNDLE_MARKER_STOP, it)
         }
     }
 
     fun loadData() {
-        val factory = RouteDetailViewModelFactory(RouteRepository(activity))
-        model = ViewModelProviders.of(activity, factory).get(RouteDetailViewModel::class.java)
-        model.getStops().observe(activity, Observer<List<Stop>> {
+        val factory = RouteDetailViewModelFactory(RouteRepository(requireContext()))
+        model = ViewModelProviders.of(requireActivity(), factory).get(RouteDetailViewModel::class.java)
+        model.getStops().observe(requireActivity(), Observer<List<Stop>> {
             it?.let { it1 ->
                 moveCameraToFirstStop(it1)
                 showStops(it1)
             }
         })
 
-        model.getRoutes().observe(activity, Observer<String> {
+        model.getRoutes().observe(requireActivity(), Observer<String> {
             it?.let { it1 ->
                 route_detail_map_routes_view?.text = it1
             }
@@ -81,19 +81,19 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
     private fun setupViewProperties() {
         detail_map_stop_view?.setOnClickListener { v ->
             detail_map_stop_view?.let {
-                Analytics.sendRouteDetailMapEvent(context)
-                RealTimeActivity.navigate(context, v.tag as Stop)
+                Analytics.sendRouteDetailMapEvent(requireContext())
+                RealTimeActivity.navigate(requireContext(), v.tag as Stop)
             }
         }
 
-        detail_map_stop_view.viewTreeObserver.addOnGlobalLayoutListener({
+        detail_map_stop_view.viewTreeObserver.addOnGlobalLayoutListener {
             try {
                 val padding = getDip(10)
                 mMap?.setPadding(0, detail_map_stop_view.height + padding, 0, detail_map_stop_view.height + padding)
             } catch (e: Exception) {
                 e.fillInStackTrace()
             }
-        })
+        }
     }
 
     private fun setUpMapIfNeeded() {
@@ -175,15 +175,15 @@ class RouteDetailMapFragment : Fragment(), OnMapReadyCallback, LocationRequestWr
         stop?.let {
             route_detail_map_number_stop_view.text = it.stopNumber
             route_detail_map_description_stop_view.text = it.descriptionOrAddress()
-            detail_map_stop_view.let { it1 -> activity.showViewLayout(it1) }
+            detail_map_stop_view.let { it1 -> requireActivity().showViewLayout(it1) }
             detail_map_stop_view.tag = it
             route_detail_map_routes_view.text = null
-            model.loadRoutesByStopNumber(activity, it.stopNumber)
+            model.loadRoutesByStopNumber(requireContext(), it.stopNumber)
         }
     }
 
     private fun hideLocalSummary() {
-        detail_map_stop_view.let { activity.hideViewLayout(it) }
+        detail_map_stop_view.let { requireActivity().hideViewLayout(it) }
     }
 
     override fun onNewLocation(location: Location) {

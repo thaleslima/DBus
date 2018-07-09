@@ -18,7 +18,7 @@ import net.dublin.bus.model.*
     (Route::class),
     (Favourite::class),
     (Recent::class),
-    (RouteStop::class)], version = 1)
+    (RouteStop::class)], version = 1, exportSchema = false)
 abstract class BusDatabase : RoomDatabase() {
 
     abstract fun getStopDao(): StopDao

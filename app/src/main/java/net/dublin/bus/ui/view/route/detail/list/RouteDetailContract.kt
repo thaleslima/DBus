@@ -16,7 +16,7 @@ interface RouteDetailContract {
 
         fun showSnackBarError()
 
-        fun getActivity(): FragmentActivity
+        fun requireActivity(): FragmentActivity
     }
 
     interface Presenter : BasePresenter {

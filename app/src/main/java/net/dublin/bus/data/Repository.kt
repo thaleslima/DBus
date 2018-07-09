@@ -16,7 +16,7 @@ import net.dublin.bus.ui.view.main.MainActivity
 
 class Repository(val context: Context) {
     fun initRepository() {
-        val appExecutors = App2Executors.instance
+        val appExecutors = AppExecutors.instance
         appExecutors.diskIO().execute {
             val jsonStops = context.readStringFromFile("stops.json")
             val jsonRoutes = context.readStringFromFile("routes.json")
@@ -32,10 +32,10 @@ class Repository(val context: Context) {
     }
 
     fun fetchData() {
-        val appExecutors = App2Executors.instance
+        val appExecutors = AppExecutors.instance
         appExecutors.networkIO().execute {
             try {
-                var routesStringRemote = Network2Utils.getResponseFromHttpUrl(Constants.API_URL_LAST_UPDATE, false)
+                var routesStringRemote = NetworkUtils.getResponseFromHttpUrl(Constants.API_URL_LAST_UPDATE, false)
                 routesStringRemote = routesStringRemote.trim()
 
                 val lastDateLocal = getLastDate()
@@ -59,8 +59,8 @@ class Repository(val context: Context) {
     }
 
     private fun downloadAndUpdateData(routesStringRemote: String) {
-        val routesString = Network2Utils.getResponseFromHttpUrl(Constants.API_URL_STORAGE_ROUTES + routesStringRemote, true)
-        val stopString = Network2Utils.getResponseFromHttpUrl(Constants.API_URL_STORAGE_STOPS + routesStringRemote, true)
+        val routesString = NetworkUtils.getResponseFromHttpUrl(Constants.API_URL_STORAGE_ROUTES + routesStringRemote, true)
+        val stopString = NetworkUtils.getResponseFromHttpUrl(Constants.API_URL_STORAGE_STOPS + routesStringRemote, true)
 
         val g = Gson()
         val routeList = g.fromJson<List<Route>>(routesString, object : TypeToken<List<Route>>() {}.type)

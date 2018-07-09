@@ -10,17 +10,20 @@ repositories {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     flavorDimensions "default"
 
     defaultConfig {
         applicationId "net.dublin.bus"
         minSdkVersion 18
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "boolean", "MOCK", "false"
+        buildConfigField "boolean", "MOCK_MAP", "true"
+
+//        vectorDrawables.useSupportLibrary = true
     }
 
     signingConfigs {
@@ -46,6 +49,14 @@ android {
             buildConfigField 'String', 'API_URL', '"http://localhost:2543/"'
             buildConfigField "boolean", "MOCK", "true"
         }
+
+        mockNoMaps {
+            buildConfigField 'int', 'API_URL_PORT', '2543'
+            buildConfigField 'String', 'API_URL', '"http://localhost:2543/"'
+            buildConfigField "boolean", "MOCK", "true"
+            buildConfigField "boolean", "MOCK_MAP", "false"
+        }
+
         prod {
             buildConfigField 'String', 'API_URL', '"http://rtpi.dublinbus.ie/"'
         }
@@ -55,17 +66,25 @@ android {
         if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mock') {
             variant.setIgnore(true)
         }
+
+        if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mockNoMaps') {
+            variant.setIgnore(true)
+        }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
     ext {
-        supportLibraryVersion = '26.1.0'
+        supportLibraryVersion = '27.1.1'
         constraintLayout = '1.1.2'
 
         junitVersion = '4.12'
@@ -83,7 +102,7 @@ dependencies {
         archLifecycleVersion = '1.1.0'
         firebase_jobdispatcher_version = "0.7.0"
 
-        playService = '11.8.0'
+        playService = '12.0.0'
     }
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

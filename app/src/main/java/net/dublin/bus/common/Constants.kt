@@ -36,6 +36,8 @@ object Constants {
     const val LATITUDE = 53.3474
     const val LONGITUDE = -6.25962
 
+    const val RADIUS_LAT_LONG = 122
+
     fun getLatLngDefault(): LatLng {
         return LatLng(LATITUDE, LONGITUDE)
     }

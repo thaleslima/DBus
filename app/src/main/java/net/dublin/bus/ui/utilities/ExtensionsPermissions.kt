@@ -25,7 +25,7 @@ private fun shouldShowRequestPermissionRationale(activity: Activity): Boolean {
 }
 
 private fun showLocationRequestPermission(fragment: Fragment, requestCod: Int) {
-    if (shouldShowRequestPermissionRationale(fragment.activity)) {
+    if (shouldShowRequestPermissionRationale(fragment.requireActivity())) {
         requestPermissions(fragment, requestCod,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -47,7 +47,7 @@ fun Context.hasLocationPermission(): Boolean {
 }
 
 fun Fragment.hasLocationPermission(): Boolean {
-    return this.context.hasLocationPermission()
+    return requireContext().hasLocationPermission()
 }
 
 fun Fragment.requestLocationOrShowMessage(requestCode: Int): Boolean {

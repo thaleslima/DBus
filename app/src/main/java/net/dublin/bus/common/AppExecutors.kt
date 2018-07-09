@@ -29,7 +29,7 @@ import java.util.concurrent.Executors
  * Grouping tasks like this avoids the effects of task starvation (e.g. disk reads don't wait behind
  * webservice requests).
  */
-class App2Executors private constructor(private val diskIO: Executor, private val networkIO: Executor, private val mainThread: Executor) {
+class AppExecutors private constructor(private val diskIO: Executor, private val networkIO: Executor, private val mainThread: Executor) {
 
     fun diskIO(): Executor {
         return diskIO
@@ -54,13 +54,13 @@ class App2Executors private constructor(private val diskIO: Executor, private va
     companion object {
         // For Singleton instantiation
         private val LOCK = Any()
-        private var sInstance: App2Executors? = null
+        private var sInstance: AppExecutors? = null
 
-        val instance: App2Executors
+        val instance: AppExecutors
             get() {
                 if (sInstance == null) {
                     synchronized(LOCK) {
-                        sInstance = App2Executors(Executors.newSingleThreadExecutor(),
+                        sInstance = AppExecutors(Executors.newSingleThreadExecutor(),
                                 Executors.newFixedThreadPool(3),
                                 MainThreadExecutor())
                     }

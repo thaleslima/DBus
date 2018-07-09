@@ -15,6 +15,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.test.uiautomator.UiDevice
 import android.support.test.uiautomator.UiObjectNotFoundException
 import android.support.test.uiautomator.UiSelector
+import net.dublin.bus.BuildConfig
 import net.dublin.bus.R
 import net.dublin.bus.ui.view.main.MainActivity
 import org.junit.FixMethodOrder
@@ -43,15 +44,18 @@ class NearScreenTest {
         SystemClock.sleep(500)
         onView(withId(R.id.navigation_near)).perform(click())
 
-        SystemClock.sleep(1000)
-        onView(withText("O'Connell St, O'Connell Bridge")).check(matches(isDisplayed()))
-        onView(withText("58 m")).check(matches(isDisplayed()))
 
-        val marker = device.findObject(UiSelector().descriptionContains("stopNumber274"))
-        try {
-            marker.click()
-        } catch (e: UiObjectNotFoundException) {
-            e.printStackTrace()
+        if (BuildConfig.MOCK_MAP) {
+            SystemClock.sleep(1000)
+            onView(withText("O'Connell St, O'Connell Bridge")).check(matches(isDisplayed()))
+            onView(withText("58 m")).check(matches(isDisplayed()))
+
+            val marker = device.findObject(UiSelector().descriptionContains("stopNumber274"))
+            try {
+                marker.click()
+            } catch (e: UiObjectNotFoundException) {
+                e.printStackTrace()
+            }
         }
 
         //SystemClock.sleep(1500);

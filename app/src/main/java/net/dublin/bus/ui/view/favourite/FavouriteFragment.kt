@@ -23,14 +23,14 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
 
     private lateinit var mAdapter: FavouriteAdapter
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_favourite, container, false)
+        val view = inflater.inflate(R.layout.fragment_favourite, container, false)
         setupRecyclerView(view)
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         initialize()
@@ -44,9 +44,9 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
     }
 
     private fun initialize() {
-        val factory = FavouriteViewModelFactory(StopRepository(activity.application))
-        model = ViewModelProviders.of(activity, factory).get(FavouriteViewModel::class.java)
-        model.getStops().observe(activity, Observer<List<Favourite>> {
+        val factory = FavouriteViewModelFactory(StopRepository(requireContext()))
+        model = ViewModelProviders.of(requireActivity(), factory).get(FavouriteViewModel::class.java)
+        model.getStops().observe(requireActivity(), Observer<List<Favourite>> {
             it?.let {
                 onData(it)
             }
@@ -103,7 +103,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
 
     override fun onItemClick(item: Favourite) {
         Analytics.sendRouteFavouriteEvent(context)
-        RealTimeActivity.navigate(activity, item)
+        RealTimeActivity.navigate(requireActivity(), item)
     }
 
     companion object {

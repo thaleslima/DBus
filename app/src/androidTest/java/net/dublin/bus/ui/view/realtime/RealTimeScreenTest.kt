@@ -23,13 +23,12 @@ import net.dublin.bus.ui.view.utilities.TestUtils.checkRecyclerHasDescendant
 import net.dublin.bus.ui.view.utilities.TestUtils.sleep
 import net.dublin.bus.ui.view.utilities.TestUtils.swipeRefresh
 import org.hamcrest.CoreMatchers.not
-import org.hamcrest.CoreMatchers.startsWith
+import org.hamcrest.Matchers.startsWith
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.io.UnsupportedEncodingException
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
