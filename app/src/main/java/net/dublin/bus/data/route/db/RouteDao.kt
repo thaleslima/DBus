@@ -6,6 +6,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import net.dublin.bus.model.Route
+import android.arch.persistence.room.Transaction
 
 @Dao
 interface RouteDao {
@@ -23,4 +24,10 @@ interface RouteDao {
 
     @Query("DELETE FROM routes")
     fun clear()
+
+    @Transaction
+    fun replaceAll(stops: List<Route>) {
+        clear()
+        saveAllRoutes(stops)
+    }
 }

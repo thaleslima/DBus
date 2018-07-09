@@ -10,16 +10,19 @@ repositories {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     flavorDimensions "default"
 
     defaultConfig {
         applicationId "net.dublin.bus"
         minSdkVersion 18
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 27
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "boolean", "MOCK", "false"
+        buildConfigField "boolean", "MOCK_MAP", "true"
+
 //        vectorDrawables.useSupportLibrary = true
     }
 
@@ -44,7 +47,16 @@ android {
         mock {
             buildConfigField 'int', 'API_URL_PORT', '2543'
             buildConfigField 'String', 'API_URL', '"http://localhost:2543/"'
+            buildConfigField "boolean", "MOCK", "true"
         }
+
+        mockNoMaps {
+            buildConfigField 'int', 'API_URL_PORT', '2543'
+            buildConfigField 'String', 'API_URL', '"http://localhost:2543/"'
+            buildConfigField "boolean", "MOCK", "true"
+            buildConfigField "boolean", "MOCK_MAP", "false"
+        }
+
         prod {
             buildConfigField 'String', 'API_URL', '"http://rtpi.dublinbus.ie/"'
         }
@@ -54,83 +66,92 @@ android {
         if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mock') {
             variant.setIgnore(true)
         }
+
+        if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mockNoMaps') {
+            variant.setIgnore(true)
+        }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
     ext {
-        supportLibraryVersion = '26.1.0'
+        supportLibraryVersion = '27.1.1'
+        constraintLayout = '1.1.2'
 
         junitVersion = '4.12'
         mockitoAllVersion = '1.10.19'
         hamcrestAllVersion = '1.3'
 
-        espressoVersion = '3.0.1'
+        espressoVersion = '3.0.2'
         mockitoCoreVersion = '2.15.0'
         dexmakerVersion = '1.2'
         mockwebserverVersion = '2.7.0'
 
-        roomVersion = '1.0.0'
+        roomVersion = '1.1.1'
+        lifecycle = '1.1.1'
+
         archLifecycleVersion = '1.1.0'
+        firebase_jobdispatcher_version = "0.7.0"
+
+        playService = '12.0.0'
     }
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.android.support:support-vector-drawable:26.1.0'
-    implementation 'com.android.support:support-v4:26.1.0'
-    implementation "com.android.support:cardview-v7:26.1.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "com.android.support:support-vector-drawable:$supportLibraryVersion"
+    implementation "com.android.support:support-v4:$supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:support-v13:$supportLibraryVersion"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayout"
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
 
-    implementation 'com.google.firebase:firebase-core:12.0.0'
-    implementation 'com.google.firebase:firebase-perf:12.0.0'
+    implementation "com.firebase:firebase-jobdispatcher:$firebase_jobdispatcher_version"
+    implementation "com.google.firebase:firebase-core:$playService"
+    implementation "com.google.firebase:firebase-perf:$playService"
+    implementation "com.google.android.gms:play-services-maps:$playService"
+    implementation "com.google.android.gms:play-services-location:$playService"
 
-    implementation "com.google.android.gms:play-services-maps:12.0.0"
-    implementation "com.google.android.gms:play-services-location:12.0.0"
-    implementation "com.android.support:appcompat-v7:26.1.0"
-    implementation "com.android.support:support-v13:26.1.0"
-    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
     implementation "io.reactivex.rxjava2:rxjava:2.1.8"
     implementation 'com.google.code.ksoap2-android:ksoap2-android:3.6.2'
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     // Room components
     implementation "android.arch.persistence.room:runtime:$roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
     kapt "android.arch.persistence.room:compiler:$roomVersion"
+    implementation "android.arch.lifecycle:extensions:$lifecycle"
+    implementation "android.arch.lifecycle:viewmodel:$lifecycle"
+    implementation "android.arch.lifecycle:livedata:$lifecycle"
+    implementation "android.arch.lifecycle:common-java8:$lifecycle"
+
     androidTestImplementation "android.arch.persistence.room:testing:$roomVersion"
-
-    // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:1.1.0"
-    // alternatively, just ViewModel
-    implementation "android.arch.lifecycle:viewmodel:1.1.0"
-    // alternatively, just LiveData
-    implementation "android.arch.lifecycle:livedata:1.1.0"
-
-    implementation "android.arch.lifecycle:common-java8:1.1.0"
-
-    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.mockito:mockito-all:$mockitoAllVersion"
     testImplementation "org.hamcrest:hamcrest-all:$hamcrestAllVersion"
-
     testImplementation group: 'org.mockito', name: 'mockito-inline', version: '2.8.9'
 
     // Android Testing Support Library's runner and rules
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 
     // Dependencies for Android unit tests
     androidTestImplementation "junit:junit:$junitVersion"

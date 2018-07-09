@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import net.dublin.bus.R
 import net.dublin.bus.common.Analytics
 import net.dublin.bus.data.stop.repository.StopRepository
+import net.dublin.bus.data.sync.SyncUtils
 import net.dublin.bus.ui.utilities.BottomNavigationViewHelper
 import net.dublin.bus.ui.view.favourite.FavouriteFragment
 import net.dublin.bus.ui.view.near.NearActivity
@@ -73,6 +74,8 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             checkFavourite()
         }
+
+        SyncUtils.initialize(this)
     }
 
     private fun initExtra() {

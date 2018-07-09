@@ -16,9 +16,9 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
     private lateinit var presenter: RouteDetailContract.Presenter
     private var mAdapter: RouteDetailAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_route_detail, container, false)
+        return inflater.inflate(R.layout.fragment_route_detail, container, false)
     }
 
     private fun setupRecyclerView() {
@@ -27,7 +27,7 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
         route_detail_recycler_view.adapter = mAdapter
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         initialize()
@@ -35,6 +35,7 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
 
     override fun onPause() {
         super.onPause()
+
         presenter.unsubscribe()
     }
 
@@ -65,7 +66,7 @@ class RouteDetailFragment : Fragment(), RouteDetailAdapter.ItemClickListener, Ro
 
     override fun onItemClick(item: Stop) {
         Analytics.sendRouteDetailListEvent(context)
-        RealTimeActivity.navigate(context, item)
+        RealTimeActivity.navigate(requireContext(), item)
     }
 
     companion object {
