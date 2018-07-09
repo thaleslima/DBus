@@ -105,7 +105,7 @@ class RouteDetailActivity : AppCompatActivity() {
         model = ViewModelProviders.of(this, factory).get(RouteDetailViewModel::class.java)
         model.getStops().observe(this, Observer<List<Stop>> {
             if (it != null) {
-                route_count_view.text = getString(R.string.route_detail_size_stops, it?.size.toString())
+                route_count_view.text = getString(R.string.route_detail_size_stops, it.size.toString())
                 route_name_towards_view.text = routeNameTowards
             } else {
                 onError()

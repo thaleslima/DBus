@@ -53,7 +53,7 @@ class SearchActivity : AppCompatActivity(), SearchStopAdapter.ItemClickListener,
             override fun afterTextChanged(s: Editable) {}
         })
 
-        search_text_view.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+        search_text_view.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideKeyboard()
                 return@OnEditorActionListener true
@@ -154,8 +154,8 @@ class SearchActivity : AppCompatActivity(), SearchStopAdapter.ItemClickListener,
                 val opts = ActivityOptions.makeSceneTransitionAnimation(activity)
                 activity.startActivity(intent, opts.toBundle())
             } else {
-                val intent = Intent(activity, SearchActivity::class.java)
-                activity.startActivity(intent)
+                val i = Intent(activity, SearchActivity::class.java)
+                activity.startActivity(i)
             }
         }
     }

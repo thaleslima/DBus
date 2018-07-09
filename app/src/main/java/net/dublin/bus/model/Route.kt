@@ -1,6 +1,7 @@
 package net.dublin.bus.model
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "routes")
@@ -24,5 +25,6 @@ data class Route(
         var outboundVia: String? = null,
         var seqNumber: String? = null,
         var towards: String? = null,
-        var code: String? = null
-)
+        var code: String? = null) {
+    @Ignore constructor() : this("")
+}

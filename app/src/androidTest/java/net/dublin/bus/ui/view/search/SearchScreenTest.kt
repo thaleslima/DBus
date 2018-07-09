@@ -19,7 +19,7 @@ import net.dublin.bus.ui.view.utilities.TestUtils.checkRecyclerHasDescendant
 import net.dublin.bus.ui.view.utilities.TestUtils.clickOnList
 import net.dublin.bus.ui.view.utilities.TestUtils.sleep
 import org.hamcrest.CoreMatchers.not
-import org.hamcrest.CoreMatchers.startsWith
+import org.hamcrest.Matchers.startsWith
 import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters.NAME_ASCENDING

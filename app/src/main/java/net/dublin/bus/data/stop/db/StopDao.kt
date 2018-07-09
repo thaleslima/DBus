@@ -6,9 +6,12 @@ import net.dublin.bus.model.Stop
 
 @Dao
 interface StopDao {
+
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT stopnumber, description, routes FROM stops")
     fun getStops(): LiveData<List<Stop>>
 
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT stopnumber, description, routes FROM stops WHERE stopnumber LIKE :search || '%' OR description LIKE :search || '%'")
     fun getStopsByText(search: String): List<Stop>
 
@@ -21,6 +24,7 @@ interface StopDao {
     @Query("DELETE FROM stops")
     fun clear()
 
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT stopnumber, description FROM stops WHERE stopnumber = :stopNumber")
     fun getStopsByNumber(stopNumber: String): Stop
 

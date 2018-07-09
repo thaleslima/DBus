@@ -19,12 +19,12 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
     private lateinit var model: StopViewModel
     private var mAdapter: StopAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_stop, container, false)
+        return inflater.inflate(R.layout.fragment_stop, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         initialize()
@@ -39,9 +39,9 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
     private fun initialize() {
         showProgress()
 
-        val factory = StopViewModelFactory(StopRepository(activity.application))
-        model = ViewModelProviders.of(activity, factory).get(StopViewModel::class.java)
-        model.getStops().observe(activity, Observer<List<Stop>> {
+        val factory = StopViewModelFactory(StopRepository(requireContext()))
+        model = ViewModelProviders.of(requireActivity(), factory).get(StopViewModel::class.java)
+        model.getStops().observe(requireActivity(), Observer<List<Stop>> {
             it?.let {
                 showData(it)
             }
@@ -63,7 +63,7 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
 
     override fun onItemClick(item: Stop) {
         Analytics.sendRouteEvent(context)
-        RealTimeActivity.navigate(context, item)
+        RealTimeActivity.navigate(requireContext(), item)
     }
 
     companion object {
