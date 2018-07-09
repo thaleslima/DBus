@@ -6,7 +6,6 @@ import io.reactivex.schedulers.Schedulers
 import net.dublin.bus.data.recent.repository.RecentRepository
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.data.stop.repository.StopRepository
-import net.dublin.bus.model.Recent
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.Stop
 
@@ -23,14 +22,14 @@ class SearchPresenter(private val view: SearchContract.View,
     override fun loadRoute(item: Route) {
         recentRepository.getSaveRoute(item.number).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({})
+                .subscribe {}
         view.showRoute(item)
     }
 
     override fun loadStop(item: Stop) {
         recentRepository.getSaveStop(item.stopNumber).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({})
+                .subscribe {}
         view.showStop(item)
     }
 

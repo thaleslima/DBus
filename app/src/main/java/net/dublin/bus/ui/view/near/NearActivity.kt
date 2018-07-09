@@ -11,13 +11,15 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_near.*
@@ -27,7 +29,10 @@ import net.dublin.bus.common.Constants
 import net.dublin.bus.common.Haversine
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
-import net.dublin.bus.ui.utilities.*
+import net.dublin.bus.ui.utilities.LocationRequestWrapper
+import net.dublin.bus.ui.utilities.getDip
+import net.dublin.bus.ui.utilities.hasLocationPermission
+import net.dublin.bus.ui.utilities.requestLocationOrShowMessage
 import net.dublin.bus.ui.view.realtime.RealTimeActivity
 import java.util.*
 

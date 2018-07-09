@@ -16,7 +16,7 @@ package net.dublin.bus.common
  */
 
 object Haversine {
-    private val EARTH_RADIUS = 6371 // Approx Earth radius in KM
+    private const val EARTH_RADIUS = 6371 // Approx Earth radius in KM
 
     fun distance(startLat: Double, startLong: Double,
                  endLat: Double, endLong: Double): Double {

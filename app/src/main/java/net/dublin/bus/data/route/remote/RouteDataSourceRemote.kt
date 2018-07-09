@@ -17,7 +17,7 @@ import org.ksoap2.transport.HttpTransportSE
 import java.io.IOException
 import java.util.*
 
-class RouteDataSource {
+class RouteDataSourceRemote {
     fun getData(): Observable<List<Route>> {
         val soapObject = SoapObject(Constants.NAMESPACE, Constants.API_URL_ROUTE_METHOD)
 

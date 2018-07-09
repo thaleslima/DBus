@@ -4,10 +4,7 @@ package net.dublin.bus.common
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-
 import com.google.firebase.analytics.FirebaseAnalytics
-import io.reactivex.internal.operators.maybe.MaybeDoAfterSuccess
-import net.dublin.bus.ui.view.search.SearchActivity
 
 object Analytics {
     private interface Constants {
@@ -104,12 +101,12 @@ object Analytics {
         FirebaseAnalytics.getInstance(context).setUserProperty(Constants.BUTTON_LIST_MAP, action)
     }
 
-    fun sendRouteFavouriteEvent(context: Context?) {
+    fun sendRouteFavouriteEvent(context: Context) {
         sendRouteOriginEvent(context, Constants.ROUTE_ORIGIN_FAVOURITE)
     }
 
 
-    fun sendRouteEvent(context: Context?) {
+    fun sendRouteEvent(context: Context) {
         sendRouteOriginEvent(context, Constants.ROUTE_ORIGIN_SCREEN)
     }
 
@@ -121,15 +118,15 @@ object Analytics {
         sendRouteOriginEvent(context, Constants.ROUTE_ORIGIN_DETAIL_MAP)
     }
 
-    fun sendRouteDetailListEvent(context: Context?) {
+    fun sendRouteDetailListEvent(context: Context) {
         sendRouteOriginEvent(context, Constants.ROUTE_ORIGIN_DETAIL_LIST)
     }
 
-    fun sendRouteSearchEvent(context: Context?) {
+    fun sendRouteSearchEvent(context: Context) {
         sendRouteOriginEvent(context, Constants.ROUTE_ORIGIN_SEARCH)
     }
 
-    fun sendRouteOriginEvent(context: Context?, origin: String) {
+    private fun sendRouteOriginEvent(context: Context, origin: String) {
         val params = Bundle()
         params.putString(FirebaseAnalytics.Param.VALUE, origin)
         FirebaseAnalytics.getInstance(context).logEvent(Constants.ROUTE_ORIGIN, params)

@@ -130,11 +130,11 @@ class RouteDetailActivity : AppCompatActivity() {
     }
 
     private fun showSnackBarNoConnection() {
-        snackBarNoConnection(container, { loadData() }).show()
+        snackBarNoConnection(container) { loadData() }.show()
     }
 
     private fun showSnackBarError() {
-        snackBarErrorMessage(container, { loadData() }).show()
+        snackBarErrorMessage(container) { loadData() }.show()
     }
 
     private fun setupToolbar() {
@@ -147,13 +147,13 @@ class RouteDetailActivity : AppCompatActivity() {
         route_name_towards_view.text = routeNameTowards
         map = getShowMapAtRouteDetail()
 
-        route_change_map_list_view.setOnClickListener({
+        route_change_map_list_view.setOnClickListener {
             map = !map
             sendEvent()
             changeMapOrList()
             changeIcoMapOrList()
             RouteDetailActivity@this.saveShowMapAtRouteDetail(map)
-        })
+        }
 
         route_change_direction_view.setOnClickListener { v -> showFilterPopup(v) }
     }
