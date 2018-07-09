@@ -1,7 +1,7 @@
 package net.dublin.bus.data.stop.repository
 
-import android.app.Application
 import android.arch.lifecycle.LiveData
+import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.Single
 import net.dublin.bus.data.stop.local.LocalStopDataSource
@@ -10,10 +10,10 @@ import net.dublin.bus.data.stop.remote.RemoteStopDataSource
 import net.dublin.bus.model.Favourite
 import net.dublin.bus.model.Stop
 
-class StopRepository(application: Application) {
-    private var localSource: LocalStopDataSource = LocalStopDataSource(application)
+class StopRepository(context: Context) {
+    private var localSource: LocalStopDataSource = LocalStopDataSource(context)
     private var remoteSource: RemoteStopDataSource = RemoteStopDataSource()
-    private var localFavouriteSource: LocalStopFavouriteDataSource = LocalStopFavouriteDataSource(application)
+    private var localFavouriteSource: LocalStopFavouriteDataSource = LocalStopFavouriteDataSource(context)
 
     fun getData(): LiveData<List<Stop>> {
         return localSource.getAll()
@@ -22,11 +22,11 @@ class StopRepository(application: Application) {
     fun getStopsByLatLng(latitude: Double, longitude: Double): Single<MutableList<Stop>> {
         return localSource
                 .getStopsByLatLng(latitude, longitude)
-                .flatMapIterable({ it })
-                .map({ it1 ->
+                .flatMapIterable { it }
+                .map { it1 ->
                     it1.calculateDistance(latitude, longitude)
                     it1
-                })
+                }
                 .toSortedList { first, second -> first.distance.compareTo(second.distance) }
     }
 

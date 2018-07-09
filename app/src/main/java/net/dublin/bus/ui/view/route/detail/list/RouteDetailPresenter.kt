@@ -18,9 +18,9 @@ class RouteDetailPresenter(private val view: RouteDetailContract.View) : RouteDe
     override fun loadData() {
         view.showProgress()
 
-        val factory = RouteDetailViewModelFactory(RouteRepository(view.getActivity()))
-        model = ViewModelProviders.of(view.getActivity(), factory).get(RouteDetailViewModel::class.java)
-        model.getStops().observe(view.getActivity(), Observer<List<Stop>> {
+        val factory = RouteDetailViewModelFactory(RouteRepository(view.requireActivity()))
+        model = ViewModelProviders.of(view.requireActivity(), factory).get(RouteDetailViewModel::class.java)
+        model.getStops().observe(view.requireActivity(), Observer<List<Stop>> {
             view.hideProgress()
             it?.let { it1 -> view.showData(it1) }
         })

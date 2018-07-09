@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_near.*
 import net.dublin.bus.R
 import net.dublin.bus.common.Analytics
 import net.dublin.bus.common.Constants
+import net.dublin.bus.common.Haversine
 import net.dublin.bus.data.stop.repository.StopRepository
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.utilities.*
@@ -84,14 +86,14 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
             }
         })
 
-        near_recycler_view.viewTreeObserver.addOnGlobalLayoutListener({
+        near_recycler_view.viewTreeObserver.addOnGlobalLayoutListener {
             try {
                 val padding = getDip(10)
                 mMap?.setPadding(0, near_recycler_view.height - padding, 0, near_recycler_view.height - padding)
             } catch (e: Exception) {
                 e.fillInStackTrace()
             }
-        })
+        }
     }
 
     private fun setupViewProperties() {
@@ -262,9 +264,30 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
 
     override fun onNewLocation(location: Location) {
         location.let {
-            moveCamera(LatLng(it.latitude, it.longitude))
-            getStopsByLatLng(it.latitude, it.longitude)
+            val latLng: LatLng?
+
+            if (isRadiusDublin(location)) {
+                latLng = Constants.getLatLngDefault()
+                disableLocation()
+            } else {
+                latLng = LatLng(it.latitude, it.longitude)
+            }
+
+            moveCamera(latLng)
+            getStopsByLatLng(latLng.latitude, latLng.longitude)
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun disableLocation() {
+        if (hasLocationPermission()) {
+            mMap?.isMyLocationEnabled = false
+        }
+    }
+
+    private fun isRadiusDublin(it: Location): Boolean {
+        val range = Haversine.distance(Constants.LATITUDE, Constants.LONGITUDE, it.latitude, it.longitude)
+        return range > Constants.RADIUS_LAT_LONG
     }
 
     companion object {

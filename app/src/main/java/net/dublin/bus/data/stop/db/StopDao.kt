@@ -1,17 +1,17 @@
 package net.dublin.bus.data.stop.db
 
 import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import net.dublin.bus.model.Stop
 
 @Dao
 interface StopDao {
+
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT stopnumber, description, routes FROM stops")
     fun getStops(): LiveData<List<Stop>>
 
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT stopnumber, description, routes FROM stops WHERE stopnumber LIKE :search || '%' OR description LIKE :search || '%'")
     fun getStopsByText(search: String): List<Stop>
 
@@ -24,6 +24,13 @@ interface StopDao {
     @Query("DELETE FROM stops")
     fun clear()
 
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT stopnumber, description FROM stops WHERE stopnumber = :stopNumber")
     fun getStopsByNumber(stopNumber: String): Stop
+
+    @Transaction
+    fun replaceAll(stops: List<Stop>) {
+        clear()
+        saveAllStops(stops)
+    }
 }

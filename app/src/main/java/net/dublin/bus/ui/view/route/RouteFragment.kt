@@ -20,12 +20,12 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     private lateinit var model: RouteViewModel
     private lateinit var mAdapter: RouteAdapter
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_route, container, false)
+        return inflater.inflate(R.layout.fragment_route, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         initialize()
@@ -38,9 +38,9 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     }
 
     private fun initialize() {
-        val factory = RouteViewModelFactory(RouteRepository(activity.application))
-        model = ViewModelProviders.of(activity, factory).get(RouteViewModel::class.java)
-        model.getStops().observe(activity, Observer<List<Route>> {
+        val factory = RouteViewModelFactory(RouteRepository(requireContext()))
+        model = ViewModelProviders.of(requireActivity(), factory).get(RouteViewModel::class.java)
+        model.getStops().observe(requireActivity(), Observer<List<Route>> {
             it?.let {
                 showData(it)
             }
@@ -61,12 +61,12 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     }
 
     override fun onItemClick(item: Route) {
-        RouteDetailActivity.navigate(context, item)
+        RouteDetailActivity.navigate(requireContext(), item)
     }
 
     override fun onLongItemClick(item: Route) {
-        TimetablesActivity.navigate(context, item.number, item.code)
-        Analytics.sendClickLongTimetablesEvent(context)
+        TimetablesActivity.navigate(requireContext(), item.number, item.code)
+        Analytics.sendClickLongTimetablesEvent(requireContext())
     }
 
     companion object {

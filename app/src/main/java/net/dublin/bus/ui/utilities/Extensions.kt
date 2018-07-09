@@ -46,7 +46,7 @@ fun Context.getDip(value: Int): Int {
 }
 
 fun Fragment.getDip(value: Int): Int {
-    return this.context.getDip(value)
+    return this.requireContext().getDip(value)
 }
 
 fun Context.isNetworkAvailable(): Boolean {
