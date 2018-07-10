@@ -25,7 +25,7 @@ android {
     flavorDimensions "default"
 
     defaultConfig {
-        applicationId "net.dublin.bus"
+        applicationId "net.atebtech.dublin"
         minSdkVersion 18
         targetSdkVersion 27
         versionCode 2
