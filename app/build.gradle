@@ -9,6 +9,17 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
 }
 
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+def keystorePropertiesFile = rootProject.file("./key/keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
 android {
     compileSdkVersion 27
     flavorDimensions "default"
@@ -28,10 +39,10 @@ android {
 
     signingConfigs {
         config {
-            storeFile file("../key/app.jks")
-            storePassword "dublin@123"
-            keyAlias "dublin_bus"
-            keyPassword "dublin@123"
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
     }
 
