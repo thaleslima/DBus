@@ -21,6 +21,7 @@ import net.dublin.bus.ui.view.utilities.MockServer.shutdown
 import net.dublin.bus.ui.view.utilities.MockServer.start
 import net.dublin.bus.ui.view.utilities.TestUtils.checkRecyclerHasDescendant
 import net.dublin.bus.ui.view.utilities.TestUtils.sleep
+import net.dublin.bus.ui.view.utilities.TestUtils.sleepLong
 import net.dublin.bus.ui.view.utilities.TestUtils.swipeRefresh
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matchers.startsWith
@@ -210,7 +211,7 @@ class RealTimeScreenTest {
         intent.putExtra(RealTimeActivity.EXTRA_DESCRIPTION, STOP_DESCRIPTION)
         intent.putExtra(RealTimeActivity.EXTRA_STOP_NUMBER, STOP_NUMBER)
         activityTestRule.launchActivity(intent)
-        sleep()
+        sleepLong()
     }
 
     companion object {

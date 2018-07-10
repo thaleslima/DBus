@@ -18,6 +18,7 @@ import android.support.test.uiautomator.UiSelector
 import net.dublin.bus.BuildConfig
 import net.dublin.bus.R
 import net.dublin.bus.ui.view.main.MainActivity
+import net.dublin.bus.ui.view.utilities.TestUtils
 import org.junit.FixMethodOrder
 import org.junit.Rule
 import org.junit.Test
@@ -66,6 +67,6 @@ class NearScreenTest {
     private fun launchActivity() {
         val intent = Intent()
         activityTestRule.launchActivity(intent)
-        SystemClock.sleep(500)
+        TestUtils.sleepLong()
     }
 }

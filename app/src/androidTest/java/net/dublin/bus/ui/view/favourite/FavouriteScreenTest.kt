@@ -138,10 +138,10 @@ class FavouriteScreenTest {
         //Remove Favourite
         onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         TestUtils.sleep()
-        TestUtils.sleep()
         onView(withId(R.id.menu_favorite)).perform(click())
         text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_remove_favourite)
         onView(withText(text)).check(matches(isDisplayed()))
+
     }
 
     @Test
@@ -199,13 +199,12 @@ class FavouriteScreenTest {
         val intent = Intent()
         activityTestRule.launchActivity(intent)
         removeAllFavourites()
-        TestUtils.sleep()
+        TestUtils.sleepLong()
     }
 
     private fun addFavorite(position: Int) {
         onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click()))
-        TestUtils.sleep()
-        TestUtils.sleep()
+        TestUtils.sleepLong()
         onView(withId(R.id.menu_favorite)).perform(click())
         mDevice.pressBack()
     }

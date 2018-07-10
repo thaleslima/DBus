@@ -23,6 +23,7 @@ import net.dublin.bus.ui.view.utilities.MockServer
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherInboundResponse200
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherInboundResponse2_200
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherResponse500
+import net.dublin.bus.ui.view.utilities.TestUtils
 import net.dublin.bus.ui.view.utilities.TestUtils.sleep
 import org.hamcrest.Matchers.startsWith
 import org.junit.After
@@ -214,7 +215,7 @@ class RouteDetailMapScreenTest {
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_CODE, ROUTE_CODE)
 
         activityTestRule.launchActivity(intent)
-        SystemClock.sleep(500)
+        TestUtils.sleepLong()
     }
 
     companion object {

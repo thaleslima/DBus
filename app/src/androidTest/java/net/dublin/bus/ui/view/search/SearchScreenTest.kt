@@ -15,6 +15,7 @@ import net.dublin.bus.ui.view.main.MainActivity
 import net.dublin.bus.ui.view.utilities.MockServer
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherRealTimeResponse200
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherRouteInbound200
+import net.dublin.bus.ui.view.utilities.TestUtils
 import net.dublin.bus.ui.view.utilities.TestUtils.checkRecyclerHasDescendant
 import net.dublin.bus.ui.view.utilities.TestUtils.clickOnList
 import net.dublin.bus.ui.view.utilities.TestUtils.sleep
@@ -206,8 +207,8 @@ class SearchScreenTest {
     private fun launchActivity() {
         val intent = Intent()
         activityTestRule.launchActivity(intent)
-        sleep()
+        TestUtils.sleepLong()
         onView(withId(R.id.main_search_view)).perform(click())
-        sleep()
+        TestUtils.sleepLong()
     }
 }
