@@ -1,7 +1,6 @@
 package net.dublin.bus.ui.view.route.detail
 
 import android.content.Intent
-import android.os.SystemClock
 import android.support.test.InstrumentationRegistry
 import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.support.test.espresso.Espresso.onView
@@ -21,10 +20,11 @@ import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherRouteOutbound200
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherRouteOutboundNoItems200
 import net.dublin.bus.ui.view.utilities.MockServer.shutdown
 import net.dublin.bus.ui.view.utilities.MockServer.start
+import net.dublin.bus.ui.view.utilities.TestUtils
 import net.dublin.bus.ui.view.utilities.TestUtils.checkRecyclerHasDescendant
 import net.dublin.bus.ui.view.utilities.TestUtils.sleep
 import org.hamcrest.CoreMatchers.not
-import org.hamcrest.CoreMatchers.startsWith
+import org.hamcrest.Matchers.startsWith
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -233,7 +233,7 @@ class RouteDetailScreenTest {
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_CODE, ROUTE_CODE)
 
         activityTestRule.launchActivity(intent)
-        SystemClock.sleep(500)
+        TestUtils.sleepLong()
     }
 
     private fun launchActivity2() {
@@ -245,7 +245,7 @@ class RouteDetailScreenTest {
         intent.putExtra(RouteDetailActivity.EXTRA_ROUTE_CODE, ROUTE_CODE)
 
         activityTestRule.launchActivity(intent)
-        SystemClock.sleep(500)
+        TestUtils.sleepLong()
     }
 
     companion object {

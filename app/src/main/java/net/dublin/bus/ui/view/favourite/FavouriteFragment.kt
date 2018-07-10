@@ -102,7 +102,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
     }
 
     override fun onItemClick(item: Favourite) {
-        Analytics.sendRouteFavouriteEvent(context)
+        Analytics.sendRouteFavouriteEvent(requireContext())
         RealTimeActivity.navigate(requireActivity(), item)
     }
 

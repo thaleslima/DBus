@@ -1,6 +1,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
@@ -20,7 +21,6 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@null"
@@ -35,7 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="9dp"
             android:fontFamily="sans-serif-medium"
@@ -50,10 +49,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="100"
             android:textColor="@color/secondary_text"
             app:layout_constraintStart_toStartOf="@+id/favourite_number_view"
-            app:layout_constraintTop_toBottomOf="@+id/favourite_number_view" />
+            app:layout_constraintTop_toBottomOf="@+id/favourite_number_view"
+            tools:text="100" />
 
         <View
             android:id="@+id/favourite_divider_view"
@@ -93,7 +92,7 @@
             app:layout_constraintTop_toBottomOf="@+id/favourite_divider_view" />
 
         <LinearLayout
-            android:id="@+id/favourite_real_time_view"
+            android:id="@+id/favourite_real_time_container_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"

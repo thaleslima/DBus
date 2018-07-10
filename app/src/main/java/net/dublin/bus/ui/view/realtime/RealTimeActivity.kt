@@ -109,12 +109,12 @@ class RealTimeActivity : AppCompatActivity(), RealTimeAdapter.ItemClickListener,
     }
 
     override fun showSnackBarNoConnection() {
-        snackNoConnection = snackBarNoConnection(real_swipe_refresh_layout, { presenter.loadData() })
+        snackNoConnection = snackBarNoConnection(real_swipe_refresh_layout) { presenter.loadData() }
         snackNoConnection?.show()
     }
 
     override fun showSnackBarError() {
-        snackError = snackBarErrorMessage(real_swipe_refresh_layout, { presenter.loadData() })
+        snackError = snackBarErrorMessage(real_swipe_refresh_layout) { presenter.loadData() }
         snackError?.show()
     }
 

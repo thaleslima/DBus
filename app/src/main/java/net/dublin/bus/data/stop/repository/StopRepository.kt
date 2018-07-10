@@ -4,61 +4,107 @@ import android.arch.lifecycle.LiveData
 import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.Single
-import net.dublin.bus.data.stop.local.LocalStopDataSource
-import net.dublin.bus.data.stop.local.LocalStopFavouriteDataSource
-import net.dublin.bus.data.stop.remote.RemoteStopDataSource
+import net.dublin.bus.data.BusDatabase
+import net.dublin.bus.data.stop.db.StopDao
+import net.dublin.bus.data.stop.db.StopFavouriteDao
 import net.dublin.bus.model.Favourite
 import net.dublin.bus.model.Stop
+import java.io.IOException
 
 class StopRepository(context: Context) {
-    private var localSource: LocalStopDataSource = LocalStopDataSource(context)
-    private var remoteSource: RemoteStopDataSource = RemoteStopDataSource()
-    private var localFavouriteSource: LocalStopFavouriteDataSource = LocalStopFavouriteDataSource(context)
+    private var stopDao: StopDao
+    private var favouriteDao: StopFavouriteDao
+
+    init {
+        val db = BusDatabase.getDatabase(context)
+        stopDao = db.getStopDao()
+        favouriteDao = db.getFavoriteDao()
+    }
 
     fun getData(): LiveData<List<Stop>> {
-        return localSource.getAll()
+        return stopDao.getStops()
     }
 
     fun getStopsByLatLng(latitude: Double, longitude: Double): Single<MutableList<Stop>> {
-        return localSource
-                .getStopsByLatLng(latitude, longitude)
+        return Observable.fromCallable { stopDao.getStopsByLatLng(latitude, longitude) }
                 .flatMapIterable { it }
                 .map { it1 ->
                     it1.calculateDistance(latitude, longitude)
                     it1
-                }
-                .toSortedList { first, second -> first.distance.compareTo(second.distance) }
+                }.toSortedList { first, second -> first.distance.compareTo(second.distance) }
     }
 
     fun isFavourite(stopNumber: String): Observable<Boolean> {
-        return localFavouriteSource.isFavourite(stopNumber)
+        return Observable.create { subscriber ->
+            try {
+                subscriber.onNext(favouriteDao.isFavourite(stopNumber) > 0)
+                subscriber.onComplete()
+            } catch (e: IOException) {
+                e.localizedMessage
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
+            }
+        }
     }
 
     fun saveFavourite(favourite: Favourite): Observable<Boolean> {
-        return localFavouriteSource.save(favourite)
+        return Observable.create { subscriber ->
+            try {
+                favouriteDao.save(favourite)
+                subscriber.onNext(true)
+                subscriber.onComplete()
+            } catch (e: IOException) {
+                e.localizedMessage
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
+            }
+        }
     }
 
     fun removeFavourite(stopNumber: String): Observable<Boolean> {
-        return localFavouriteSource.removeFavourite(stopNumber)
+        return Observable.create { subscriber ->
+            try {
+                favouriteDao.removeFavourite(stopNumber)
+                subscriber.onNext(true)
+                subscriber.onComplete()
+            } catch (e: IOException) {
+                e.localizedMessage
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
+            }
+        }
     }
 
     fun getFavourites(): LiveData<List<Favourite>> {
-        return localFavouriteSource.getAll()
+        return favouriteDao.getStops()
     }
 
     fun getStopsByText(search: String): Observable<List<Stop>> {
-        return localSource.getStopsByText(search)
+        return Observable.create { subscriber ->
+            try {
+                subscriber.onNext(stopDao.getStopsByText(search))
+                subscriber.onComplete()
+            } catch (e: IOException) {
+                e.localizedMessage
+                if (!subscriber.isDisposed) {
+                    subscriber.onError(e)
+                }
+            }
+        }
     }
 
     fun getStopsByNumber(stopNumber: String): Observable<Stop> {
-        return localSource.getStopsByNumber(stopNumber)
+        return Observable.fromCallable { stopDao.getStopsByNumber(stopNumber) }
     }
 
     fun removeAllFavourites() {
-        return localFavouriteSource.removeAllFavourites()
+        return favouriteDao.clear()
     }
 
     fun getQtdStops(): Observable<Int> {
-        return localFavouriteSource.getQtdStops()
+        return Observable.fromCallable { favouriteDao.getQtdStops() }.map { it.size }
     }
 }

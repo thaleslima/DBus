@@ -8,6 +8,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:215919300433:android:7e28fc6ba7259581",
+        "android_client_info": {
+          "package_name": "net.atebtech.dublin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215919300433-95n27409o629sonjapfdmda20rm71nbh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.atebtech.dublin",
+            "certificate_hash": "292d352bb9dcf44de1771f05b0470c5ce1a57f2c"
+          }
+        },
+        {
+          "client_id": "215919300433-1duptjgg0gt22keohr28gc2utnslpm0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHgE0SUEIkXJoubqCj4sT5CU9LAyDgXE8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215919300433-1duptjgg0gt22keohr28gc2utnslpm0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:215919300433:android:98799854898f0614",
         "android_client_info": {
           "package_name": "net.dublin.bus"
@@ -20,6 +64,14 @@
           "android_info": {
             "package_name": "net.dublin.bus",
             "certificate_hash": "292d352bb9dcf44de1771f05b0470c5ce1a57f2c"
+          }
+        },
+        {
+          "client_id": "215919300433-9lqgku9eknffhmn6l36ii5b3fl5r8tmf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.dublin.bus",
+            "certificate_hash": "37e15e2d60742a7c6d966dc50e6d2ce788a606af"
           }
         },
         {

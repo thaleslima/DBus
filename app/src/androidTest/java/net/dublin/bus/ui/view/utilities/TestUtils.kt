@@ -39,7 +39,11 @@ object TestUtils {
     }
 
     fun sleep() {
-        SystemClock.sleep(500)
+        SystemClock.sleep(600)
+    }
+
+    fun sleepLong() {
+        SystemClock.sleep(1200)
     }
 
     private fun atPosition(position: Int, itemMatcher: Matcher<View>): Matcher<View> {

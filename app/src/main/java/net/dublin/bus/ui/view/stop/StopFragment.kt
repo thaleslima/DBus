@@ -62,7 +62,7 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
     }
 
     override fun onItemClick(item: Stop) {
-        Analytics.sendRouteEvent(context)
+        Analytics.sendRouteEvent(requireContext())
         RealTimeActivity.navigate(requireContext(), item)
     }
 

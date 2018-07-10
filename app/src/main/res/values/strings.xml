@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dublin Bus</string>
+    <string name="app_name">Bus Dublin</string>
     <string name="title_real_time">Real Time Information</string>
 
     <string name="title_stop">Stops</string>
@@ -35,6 +35,7 @@
 
     <string name="near_search_button">Search this area</string>
     <string name="near_me_title">Near me</string>
+    <string name="near_back">Back</string>
 
     <string name="search_stops_title">Stops</string>
     <string name="search_routes_title">Routes</string>

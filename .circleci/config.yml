@@ -21,6 +21,14 @@ jobs:
           command: yes | sdkmanager --licenses || true
 
       - run:
+          name: Decrypt release properties
+          command: openssl aes-256-cbc -d -in key/keystore.properties-cipher -out key/keystore.properties -md sha256 -k $CIPHER_DECRYPT_KEY
+
+      - run:
+          name: Decrypt release key
+          command: openssl aes-256-cbc -d -in key/release.keystore-cipher -out key/release.keystore -md sha256 -k $CIPHER_DECRYPT_KEY
+
+      - run:
           name: Build
           command: ./gradlew assembleProd
 
