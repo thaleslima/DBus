@@ -133,6 +133,7 @@ class FavouriteScreenTest {
         TestUtils.sleep()
         var text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_add_favourite)
         onView(withText(text)).check(matches(isDisplayed()))
+        TestUtils.sleep()
         mDevice.pressBack()
 
         //Remove Favourite
@@ -141,7 +142,7 @@ class FavouriteScreenTest {
         onView(withId(R.id.menu_favorite)).perform(click())
         text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_remove_favourite)
         onView(withText(text)).check(matches(isDisplayed()))
-
+        TestUtils.sleep()
     }
 
     @Test
@@ -179,6 +180,7 @@ class FavouriteScreenTest {
         onView(withId(R.id.menu_favorite)).perform(click())
         val text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_remove_favourite)
         onView(withText(text)).check(matches(isDisplayed()))
+        TestUtils.sleep()
         mDevice.pressBack()
 
         // Verify only one favourite 1 was deleted
@@ -188,6 +190,7 @@ class FavouriteScreenTest {
         onView(withId(R.id.favourite_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.menu_favorite)).perform(click())
         onView(withText(text)).check(matches(isDisplayed()))
+        TestUtils.sleep()
         mDevice.pressBack()
 
         TestUtils.sleep()
@@ -206,6 +209,7 @@ class FavouriteScreenTest {
         onView(withId(R.id.stop_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click()))
         TestUtils.sleepLong()
         onView(withId(R.id.menu_favorite)).perform(click())
+        TestUtils.sleep()
         mDevice.pressBack()
     }
 
