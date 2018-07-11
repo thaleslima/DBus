@@ -2,7 +2,6 @@ package net.dublin.bus.ui.view.route.detail
 
 import android.Manifest
 import android.content.Intent
-import android.os.SystemClock
 import android.support.test.InstrumentationRegistry
 import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.support.test.espresso.Espresso.onView
@@ -219,8 +218,6 @@ class RouteDetailMapScreenTest {
     }
 
     companion object {
-        private val TAG = RouteDetailMapScreenTest::class.java.name
-
         private const val ROUTE_NUMBER = "7b"
         private const val ROUTE_IN_TOWARDS = "route_inbound_towards"
         private const val ROUTE_OUT_TOWARDS = "route_outbound_towards"

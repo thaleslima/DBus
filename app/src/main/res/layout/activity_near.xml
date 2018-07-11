@@ -37,7 +37,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_arrow_back_white_24dp"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            tools:targetApi="lollipop" />
 
         <TextView
             android:id="@+id/near_title_view"
@@ -64,7 +65,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/near_back_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/near_back_view"
-            app:layout_constraintTop_toTopOf="@+id/near_back_view" />
+            app:layout_constraintTop_toTopOf="@+id/near_back_view"
+            tools:targetApi="lollipop" />
 
         <TextView
             android:id="@+id/near_search_button_view"
@@ -91,7 +93,8 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/near_title_view" />
+            app:layout_constraintTop_toBottomOf="@+id/near_title_view"
+            tools:targetApi="lollipop" />
     </android.support.constraint.ConstraintLayout>
 </merge>
 

@@ -9,8 +9,6 @@ import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 
 object RouteDetailMapper {
-    private const val TAG = "GetStopDataByRoute"
-
     fun mapFrom(from: String?): List<Stop> {
         val list = ArrayList<Stop>()
         val builder: DocumentBuilder

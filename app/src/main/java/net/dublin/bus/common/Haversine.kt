@@ -11,7 +11,7 @@ package net.dublin.bus.common
  * Call in a static context:
  * Haversine.distance(47.6788206, -122.3271205,
  * 47.6788206, -122.5271205)
- * --> 14.973190481586224 [km]
+ * --> 14.973190481586224
  *
  */
 
