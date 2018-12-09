@@ -1,6 +1,6 @@
 package net.dublin.bus.ui.view.route
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_route.view.*

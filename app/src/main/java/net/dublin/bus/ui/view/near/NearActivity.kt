@@ -7,10 +7,10 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -61,7 +61,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
         setupViewProperties()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
         mapStateManager.saveLocationCurrent(outState, mMap)
@@ -78,16 +78,16 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
         snapHelper.attachToRecyclerView(near_recycler_view)
 
         near_recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!smoothScroll) {
                     val centerView = snapHelper.findSnapView(layoutManager)
-                    val pos = layoutManager.getPosition(centerView)
-
+                    val pos = layoutManager.getPosition(centerView!!)
                     mMarkers[pos]?.let {
                         chanceIcoMarker(it)
                     }
                 }
+
             }
         })
 
@@ -132,7 +132,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
     }
 
     private fun setUpMapIfNeeded() {
-        if (mSupportMapFragment == null) {
+        if (mSupportMapFragment === null) {
             val fm = supportFragmentManager
             mSupportMapFragment = fm.findFragmentById(R.id.near_map) as SupportMapFragment
             mSupportMapFragment?.getMapAsync(this)
@@ -191,6 +191,7 @@ class NearActivity : AppCompatActivity(), OnMapReadyCallback, LocationRequestWra
         mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
     }
 
+    @SuppressLint("CheckResult")
     private fun getStopsByLatLng(latitude: Double, longitude: Double) {
         latitudeSearch = latitude
         longitudeSearch = longitude

@@ -1,15 +1,15 @@
 package net.dublin.bus.ui.view.route.detail
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import android.annotation.SuppressLint
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import android.content.Context
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import net.dublin.bus.R
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Stop
-
 
 internal class RouteDetailViewModel(val repository: RouteRepository) : ViewModel() {
     private var stops: MutableLiveData<List<Stop>> = MutableLiveData()
@@ -33,6 +33,7 @@ internal class RouteDetailViewModel(val repository: RouteRepository) : ViewModel
         }
     }
 
+    @SuppressLint("CheckResult")
     fun reloadStops(route: String, direction: String) {
         repository.getDataDetail(route, direction)
                 .subscribeOn(Schedulers.io())
@@ -44,6 +45,7 @@ internal class RouteDetailViewModel(val repository: RouteRepository) : ViewModel
                 })
     }
 
+    @SuppressLint("CheckResult")
     fun loadRoutesByStopNumber(context: Context, stopNumber: String) {
         if (routes.value == null) {
             repository.getRoutesByStopNumber(stopNumber)

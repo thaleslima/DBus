@@ -1,11 +1,11 @@
 package net.dublin.bus.data.route
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import net.dublin.bus.data.BusDatabase
 import net.dublin.bus.model.Route
 import org.junit.After
@@ -38,7 +38,7 @@ class RouteDaoTest {
     private val stops = listOf(stop)
     @Before
     fun initDb() {
-        database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
+        database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getInstrumentation().context,
                 BusDatabase::class.java).build()
     }
 

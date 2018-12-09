@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "215919300433-2aek2g2up3n3cjn1us30q839dipe9a0n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.atebtech.dublin",
+            "certificate_hash": "37e15e2d60742a7c6d966dc50e6d2ce788a606af"
+          }
+        },
+        {
           "client_id": "215919300433-1duptjgg0gt22keohr28gc2utnslpm0f.apps.googleusercontent.com",
           "client_type": 3
         }

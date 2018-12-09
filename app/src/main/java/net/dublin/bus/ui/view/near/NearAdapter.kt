@@ -1,6 +1,6 @@
 package net.dublin.bus.ui.view.near
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_near.view.*
 import net.dublin.bus.R

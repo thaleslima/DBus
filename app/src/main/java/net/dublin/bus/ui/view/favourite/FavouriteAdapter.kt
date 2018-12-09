@@ -1,12 +1,12 @@
 package net.dublin.bus.ui.view.favourite
 
 import android.graphics.drawable.AnimationDrawable
-import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_list_favourite_with_real.view.*
@@ -76,7 +76,7 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
         return ITEM_WITH_REAL
     }
 
-    internal inner class LocalViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(inflate(parent, viewType)) {
+    internal inner class LocalViewHolder(parent: ViewGroup, viewType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(inflate(parent, viewType)) {
         private var mItem: Favourite? = null
         private var realTimes: ArrayList<RealTime> = arrayListOf()
 
@@ -132,7 +132,7 @@ internal class FavouriteAdapter(private val mListener: ItemClickListener) : Recy
 
         private fun onNextData(data: List<StopData>) {
             hideProgress()
-            if (data.isNotEmpty() && data.filter { !TextUtils.isEmpty(it.destinationName) }.any()) {
+            if (data.isNotEmpty() && data.asSequence().filter { !TextUtils.isEmpty(it.destinationName) }.any()) {
                 showData(data)
             } else {
                 showNoData()

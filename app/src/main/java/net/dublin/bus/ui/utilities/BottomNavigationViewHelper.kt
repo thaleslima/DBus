@@ -1,10 +1,11 @@
 package net.dublin.bus.ui.utilities
 
 import android.annotation.SuppressLint
-import android.support.design.internal.BottomNavigationItemView
-import android.support.design.internal.BottomNavigationMenuView
-import android.support.design.widget.BottomNavigationView
+
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.util.Log
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 
 object BottomNavigationViewHelper {
 
@@ -20,7 +21,7 @@ object BottomNavigationViewHelper {
                 for (i in 0 until menuView.childCount) {
                     val item = menuView.getChildAt(i) as BottomNavigationItemView
 
-                    item.setShiftingMode(false)
+                    //item.setShiftingMode(false)
                     // set once again checked value, so view will be updated
 
                     item.setChecked(item.itemData.isChecked)

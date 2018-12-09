@@ -4,8 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 
 private fun hasPermission(context: Context, permission: String): Boolean {
     return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
@@ -46,11 +46,11 @@ fun Context.hasLocationPermission(): Boolean {
             && hasPermission(this, Manifest.permission.ACCESS_FINE_LOCATION))
 }
 
-fun Fragment.hasLocationPermission(): Boolean {
+fun androidx.fragment.app.Fragment.hasLocationPermission(): Boolean {
     return requireContext().hasLocationPermission()
 }
 
-fun Fragment.requestLocationOrShowMessage(requestCode: Int): Boolean {
+fun androidx.fragment.app.Fragment.requestLocationOrShowMessage(requestCode: Int): Boolean {
     if (!hasLocationPermission()) {
         showLocationRequestPermission(this, requestCode)
         return false

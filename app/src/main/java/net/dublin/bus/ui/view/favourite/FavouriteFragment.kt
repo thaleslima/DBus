@@ -1,13 +1,13 @@
 package net.dublin.bus.ui.view.favourite
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +46,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
     private fun initialize() {
         val factory = FavouriteViewModelFactory(StopRepository(requireContext()))
         model = ViewModelProviders.of(requireActivity(), factory).get(FavouriteViewModel::class.java)
-        model.getStops().observe(requireActivity(), Observer<List<Favourite>> {
+        model.getStops().observe(requireActivity(), Observer<List<Favourite>> { it ->
             it?.let {
                 onData(it)
             }
@@ -107,7 +107,7 @@ class FavouriteFragment : Fragment(), FavouriteAdapter.ItemClickListener, SwipeR
     }
 
     companion object {
-        fun newInstance(): Fragment {
+        fun newInstance(): androidx.fragment.app.Fragment {
             val fragment = FavouriteFragment()
             val args = Bundle()
             fragment.arguments = args

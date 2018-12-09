@@ -1,6 +1,6 @@
 package net.dublin.bus.ui.view.search
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_search_recent.view.*
@@ -66,7 +66,7 @@ internal class SearchRecentAdapter(private val mListener: ItemClickListener) : R
             else
                 context.getString(R.string.search_route_item, item.number)
 
-            itemView?.setOnClickListener {
+            itemView.setOnClickListener {
                 mItem?.let {
                     if (it.isStop()) {
                         mListener.onStopClick(it.number)

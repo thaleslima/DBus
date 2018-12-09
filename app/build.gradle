@@ -9,32 +9,24 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
 }
 
-// Create a variable called keystorePropertiesFile, and initialize it to your
-// keystore.properties file, in the rootProject folder.
 def keystorePropertiesFile = rootProject.file("./key/keystore.properties")
-
-// Initialize a new Properties() object called keystoreProperties.
 def keystoreProperties = new Properties()
-
-// Load your keystore.properties file into the keystoreProperties object.
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
-
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     flavorDimensions "default"
 
     defaultConfig {
         applicationId "net.atebtech.dublin"
         minSdkVersion 18
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        targetSdkVersion 28
+        versionCode 2
+        versionName "1.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "boolean", "MOCK", "false"
         buildConfigField "boolean", "MOCK_MAP", "true"
-
-//        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -94,94 +86,64 @@ android {
 }
 
 dependencies {
-    ext {
-        supportLibraryVersion = '27.1.1'
-        constraintLayout = '1.1.2'
-
-        junitVersion = '4.12'
-        mockitoAllVersion = '1.10.19'
-        hamcrestAllVersion = '1.3'
-
-        espressoVersion = '3.0.2'
-        mockitoCoreVersion = '2.15.0'
-        dexmakerVersion = '1.2'
-        mockwebserverVersion = '2.7.0'
-
-        roomVersion = '1.1.1'
-        lifecycle = '1.1.1'
-
-        archLifecycleVersion = '1.1.0'
-        firebase_jobdispatcher_version = "0.7.0"
-
-        playServiceVersion = '15.0.1'
-    }
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$constraintLayout"
-    implementation "com.android.support:design:$supportLibraryVersion"
-    implementation "com.android.support:support-vector-drawable:$supportLibraryVersion"
-    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.multidex:multidex:2.0.0"
 
-    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
-        transitive = true
-    }
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
 
-    implementation "com.firebase:firebase-jobdispatcher:$firebase_jobdispatcher_version"
-    implementation "com.google.firebase:firebase-core:16.0.1"
-    implementation "com.google.firebase:firebase-perf:16.0.0"
-    implementation "com.google.android.gms:play-services-maps:$playServiceVersion"
-    implementation "com.google.android.gms:play-services-location:$playServiceVersion"
+    implementation 'androidx.room:room-runtime:2.0.0'
+    annotationProcessor 'androidx.room:room-compiler:2.0.0'
+    kapt 'androidx.room:room-compiler:2.0.0'
 
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
-    implementation "io.reactivex.rxjava2:rxjava:2.1.8"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'com.google.android.material:material:1.1.0-alpha01'
+
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.7'
+    implementation 'com.google.firebase:firebase-perf:16.2.2'
+    implementation "com.firebase:firebase-jobdispatcher:0.7.0"
+    implementation "com.google.android.gms:play-services-maps:16.0.0"
+    implementation "com.google.android.gms:play-services-location:16.0.0"
+
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.3"
     implementation 'com.google.code.ksoap2-android:ksoap2-android:3.6.2'
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    // Room components
-    implementation "android.arch.persistence.room:runtime:$roomVersion"
-    implementation "android.arch.lifecycle:extensions:$lifecycle"
-    implementation "android.arch.lifecycle:viewmodel:$lifecycle"
-    implementation "android.arch.lifecycle:livedata:$lifecycle"
-    implementation "android.arch.lifecycle:common-java8:$lifecycle"
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.0.0'
 
-    annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
-    kapt "android.arch.persistence.room:compiler:$roomVersion"
-    androidTestImplementation "android.arch.persistence.room:testing:$roomVersion"
-    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
 
-    // Dependencies for local unit tests
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.mockito:mockito-all:$mockitoAllVersion"
-    testImplementation "org.hamcrest:hamcrest-all:$hamcrestAllVersion"
-    testImplementation group: 'org.mockito', name: 'mockito-inline', version: '2.8.9'
+    // Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.0'
+    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.0'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.0'
+    androidTestImplementation "androidx.test.ext:junit:1.0.0"
 
-    // Android Testing Support Library's runner and rules
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation "junit:junit:4.12"
+    androidTestImplementation "org.mockito:mockito-core:2.15.0"
+    androidTestImplementation "com.google.dexmaker:dexmaker:1.2"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:1.2"
+    androidTestImplementation "com.squareup.okhttp:mockwebserver:2.7.0"
+    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
 
-    // Dependencies for Android unit tests
-    androidTestImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
-    androidTestImplementation "com.google.dexmaker:dexmaker:$dexmakerVersion"
-    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:$dexmakerVersion"
-    androidTestImplementation "com.squareup.okhttp:mockwebserver:$mockwebserverVersion"
-
-    // Espresso UI Testing
-    implementation "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:$espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:$espressoVersion", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-
-    androidTestImplementation "com.android.support:support-annotations:$supportLibraryVersion"
-    androidTestImplementation "com.android.support:support-v4:$supportLibraryVersion"
-    androidTestImplementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
-    androidTestImplementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    androidTestImplementation "com.android.support:design:$supportLibraryVersion"
+    androidTestImplementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

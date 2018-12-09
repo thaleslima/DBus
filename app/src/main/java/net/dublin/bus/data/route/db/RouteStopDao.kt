@@ -1,6 +1,6 @@
 package net.dublin.bus.data.route.db
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.RouteStop
 import net.dublin.bus.model.Stop

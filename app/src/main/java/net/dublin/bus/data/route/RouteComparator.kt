@@ -6,7 +6,7 @@ import java.util.Comparator
 
 class RouteComparator : Comparator<Route> {
     override fun compare(paramRoute1: Route, paramRoute2: Route): Int {
-        return Integer.valueOf(getNumbersFromString(paramRoute1.number))!!.compareTo(Integer.valueOf(getNumbersFromString(paramRoute2.number)))
+        return Integer.valueOf(getNumbersFromString(paramRoute1.number)).compareTo(Integer.valueOf(getNumbersFromString(paramRoute2.number)))
     }
 
     companion object {

@@ -1,7 +1,7 @@
 package net.dublin.bus.ui.view.stop
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import net.dublin.bus.data.stop.repository.StopRepository
 
 class StopViewModelFactory(private val repository: StopRepository) : ViewModelProvider.NewInstanceFactory() {

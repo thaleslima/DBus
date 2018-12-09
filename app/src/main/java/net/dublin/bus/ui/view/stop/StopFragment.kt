@@ -1,10 +1,10 @@
 package net.dublin.bus.ui.view.stop
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +41,7 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
 
         val factory = StopViewModelFactory(StopRepository(requireContext()))
         model = ViewModelProviders.of(requireActivity(), factory).get(StopViewModel::class.java)
-        model.getStops().observe(requireActivity(), Observer<List<Stop>> {
+        model.getStops().observe(requireActivity(), Observer<List<Stop>> { it ->
             it?.let {
                 showData(it)
             }
@@ -67,7 +67,7 @@ class StopFragment : Fragment(), StopAdapter.ItemClickListener {
     }
 
     companion object {
-        fun newInstance(): Fragment {
+        fun newInstance(): androidx.fragment.app.Fragment {
             val fragment = StopFragment()
             val args = Bundle()
             fragment.arguments = args

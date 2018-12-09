@@ -1,13 +1,13 @@
 package net.dublin.bus.ui.view.route.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.PopupMenu
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
@@ -75,11 +75,12 @@ class RouteDetailActivity : AppCompatActivity() {
         loadData()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState?.putString(BUNDLE_DIRECTION, directionCurrent)
-        outState?.putString(BUNDLE_TOWARDS, routeNameTowards)
+        outState.putString(BUNDLE_DIRECTION, directionCurrent)
+        outState.putString(BUNDLE_TOWARDS, routeNameTowards)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -152,7 +153,7 @@ class RouteDetailActivity : AppCompatActivity() {
             sendEvent()
             changeMapOrList()
             changeIcoMapOrList()
-            RouteDetailActivity@this.saveShowMapAtRouteDetail(map)
+            RouteDetailActivity@ this.saveShowMapAtRouteDetail(map)
         }
 
         route_change_direction_view.setOnClickListener { v -> showFilterPopup(v) }

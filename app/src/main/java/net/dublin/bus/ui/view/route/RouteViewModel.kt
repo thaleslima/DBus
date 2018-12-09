@@ -1,8 +1,8 @@
 package net.dublin.bus.ui.view.route
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Transformations
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import net.dublin.bus.data.route.RouteComparator
 import net.dublin.bus.data.route.repository.RouteRepository
 import net.dublin.bus.model.Route

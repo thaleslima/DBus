@@ -1,15 +1,15 @@
 package net.dublin.bus.ui.view.search
 
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.IdlingRegistry
-import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.filters.LargeTest
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
 import net.dublin.bus.R
 import net.dublin.bus.ui.view.main.MainActivity
 import net.dublin.bus.ui.view.utilities.MockServer
@@ -199,7 +199,7 @@ class SearchScreenTest {
         checkRecyclerHasDescendant(R.id.search_recent_view, 2, "Route 120")
 
         //Check search input
-        val text = InstrumentationRegistry.getTargetContext().getString(R.string.search_hint)
+        val text = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.search_hint)
         onView(withId(R.id.search_text_view)).check(matches(withHint(text)))
     }
 

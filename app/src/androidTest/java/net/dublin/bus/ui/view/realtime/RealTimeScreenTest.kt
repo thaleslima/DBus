@@ -1,16 +1,16 @@
 package net.dublin.bus.ui.view.realtime
 
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.IdlingRegistry
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.filters.LargeTest
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.filters.LargeTest
+import androidx.test.rule.ActivityTestRule
 import android.view.View
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import net.dublin.bus.R
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherNoItemsResponse200
 import net.dublin.bus.ui.view.utilities.MockServer.setDispatcherRealTimeResponse200
@@ -93,7 +93,7 @@ class RealTimeScreenTest {
         setDispatcherResponse500()
 
         swipeRefresh(R.id.real_swipe_refresh_layout)
-        val text = InstrumentationRegistry.getTargetContext().getString(R.string.error_message)
+        val text = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.error_message)
         onView(withText(text)).check(matches(isDisplayed()))
         loadData_DisplayedInUi(false)
     }
@@ -107,7 +107,7 @@ class RealTimeScreenTest {
         onView(withId(R.id.real_progress_bar_view)).check(matches(not<View>(isDisplayed())))
         onView(withId(R.id.real_message_empty_view)).check(matches(isDisplayed()))
         onView(withId(R.id.real_line_note_view)).check(matches(isDisplayed()))
-        val text = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_error_message)
+        val text = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.real_time_error_message)
         onView(withText(text)).check(matches(isDisplayed()))
         onView(withText(WARNING)).check(matches(isDisplayed()))
 
@@ -179,7 +179,7 @@ class RealTimeScreenTest {
         onView(withId(R.id.real_description_stop_view)).check(matches(withText(startsWith(STOP_DESCRIPTION))))
         onView(withId(R.id.real_message_empty_view)).check(matches(isDisplayed()))
 
-        val messageErrorRequired = InstrumentationRegistry.getTargetContext().getString(R.string.real_time_error_message)
+        val messageErrorRequired = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.real_time_error_message)
         onView(withText(messageErrorRequired)).check(matches(isDisplayed()))
     }
 
@@ -189,7 +189,7 @@ class RealTimeScreenTest {
         launchActivity()
 
         sleep()
-        val text = InstrumentationRegistry.getTargetContext().getString(R.string.error_message)
+        val text = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.error_message)
         onView(withText(text)).check(matches(isDisplayed()))
         onView(withId(R.id.real_message_empty_view)).check(matches(isDisplayed()))
     }
@@ -200,7 +200,7 @@ class RealTimeScreenTest {
         launchActivity()
 
         setDispatcherRealTimeResponse200()
-        val text = InstrumentationRegistry.getTargetContext().getString(R.string.title_retry)
+        val text = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.title_retry)
         sleep()
         onView(withText(text)).perform(click())
         loadData_DisplayedInUi(false)

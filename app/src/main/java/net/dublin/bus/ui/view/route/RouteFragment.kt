@@ -1,10 +1,10 @@
 package net.dublin.bus.ui.view.route
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +40,7 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     private fun initialize() {
         val factory = RouteViewModelFactory(RouteRepository(requireContext()))
         model = ViewModelProviders.of(requireActivity(), factory).get(RouteViewModel::class.java)
-        model.getStops().observe(requireActivity(), Observer<List<Route>> {
+        model.getStops().observe(requireActivity(), Observer<List<Route>> { it ->
             it?.let {
                 showData(it)
             }
@@ -70,7 +70,7 @@ class RouteFragment : Fragment(), RouteAdapter.ItemClickListener {
     }
 
     companion object {
-        fun newInstance(): Fragment {
+        fun newInstance(): androidx.fragment.app.Fragment {
             val fragment = RouteFragment()
             val args = Bundle()
             fragment.arguments = args

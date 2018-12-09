@@ -1,5 +1,6 @@
 package net.dublin.bus.ui.view.search
 
+import android.annotation.SuppressLint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -22,17 +23,18 @@ class SearchPresenter(private val view: SearchContract.View,
     override fun loadRoute(item: Route) {
         recentRepository.getSaveRoute(item.number).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {}
+                .subscribe()
         view.showRoute(item)
     }
 
     override fun loadStop(item: Stop) {
         recentRepository.getSaveStop(item.stopNumber).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {}
+                .subscribe()
         view.showStop(item)
     }
 
+    @SuppressLint("CheckResult")
     override fun loadRecentRoute(item: String) {
         routeRepository.getRouteByNumber(item)
                 .subscribeOn(Schedulers.io())
@@ -44,6 +46,7 @@ class SearchPresenter(private val view: SearchContract.View,
                 })
     }
 
+    @SuppressLint("CheckResult")
     override fun loadRecentStop(item: String) {
         stopRepository.getStopsByNumber(item)
                 .subscribeOn(Schedulers.io())
@@ -56,6 +59,7 @@ class SearchPresenter(private val view: SearchContract.View,
     }
 
 
+    @SuppressLint("CheckResult")
     override fun loadRecent() {
         recentRepository.getData()
                 .subscribeOn(Schedulers.io())

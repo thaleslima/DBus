@@ -3,11 +3,11 @@ package net.dublin.bus.ui.utilities
 import android.content.Context
 import android.net.ConnectivityManager
 import android.preference.PreferenceManager
-import android.support.annotation.NonNull
-import android.support.annotation.StringRes
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.annotation.NonNull
+import androidx.annotation.StringRes
+import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View

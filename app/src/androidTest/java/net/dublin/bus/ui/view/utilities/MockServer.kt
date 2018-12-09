@@ -1,7 +1,7 @@
 package net.dublin.bus.ui.view.utilities
 
-import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.util.Log
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.squareup.okhttp.mockwebserver.Dispatcher
 import com.squareup.okhttp.mockwebserver.MockResponse
 import com.squareup.okhttp.mockwebserver.MockWebServer

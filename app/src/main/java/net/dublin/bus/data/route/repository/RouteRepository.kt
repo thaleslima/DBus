@@ -1,6 +1,6 @@
 package net.dublin.bus.data.route.repository
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import android.content.Context
 import io.reactivex.Observable
 import net.dublin.bus.data.BusDatabase

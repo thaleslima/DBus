@@ -1,5 +1,6 @@
 package net.dublin.bus.ui.view.realtime
 
+import android.annotation.SuppressLint
 import android.text.TextUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -47,6 +48,7 @@ class RealTimePresenter(private val view: RealTimeContract.View,
         subscriptions.add(subscription)
     }
 
+    @SuppressLint("CheckResult")
     override fun loadFavouriteStatus() {
         stopRepository.isFavourite(stopNumber)
                 .subscribeOn(Schedulers.io())
@@ -61,6 +63,7 @@ class RealTimePresenter(private val view: RealTimeContract.View,
                 }
     }
 
+    @SuppressLint("CheckResult")
     override fun addOrRemoveFavourite() {
         val favourite = Favourite(stopNumber, description = description)
 

@@ -1,6 +1,6 @@
 package net.dublin.bus.ui.view.route.detail.list
 
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import net.dublin.bus.model.Stop
 import net.dublin.bus.ui.view.BasePresenter
 

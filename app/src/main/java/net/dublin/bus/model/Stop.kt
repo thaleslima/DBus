@@ -1,9 +1,9 @@
 package net.dublin.bus.model
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
-import android.arch.persistence.room.PrimaryKey
-import android.support.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import androidx.annotation.NonNull
 import android.text.TextUtils
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.annotations.SerializedName

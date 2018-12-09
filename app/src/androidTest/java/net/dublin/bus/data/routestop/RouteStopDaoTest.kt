@@ -1,11 +1,11 @@
 package net.dublin.bus.data.routestop
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
 import net.dublin.bus.data.BusDatabase
 import net.dublin.bus.model.Route
 import net.dublin.bus.model.RouteStop
@@ -55,7 +55,7 @@ class RouteStopDaoTest {
 
     @Before
     fun initDb() {
-        database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
+        database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getInstrumentation().context,
                 BusDatabase::class.java).build()
     }
 

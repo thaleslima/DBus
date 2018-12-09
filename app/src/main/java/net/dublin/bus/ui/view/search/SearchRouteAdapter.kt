@@ -1,6 +1,6 @@
 package net.dublin.bus.ui.view.search
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_search_route.view.*
@@ -59,7 +59,7 @@ internal class SearchRouteAdapter(private val mListener: ItemClickListener) : Re
         fun bind(item: Route) = with(itemView) {
             mItem = if (item.number.isEmpty()) null else item
             search_route_number_view?.text = item.number
-            itemView?.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
+            itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }
 

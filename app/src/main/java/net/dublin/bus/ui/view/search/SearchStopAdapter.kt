@@ -1,6 +1,6 @@
 package net.dublin.bus.ui.view.search
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_search_stop.view.*
@@ -61,7 +61,7 @@ internal class SearchStopAdapter(private val mListener: ItemClickListener) : Rec
             search_stop_description_view?.text = item.description
             search_stop_number_view?.text = item.stopNumber
 
-            itemView?.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
+            itemView.setOnClickListener { mItem?.let { it1 -> mListener.onItemClick(it1) } }
         }
     }
 

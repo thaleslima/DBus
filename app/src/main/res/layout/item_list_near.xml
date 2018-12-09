@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
@@ -7,7 +7,8 @@
     android:background="@drawable/frame_medium"
     android:elevation="1dp"
     android:foreground="?android:attr/selectableItemBackground"
-    android:padding="8dp">
+    android:padding="8dp"
+    tools:ignore="UnusedAttribute">
 
     <TextView
         android:id="@+id/near_number_stop_view"
@@ -31,8 +32,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
         android:maxLines="1"
@@ -47,11 +48,11 @@
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
-        android:drawablePadding="2dp"
+        android:layout_marginBottom="2dp"
         android:drawableStart="@drawable/ic_directions_walk_black_18dp"
+        android:drawablePadding="2dp"
         android:fontFamily="sans-serif-light"
         android:textColor="@color/secondary_text"
         app:layout_constraintStart_toEndOf="@+id/near_number_stop_view"
@@ -63,9 +64,9 @@
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
         android:ellipsize="end"
         android:fontFamily="sans-serif-light"
         android:maxLines="1"
@@ -74,4 +75,4 @@
         app:layout_constraintStart_toEndOf="@+id/near_number_stop_view"
         app:layout_constraintTop_toBottomOf="@+id/near_distance_view"
         tools:text="Routes: 4, 7, 7a, 7d, 40b, 40d, 120" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

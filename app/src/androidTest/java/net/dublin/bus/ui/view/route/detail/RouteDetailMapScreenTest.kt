@@ -2,20 +2,20 @@ package net.dublin.bus.ui.view.route.detail
 
 import android.Manifest
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
-import android.support.test.InstrumentationRegistry.getInstrumentation
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.IdlingRegistry
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.filters.LargeTest
-import android.support.test.rule.ActivityTestRule
-import android.support.test.rule.GrantPermissionRule
-import android.support.test.runner.AndroidJUnit4
-import android.support.test.uiautomator.UiDevice
-import android.support.test.uiautomator.UiObjectNotFoundException
-import android.support.test.uiautomator.UiSelector
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import androidx.test.rule.ActivityTestRule
+import androidx.test.rule.GrantPermissionRule
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiObjectNotFoundException
+import androidx.test.uiautomator.UiSelector
 import net.dublin.bus.BuildConfig
 import net.dublin.bus.R
 import net.dublin.bus.ui.view.utilities.MockServer
@@ -166,7 +166,7 @@ class RouteDetailMapScreenTest {
         //Check message error route
         sleep()
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()))
-        val text = InstrumentationRegistry.getTargetContext().getString(R.string.route_detail_error)
+        val text = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.route_detail_error)
         onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith(text))))
 
         //Change list
@@ -194,7 +194,7 @@ class RouteDetailMapScreenTest {
         //Check message error route
         sleep()
         onView(withId(R.id.detail_map_stop_view)).check(matches(isDisplayed()))
-        val text = InstrumentationRegistry.getTargetContext().getString(R.string.route_detail_error)
+        val text = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.route_detail_error)
         onView(withId(R.id.route_detail_map_routes_view)).check(matches(withText(startsWith(text))))
 
         //Change list
